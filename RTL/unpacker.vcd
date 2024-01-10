@@ -1,0 +1,108 @@
+$date
+	Wed Jan 10 16:04:25 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	100ps
+$end
+$scope module tb $end
+$var wire 1 ! sign $end
+$var wire 23 " m [22:0] $end
+$var wire 1 # isZero $end
+$var wire 1 $ isSubn $end
+$var wire 1 % isNaN $end
+$var wire 1 & isInf $end
+$var wire 8 ' e [7:0] $end
+$var reg 32 ( data [31:0] $end
+$scope module dut $end
+$var wire 32 ) data [31:0] $end
+$var wire 1 & isInf $end
+$var wire 1 % isNaN $end
+$var wire 1 $ isSubn $end
+$var wire 1 # isZero $end
+$var wire 1 ! sign $end
+$var wire 1 * sig_z $end
+$var wire 23 + m [22:0] $end
+$var wire 1 , exp_Z $end
+$var wire 1 - exp_FF $end
+$var wire 8 . e [7:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b11111111 .
+1-
+0,
+b0 +
+1*
+b1111111100000000000000000000000 )
+b1111111100000000000000000000000 (
+b11111111 '
+1&
+0%
+0$
+0#
+b0 "
+0!
+$end
+#10
+1%
+0&
+0*
+b11111111111111111111111 "
+b11111111111111111111111 +
+b1111111111111111111111111111111 (
+b1111111111111111111111111111111 )
+#20
+1$
+0%
+1,
+0-
+b0 '
+b0 .
+b1000001010101011001000 "
+b1000001010101011001000 +
+b1000001010101011001000 (
+b1000001010101011001000 )
+#30
+0$
+1#
+1*
+b0 "
+b0 +
+b0 (
+b0 )
+#40
+0#
+0,
+b10000100 '
+b10000100 .
+b1000010000000000000000000000000 (
+b1000010000000000000000000000000 )
+#50
+0*
+1!
+b11010010 '
+b11010010 .
+b11111100001110010010001 "
+b11111100001110010010001 +
+b11101001011111100001110010010001 (
+b11101001011111100001110010010001 )
+#60
+x$
+x#
+x&
+x%
+x*
+z!
+x,
+x-
+bz '
+bz .
+bz "
+bz +
+bz (
+bz )
