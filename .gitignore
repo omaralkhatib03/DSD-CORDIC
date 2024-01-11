@@ -1,12 +1,20 @@
 # Ignore everything
 *
 
+
 # But not these files
 !.gitignore
 !*.qsys
 !*.bdf
 !*.qpf
 !*.qsf
-# Include everything in the hello_world and hello_world_bsp folders
-!./system_template_de1_soc/software/hello_world/*
-!./system_template_de1_soc/software/hello_world_bsp/*
+
+
+!/hardware
+/hardware/*
+!/hardware/software
+/hardware/software/*
+!/hardware/software/hello_world
+!/hardware/software/hello_world/*
+!/hardware/software/hello_world_bsp
+!/hardware/software/hello_world_bsp/*
