@@ -4,14 +4,14 @@
 
 # But not these files
 !.gitignore
-!*.qsys
-!*.bdf
-!*.qpf
-!*.qsf
-
 
 !/hardware
-/hardware/*
+
+!/hardware/*.qsys
+!/hardware/*.bdf
+!/hardware/*.qpf
+!/hardware/*.qsf
+
 !/hardware/software
 /hardware/software/*
 !/hardware/software/hello_world
