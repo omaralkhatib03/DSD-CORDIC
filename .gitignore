@@ -1,17 +1,21 @@
 # Ignore everything
-*
-
+# *
 
 # But not these files
 !.gitignore
 
+# make an exception for hardware 
 !/hardware
+!/fp_adder
 
+# make an exception for all needed files in hardware. 
+# This way we can build the project and not worry about pushing build files 
 !/hardware/*.qsys
 !/hardware/*.bdf
 !/hardware/*.qpf
 !/hardware/*.qsf
 
+# Also make an exception for the software project
 !/hardware/software
 /hardware/software/*
 !/hardware/software/hello_world
