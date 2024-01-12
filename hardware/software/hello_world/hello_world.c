@@ -15,10 +15,59 @@
  */
 
 #include <stdio.h>
+#include <sys/alt_stdio.h>
+#include <sys/alt_alarm.h>
+#include <sys/times.h>
+#include <alt_types.h>
+#include <system.h>
+#include <unistd.h>
+
+//test 1
+#define step 5
+#define N 52
+
+//test 2
+//#define step 1/8.0
+//#define N 2041
+
+//test 3
+//#define step 1/1024.0
+//#define N 261121
+
+void generateVector(float x[N]){
+  int i;
+  x[0] = 0;
+  for(i=1; i<N; i++){
+    x[i] = x[i-1] + step;
+  }
+}
+
+float sumVector(float x[], int M){
+  int i;
+  float sum = 0;
+  for(i=0; i<M; i++){
+    sum += x[i] + x[i] * x[i];
+  }
+  return sum;
+}
 
 int main()
 {
-  printf("Hello from Nios II!\n");
+  printf("Task 2!\n");
+  float x[N];
+  float y;
+  generateVector(x);
+  char buf[50];
+  clock_t exec_t1, exec_t2;
+  exec_t1 = times(NULL);
+  y=sumVector(x, N);
+  exec_t2 = times(NULL);
+  gcvt((exec_t2 - exec_t1), 10, buf);
+  alt_putstr(" proc time = "); alt_putstr(buf); alt_putstr(" ticks \n");
+  int i;
+  for(i=0; i<10; i++)
+    y = y/2.0;
 
+  printf("Result: %d\n",(int)y);
   return 0;
 }
