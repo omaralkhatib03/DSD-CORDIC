@@ -2,11 +2,11 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>12-Jan-2024 12:39:54</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1705063194363</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>C:\Users\james\Desktop\Imperial\year3\DSD\DSD-Binary-Ballet\hardware\software\hello_world_bsp</BspGeneratedLocation>
-        <BspSettingsFile>settings.bsp</BspSettingsFile>
-        <SopcDesignFile>..\..\first_nios2_system.sopcinfo</SopcDesignFile>
+        <BspGeneratedTimeStamp>Jan 12, 2024 7:51:54 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1705089114425</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/software/hello_world_bsp</BspGeneratedLocation>
+        <BspSettingsFile>./settings.bsp</BspSettingsFile>
+        <SopcDesignFile>../../first_nios2_system.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
         <Cpu>cpu</Cpu>
         <SchemaVersion>1.9</SchemaVersion>
@@ -900,8 +900,8 @@
         </Setting>
         <MemoryMap>
                 <slaveDescriptor>onchip_mem</slaveDescriptor>
-                <addressRange>0x01000000 - 0x01B71AFF</addressRange>
-                <addressSpan>12000000</addressSpan>
+                <addressRange>0x01000000 - 0x0105F5E0</addressRange>
+                <addressSpan>390625</addressSpan>
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>

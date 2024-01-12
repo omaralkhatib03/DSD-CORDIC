@@ -14,25 +14,27 @@
  *
  */
 
-#include <stdio.h>
+#include <stdlib.h>
 #include <sys/alt_stdio.h>
 #include <sys/alt_alarm.h>
 #include <sys/times.h>
 #include <alt_types.h>
 #include <system.h>
+#include <stdio.h>
 #include <unistd.h>
 
+
 //test 1
-#define step 5
-#define N 52
+// #define step 5
+// #define N 52
 
 //test 2
-//#define step 1/8.0
-//#define N 2041
+#define step 1/8.0
+#define N 2041
 
 //test 3
-//#define step 1/1024.0
-//#define N 261121
+// #define step 1/1024.0
+// #define N 261121
 
 void generateVector(float x[N]){
   int i;
@@ -63,7 +65,8 @@ int main()
   y=sumVector(x, N);
   exec_t2 = times(NULL);
   gcvt((exec_t2 - exec_t1), 10, buf);
-  alt_putstr(" proc time = "); alt_putstr(buf); alt_putstr(" ticks \n");
+  alt_putstr("proc time = "); alt_putstr(buf); alt_putstr(" ticks \n");
+  printf("Result Raw: %x\n", (unsigned int*)&y);
   int i;
   for(i=0; i<10; i++)
     y = y/2.0;

@@ -44,6 +44,7 @@ def main():
         print(f'Test {i + 1}')
         test_vector = generateVector(Ns[i], steps[i])
         y = sumVector(test_vector=test_vector)
+        y /= 1024
         print(f'Step: {steps[i]}, N: {Ns[i]}, y: {y}')
 
 

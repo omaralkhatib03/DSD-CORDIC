@@ -174,13 +174,15 @@ NIOS2_ELF_FORMAT ?= elf32-littlenios2
 MEM_0 := first_nios2_system_onchip_mem
 $(MEM_0)_NAME := onchip_mem
 $(MEM_0)_MEM_INIT_FILE_PARAM_NAME := INIT_FILE
+HEX_FILES += $(MEM_INIT_DIR)/$(MEM_0).hex
+MEM_INIT_INSTALL_FILES += $(MEM_INIT_INSTALL_DIR)/$(MEM_0).hex
 DAT_FILES += $(HDL_SIM_DIR)/$(MEM_0).dat
 HDL_SIM_INSTALL_FILES += $(HDL_SIM_INSTALL_DIR)/$(MEM_0).dat
 SYM_FILES += $(HDL_SIM_DIR)/$(MEM_0).sym
 HDL_SIM_INSTALL_FILES += $(HDL_SIM_INSTALL_DIR)/$(MEM_0).sym
 $(MEM_0)_START := 0x01000000
-$(MEM_0)_END := 0x01b71aff
-$(MEM_0)_SPAN := 0x00b71b00
+$(MEM_0)_END := 0x0105f5e0
+$(MEM_0)_SPAN := 0x0005f5e1
 $(MEM_0)_HIERARCHICAL_PATH := onchip_mem
 $(MEM_0)_WIDTH := 32
 $(MEM_0)_HEX_DATA_WIDTH := 32
@@ -188,7 +190,7 @@ $(MEM_0)_ENDIANNESS := --little-endian-mem
 $(MEM_0)_CREATE_LANES := 0
 
 .PHONY: onchip_mem
-onchip_mem: check_elf_exists $(HDL_SIM_DIR)/$(MEM_0).dat $(HDL_SIM_DIR)/$(MEM_0).sym
+onchip_mem: check_elf_exists $(MEM_INIT_DIR)/$(MEM_0).hex $(HDL_SIM_DIR)/$(MEM_0).dat $(HDL_SIM_DIR)/$(MEM_0).sym
 
 
 #END OF BSP SPECIFIC

@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'first_nios2_system'
  * SOPC Builder design path: ../../first_nios2_system.sopcinfo
  *
- * Generated: Fri Jan 12 12:39:56 GMT 2024
+ * Generated: Fri Jan 12 19:51:54 GMT 2024
  */
 
 /*
@@ -264,8 +264,8 @@
 #define ONCHIP_MEM_READ_DURING_WRITE_MODE "DONT_CARE"
 #define ONCHIP_MEM_SINGLE_CLOCK_OP 0
 #define ONCHIP_MEM_SIZE_MULTIPLE 1
-#define ONCHIP_MEM_SIZE_VALUE 12000000
-#define ONCHIP_MEM_SPAN 12000000
+#define ONCHIP_MEM_SIZE_VALUE 390625
+#define ONCHIP_MEM_SPAN 390625
 #define ONCHIP_MEM_TYPE "altera_avalon_onchip_memory2"
 #define ONCHIP_MEM_WRITABLE 1
 
@@ -308,7 +308,7 @@
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1705016718
+#define SYSID_TIMESTAMP 1705088561
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 #endif /* __SYSTEM_H_ */
