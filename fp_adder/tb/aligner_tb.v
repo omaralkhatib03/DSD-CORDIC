@@ -4,11 +4,11 @@ module tb () ;
 
     reg [31:0] data_1;
     reg [31:0] data_2; 
+    reg op;
     // we dont need a clk now;
     // reg clk;
 
-    
-    
+       
     wire sign_1, isNaN_1, isInf_1, isZero_1, isSubn_1;
     wire sign_2, isNaN_2, isInf_2, isZero_2, isSubn_2;
     wire [7:0] e_1, e_2;
@@ -21,14 +21,15 @@ module tb () ;
     wire sign, new_sign_2;
     wire [26:0] aligned_guarded_m_1, aligned_guarded_m_2;
 
-    aligner dut(e_1, e_2, 1'b0, sign_1, sign_2, m_1, m_2, 
+    aligner dut(e_1, e_2, op, sign_1, sign_2, m_1, m_2, 
                 e, diff, sign, new_sign_2, aligned_guarded_m_1, aligned_guarded_m_2);
 
 
     initial begin
         $dumpfile("sim/aligner.vcd");
         $dumpvars();
-
+        
+        op = 1'b0; 
         data_1 = 32'h40400000; // 3
         data_2 = 32'h40000000; // 2
         #1
@@ -40,6 +41,18 @@ module tb () ;
         #1
         data_1 = 32'h3f800000; // 1
         data_2 = 32'hbF7FFFFF; // -(1.11...11)_2 * 2^-1 
+        #1 
+        data_1 = 32'h3f800000; // 1
+        data_2 = 32'h33000001; // 2.9802327E-8 (1.000....1)_2 * 2^-25
+        op = 1'b1; 
+        #1
+        op = 1'b0;
+        data_1 = 32'h40000000; // 2
+        data_2 = 32'h40400000; // 3
+        #1
+        op = 1'b1;
+        data_1 = 32'h40000000; // 2
+        data_2 = 32'h40400000; // 3
         #1
         data_1 = 32'hz; // 3
         data_2 = 32'hz; // 3
