@@ -1,0 +1,133 @@
+$date
+	Thu Jan 11 18:16:19 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	100ps
+$end
+$scope module tb $end
+$var wire 26 ! aligned_guarded_m_1 [25:0] $end
+$var wire 1 " sign_2 $end
+$var wire 1 # sign_1 $end
+$var wire 1 $ sign $end
+$var wire 1 % new_sign_2 $end
+$var wire 23 & m_2 [22:0] $end
+$var wire 23 ' m_1 [22:0] $end
+$var wire 1 ( isZero_2 $end
+$var wire 1 ) isZero_1 $end
+$var wire 1 * isSubn_2 $end
+$var wire 1 + isSubn_1 $end
+$var wire 1 , isNaN_2 $end
+$var wire 1 - isNaN_1 $end
+$var wire 1 . isInf_2 $end
+$var wire 1 / isInf_1 $end
+$var wire 8 0 e_2 [7:0] $end
+$var wire 8 1 e_1 [7:0] $end
+$var wire 8 2 e [7:0] $end
+$var wire 8 3 diff [7:0] $end
+$var wire 26 4 aligned_guarded_m_2 [25:0] $end
+$var reg 32 5 data_1 [31:0] $end
+$var reg 32 6 data_2 [31:0] $end
+$scope module dut $end
+$var wire 1 7 adjusted_sign_2 $end
+$var wire 26 8 aligned_guarded_m_2 [25:0] $end
+$var wire 1 9 op $end
+$var wire 1 " sign_2 $end
+$var wire 1 # sign_1 $end
+$var wire 1 $ sign $end
+$var wire 1 : sel $end
+$var wire 1 % new_sign_2 $end
+$var wire 23 ; m_2 [22:0] $end
+$var wire 23 < m_1 [22:0] $end
+$var wire 8 = e_2 [7:0] $end
+$var wire 8 > e_1 [7:0] $end
+$var wire 8 ? e2_e1 [7:0] $end
+$var wire 8 @ e1_e2 [7:0] $end
+$var wire 8 A e [7:0] $end
+$var wire 8 B diff [7:0] $end
+$var wire 276 C aligned_m2 [275:0] $end
+$var wire 26 D aligned_guarded_m_1 [25:0] $end
+$var wire 1 E aligned_guarded_m2 $end
+$upscope $end
+$scope module unp1 $end
+$var wire 32 F data [31:0] $end
+$var wire 1 / isInf $end
+$var wire 1 - isNaN $end
+$var wire 1 + isSubn $end
+$var wire 1 ) isZero $end
+$var wire 1 # sign $end
+$var wire 1 G sig_z $end
+$var wire 23 H m [22:0] $end
+$var wire 1 I exp_Z $end
+$var wire 1 J exp_FF $end
+$var wire 8 K e [7:0] $end
+$upscope $end
+$scope module unp2 $end
+$var wire 32 L data [31:0] $end
+$var wire 1 . isInf $end
+$var wire 1 , isNaN $end
+$var wire 1 * isSubn $end
+$var wire 1 ( isZero $end
+$var wire 1 " sign $end
+$var wire 1 M sig_z $end
+$var wire 23 N m [22:0] $end
+$var wire 1 O exp_Z $end
+$var wire 1 P exp_FF $end
+$var wire 8 Q e [7:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx Q
+xP
+xO
+bx N
+xM
+bx L
+bx K
+xJ
+xI
+bx H
+xG
+bx F
+xE
+bx000 D
+bx C
+bx B
+bx A
+bx @
+bx ?
+bx >
+bx =
+bx <
+bx ;
+x:
+09
+bz 8
+x7
+bx 6
+bx 5
+bx000 4
+bx 3
+bx 2
+bx 1
+bx 0
+x/
+x.
+x-
+x,
+x+
+x*
+x)
+x(
+bx '
+bx &
+x%
+x$
+x#
+x"
+bz !
+$end
