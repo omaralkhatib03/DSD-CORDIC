@@ -13,8 +13,9 @@ module unpacker (
 
     wire exp_FF = e == ALL_ONES;
     wire exp_Z = e == ALL_ZEROS;
-    wire sig_z = data[22:0] == 30'd0; // useful boolean to unpack float  
 
+    // useful boolean to unpack float  
+    wire sig_z = data[22:0] == 30'd0; 
     assign sign = data[31];
     assign e = data[30-:8];
     assign m = data[22:0];
