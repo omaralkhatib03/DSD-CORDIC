@@ -23,12 +23,21 @@ def generateVector(N, step):
         x[i] = x[i-1] + step
     return x
 
-
+# Later task
+# def sumVector(test_vector):
+    # y = 0
+    # for x_i in test_vector:
+        # y += 0.5 * x_i + np.power(x_i, 2)*np.cos((x_i - 128) / 128)
+    # return y
+    
+# for task 2 
 def sumVector(test_vector):
-    y = 0
+    y = np.float32(0)
+    
     for x_i in test_vector:
-        y += 0.5 * x_i + np.power(x_i, 2)*np.cos((x_i - 128) / 128)
-    return y
+        y += x_i + x_i * x_i
+
+    return y 
 
 def main():
     for i in range(0, len(steps)):
