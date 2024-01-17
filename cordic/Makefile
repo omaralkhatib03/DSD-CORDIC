@@ -1,9 +1,9 @@
 INCLUDE=-I RTL/ -I tb/
 
-bin/aligner: RTL/aligner.v RTL/unpacker.v tb/aligner_tb.v bin sim
+bin/aligner: RTL/aligner.v RTL/unpacker.sv tb/aligner_tb.v bin sim
 	iverilog $(INCLUDE) -o $@ $^
 
-bin/unpacker: RTL/unpacker.v tb/unpacker_tb.v bin sim
+bin/unpacker: RTL/unpacker.sv tb/unpacker_tb.v bin sim
 	iverilog $(INCLUDE) -o $@ $^
 
 bin:

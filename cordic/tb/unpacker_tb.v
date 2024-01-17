@@ -1,35 +1,30 @@
-`timescale  1 ns / 100 ps 
+`timescale 1 ns / 100 ps
 
 
-
-module tb () ;
+module tb() ;
 
     reg [31:0] data; 
-    // we dont need a clk now;
-    // reg clk;
 
-    wire sign, isNaN, isInf, isZero, isSubn;
-    wire [7:0] e;
-    wire [22:0] m;
+    wire sign, isSpecial; // special values are -1, 1
+    wire [31:0] result;
 
-    unpacker dut(data, sign, e, m, isNaN, isInf, isZero, isSubn);
-
+    unpacker dut(data, sign, result, isSpecial);
 
     initial begin
         $dumpfile("sim/unpacker.vcd");
         $dumpvars();
 
-        data = 32'h7f800000; // should be inf
+        data = 32'h3f800000; // should be special, result_invalid
         #1
-        data = 32'h7fffffff; // should be Nan
+        data = 32'hbf800000; // second special value, sign = 1
         #1
-        data = 32'h0020aac8; // should be subn
+        data = 32'h2f800000; // 2^-32, smallest value we can represent
         #1
-        data = 32'h0; // should be 0
+        data = 32'h0; // special goes high
         #1 
-        data = 32'h42000000; // no flags, 32
+        data = 32'h350637bd; // 5 * 10^-7, i.e minimum prec needed
         #1
-        data = 32'he97e1c91;
+        data = 32'h3f000000; // 0.5
         #1
         data = 32'hZ;
     end
