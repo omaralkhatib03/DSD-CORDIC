@@ -1,12 +1,18 @@
 INCLUDE=-I RTL/ -I tb/
 
 
-.PHONY: clean unpacker
+.PHONY: clean unpacker rom
 
-unpacker: bin/unpacker interperter/main.py
-	./bin/unpacker | python interperter/main.py
+rom: bin/rom mem.hex scripts/interperter.py
+	./bin/rom | python scripts/interperter.py
+
+unpacker: bin/unpacker scripts/interperter.py
+	./bin/unpacker | python scripts/interperter.py
 
 bin/unpacker: RTL/unpacker.sv tb/unpacker_tb.v bin sim
+	iverilog $(INCLUDE) -o $@ $^
+
+bin/rom: RTL/rom.sv tb/rom_tb.v bin sim
 	iverilog $(INCLUDE) -o $@ $^
 
 bin:
@@ -15,9 +21,8 @@ bin:
 sim:
 	mkdir -p sim/
 
-
-mem.hex: 
-	python scripts/mem.py | python scripts/floatToFixed.py > mem.hex
+mem.hex: scripts/computeAngles.py scripts/decToHex.py
+	python scripts/computeAngles.py | python scripts/floatToFixed.py | python scripts/decToHex.py > mem.hex
 
 
 clean:

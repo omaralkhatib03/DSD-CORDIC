@@ -1,7 +1,7 @@
 import sys
 import struct
 import numpy as np
-
+import fixedFracToFloatValue as fFTF
 
 def ieee_754_conversion(n, sgn_len=1, exp_len=8, mant_len=23): # source: https://gist.github.com/AlexEshoo/d3edc53129ed010b0a5b693b88c7e0b5
     """
@@ -44,16 +44,16 @@ def ieee_754_conversion(n, sgn_len=1, exp_len=8, mant_len=23): # source: https:/
     return sign_mult * (2 ** exponent) * mant_mult
 
 
-def fixedLengthFracToFloat(x):
-    value = np.float128(0.0)
+# def fixedLengthFracToFloat(x):
+#     value = np.float128(0.0)
     
-    pos = -32 
-    while (x > 0):
-        value += (x & 0x1) * (2 ** pos);
-        x >>= 1
-        pos+=1
+#     pos = -32 
+#     while (x > 0):
+#         value += (x & 0x1) * (2 ** pos);
+#         x >>= 1
+#         pos+=1
         
-    return value 
+#     return value 
              
 
 def printTest(test):
@@ -66,8 +66,8 @@ def printTest(test):
             case 'fl':
                 print(f'{ieee_754_conversion(int(value, 16))}')
             case 'fi':
-                print(f'{fixedLengthFracToFloat(int(value, 16))}')
-            case 'b':
+                print(f'{fFTF.fixedLengthFracToFloat(int(value, 16))}')
+            case _ : 
                 print(f'{value}')
 
 def main():

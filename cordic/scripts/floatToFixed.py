@@ -2,6 +2,9 @@ import sys
 import numpy as np
 
 def floatToFixed(num):
+    if 0 == num:
+        return 0
+    
     num = int(num.view('int32'))
     E = (num & 0x7F800000) >> 23
     mant = num & 0x0007FFFFF
