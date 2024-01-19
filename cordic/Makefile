@@ -16,6 +16,11 @@ sim:
 	mkdir -p sim/
 
 
+mem.hex: 
+	python scripts/mem.py | python scripts/floatToFixed.py > mem.hex
+
+
 clean:
 	rm -rf bin/*
 	rm -rf sim/*
+	rm -rf mem.hex
