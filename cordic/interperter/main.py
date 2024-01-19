@@ -44,10 +44,6 @@ def ieee_754_conversion(n, sgn_len=1, exp_len=8, mant_len=23): # source: https:/
     return sign_mult * (2 ** exponent) * mant_mult
 
 
-# def fixedLengthFracToFloat(x):
-#     return struct.unpack('>f', struct.pack('>I', x))[0]
-
-
 def fixedLengthFracToFloat(x):
     value = np.float128(0.0)
     
@@ -88,10 +84,6 @@ def main():
    
     # removes the emty cell at the end of the array due to splitting on \n
     tests.pop() 
-     
-    # for i in tests:
-    #     print(f'{cnt} signals: {i}')
-    #     cnt+= 1 
     
     for test in tests: 
         printTest(test)
