@@ -26,7 +26,7 @@ def main():
         test_vector = generateVector(Ns[i], steps[i])
         y = sumVector(test_vector)
         # y /= 1024
-        print(f"Step: {steps[i]}, N: {Ns[i]}, y: {y}")
+        print(f"Step: {steps[i]}, N: {Ns[i]}, Result: {y}")
         i = y.view("int32")
         print(f'IEEE 754 Format: {hex(i)}') 
 
