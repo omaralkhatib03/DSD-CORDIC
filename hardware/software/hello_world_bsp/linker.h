@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'first_nios2_system'
  * SOPC Builder design path: ../../first_nios2_system.sopcinfo
  *
- * Generated: Wed Jan 10 16:20:33 GMT 2024
+ * Generated: Fri Jan 19 11:36:55 GMT 2024
  */
 
 /*
@@ -65,9 +65,9 @@
  *
  */
 
-#define ONCHIP_MEM_REGION_BASE 0x8020
-#define ONCHIP_MEM_REGION_SPAN 20448
-#define RESET_REGION_BASE 0x8000
+#define ONCHIP_MEM_REGION_BASE 0x80020
+#define ONCHIP_MEM_REGION_SPAN 54968
+#define RESET_REGION_BASE 0x80000
 #define RESET_REGION_SPAN 32
 
 
