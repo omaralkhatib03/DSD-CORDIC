@@ -23,7 +23,6 @@
 #include <stdio.h>
 #include <unistd.h>
 
-
 //test 1
 // #define step 5
 // #define N 52
@@ -47,30 +46,41 @@ void generateVector(float x[N]){
 float sumVector(float x[], int M){
   int i;
   float sum = 0;
-  for(i=0; i<M; i++){
-    sum += x[i] + x[i] * x[i];
+  
+  for(i = 0; i < M; i++){
+    sum += x[i] + (x[i] * x[i]);
   }
   return sum;
 }
+
+union MyFloat {
+  float f;
+  unsigned i;
+} typedef MyFloat;
 
 int main()
 {
   printf("Task 2!\n");
   float x[N];
-  float y;
+  MyFloat y;
+
   generateVector(x);
   char buf[50];
-  clock_t exec_t1, exec_t2;
-  exec_t1 = times(NULL);
-  y=sumVector(x, N);
-  exec_t2 = times(NULL);
-  gcvt((exec_t2 - exec_t1), 10, buf);
-  alt_putstr("proc time = "); alt_putstr(buf); alt_putstr(" ticks \n");
-  printf("Result Raw: %x\n", (unsigned int*)&y);
-  int i;
-  for(i=0; i<10; i++)
-    y = y/2.0;
+  
+  // clock_t exec_t1, exec_t2;
+  // exec_t1 = times(NULL);
+  y.f = sumVector(x, N);
+  // exec_t2 = times(NULL);
+  
+  // gcvt((exec_t2 - exec_t1), 10, buf);
+  // alt_putstr("proc time = "); alt_putstr(buf); alt_putstr(" ticks \n");
+  printf("Result Raw: %x\n", y.i);
+  
+  // int i;
+  // for(i=0; i<<10; i++)
+  //   y.f = y.f/2.0;
 
-  printf("Result: %d\n",(int)y);
+  printf("Result: %lu\n", (unsigned long) y.f);
+  
   return 0;
 }

@@ -1075,8 +1075,9 @@ $(OBJDUMP_NAME) : $(ELF)
 	$(OBJDUMP) $(OBJDUMP_FLAGS) $< >$@
 
 # Rule for printing the name of the elf file
-.PHONY: print-elf-name
+.PHONY: print-elf-name test
 print-elf-name:
 	@$(ECHO) $(ELF)
 
-
+test: test.m
+	matlab -nodisplay -nosplash -nodesktop -r "run('test.m');exit;"
