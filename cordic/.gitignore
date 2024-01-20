@@ -1,5 +1,5 @@
 bin/
 sim/
 rom/
-# cosine.v
-# RTL/rom.sv
+cosine.v
+RTL/rom.sv

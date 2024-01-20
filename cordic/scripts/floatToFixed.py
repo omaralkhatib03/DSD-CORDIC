@@ -12,12 +12,12 @@ def floatToFixed(num, fracBits):
     
     e = - E + 127
     shift = e if E > (127 - fracBits) else fracBits 
-    concated = ((0x80000000 if sign else 0x0) + 0x40000000 + ((mant << 7)))
+    concated = 0x80000000 + ((mant << 8))
     result = concated >> shift if shift >= 0 else concated
     return result
 
 def main():
-    fracBits = 30
+    fracBits = 31
     for line in sys.stdin:
         num = np.float32(line)
         result = floatToFixed(num, fracBits=fracBits)

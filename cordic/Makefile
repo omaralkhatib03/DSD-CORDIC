@@ -27,7 +27,7 @@ bin:
 sim:
 	mkdir -p sim/
 
-mem.hex: scripts/computeAngles.py scripts/decToHex.py
+mem.hex: scripts/computeAngles.py scripts/decToHex.py scripts/floatToFixed.py scripts/decToHex.py
 	python scripts/computeAngles.py | python scripts/floatToFixed.py | python scripts/decToHex.py > mem.hex
 
 
