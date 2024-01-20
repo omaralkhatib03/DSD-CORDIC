@@ -2,6 +2,7 @@ import sys
 import struct
 import numpy as np
 import fixedFracToFloatValue as fFTF
+import regex_spm as rspm
 
 def ieee_754_conversion(n, sgn_len=1, exp_len=8, mant_len=23): # source: https://gist.github.com/AlexEshoo/d3edc53129ed010b0a5b693b88c7e0b5
     """
@@ -43,33 +44,23 @@ def ieee_754_conversion(n, sgn_len=1, exp_len=8, mant_len=23): # source: https:/
 
     return sign_mult * (2 ** exponent) * mant_mult
 
-
-# def fixedLengthFracToFloat(x):
-#     value = np.float128(0.0)
-    
-#     pos = -32 
-#     while (x > 0):
-#         value += (x & 0x1) * (2 ** pos);
-#         x >>= 1
-#         pos+=1
-        
-#     return value 
              
-
 def printTest(test):
     signals = test.split(',')
     
     for signal in signals:
-        name, type, value = signal.split(":")
-        print(name, end=": ")
-        match type:
-            case 'fl':
+        name, dtype, value = signal.split(":")
+        print(name, end=": ") 
+        
+        match rspm.fullmatch_in(dtype):
+            case r'fl':
                 print(f'{ieee_754_conversion(int(value, 16))}')
-            case 'fi':
-                print(f'{fFTF.fixedLengthFracToFloat(int(value, 16))}')
+            case r'fi-[0-3]?[0-9]':
+                _, fracBits = dtype.split('-')
+                print(f'{fFTF.fixedLengthFracToFloat(int(value, 16), int(fracBits))}')
             case _ : 
                 print(f'{value}')
-
+                
 def main():
     rawString = ""
     
