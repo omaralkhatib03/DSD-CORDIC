@@ -11,10 +11,4 @@
 !/hardware/*.bdf
 !/hardware/*.qpf
 !/hardware/*.qsf
-
-!/hardware/software
-/hardware/software/*
-!/hardware/software/hello_world
-!/hardware/software/hello_world/*
-!/hardware/software/hello_world_bsp
-!/hardware/software/hello_world_bsp/*
+!/hardware/.gitignore
