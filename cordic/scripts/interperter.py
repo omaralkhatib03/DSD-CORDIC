@@ -1,6 +1,7 @@
 import sys
 import struct
 import numpy as np
+import math
 import fixedFracToFloatValue as fFTF
 import regex_spm as rspm
 
@@ -48,6 +49,7 @@ def ieee_754_conversion(n, sgn_len=1, exp_len=8, mant_len=23): # source: https:/
 def printTest(test):
     signals = test.split(',')
     
+    prevValue = 0
     for signal in signals:
         name, dtype, value = signal.split(":")
         print(name, end=": ") 
@@ -55,12 +57,18 @@ def printTest(test):
         match rspm.fullmatch_in(dtype):
             case r'fl':
                 print(f'{ieee_754_conversion(int(value, 16))}')
+            case r'an-[0-3]?[0-9]':
+                _, fracBits = dtype.split('-')
+                print(f'{0.60725 * fFTF.fixedLengthFracToFloat(int(value, 16), int(fracBits))}')
+                print(f'np.cos: {math.cos(prevValue)}')
             case r'fi-[0-3]?[0-9]':
                 _, fracBits = dtype.split('-')
                 print(f'{fFTF.fixedLengthFracToFloat(int(value, 16), int(fracBits))}')
             case _ : 
                 print(f'{value}')
-                
+        
+        prevValue = ieee_754_conversion(int(value, 16)) # ik its shit code, but this is only used for type an so its fine
+         
 def main():
     rawString = ""
     
