@@ -6,7 +6,7 @@
 !.gitignore
 
 !/hardware
-
+!/hardware/pll*
 !/hardware/*.qsys
 !/hardware/*.bdf
 !/hardware/*.qpf
