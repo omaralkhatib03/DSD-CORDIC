@@ -2,8 +2,8 @@ RTL=RTL
 TB=tb
 INCLUDE=-I $(RTL) -I $(TB)
 INTERPERTER=scripts/interperter.py
-FRACTIONAL_BITS=29
-SIGN=s
+FRACTIONAL_BITS=30
+SIGN=u
 
 
 .PHONY: clean unpacker rom cos

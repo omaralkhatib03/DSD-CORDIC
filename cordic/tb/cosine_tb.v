@@ -15,7 +15,7 @@ module tb();
         
         theta = 32'h3f800000; // 1
         #1
-        $display("theta:fl:%h,", theta, "cos-cordic:anc-29-s:%h", result);
+        $display("theta:fl:%h,", theta, "cos-cordic:anc-29-u:%h", result);
 
         theta = 32'hbf800000; // -1
         #1
