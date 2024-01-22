@@ -1,4 +1,7 @@
 import sys
 
+# converts hex to dec
+
 for line in sys.stdin: 
-    print(int(line, 16), '-30')
+    num, fracBits, sign = line.split('-')
+    print(f'{int(num, 16)}-{fracBits}-{sign}')

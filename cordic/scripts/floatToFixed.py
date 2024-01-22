@@ -1,7 +1,7 @@
 import sys 
 import numpy as np
 
-def floatToFixed(num, fracBits):
+def floatToFixed(num, fracBits, signed = False):
     if 0 == num:
         return 0
     
@@ -12,18 +12,19 @@ def floatToFixed(num, fracBits):
     
     e = - E + 127
     shift = e if E > (127 - fracBits) else fracBits 
-    concated = 0x80000000 + ((mant << 8))
+    sign = (0x1000000 if sign else 0x0) if signed else 0x0 
+    fullMant = sign + 0x800000 + mant
+    concated = fullMant << (fracBits - 23)
     result = concated >> shift if shift >= 0 else concated
     return result
 
+
 def main():
-    fracBits = 31
     for line in sys.stdin:
-        num = np.float32(line)
-        result = floatToFixed(num, fracBits=fracBits)
-        # print(f'a_i:{num} \t a_i_f:{r esult}')        
-        print(result)
-        # print(result, end=f'-{fracBits}\n')
+        num, fracBits, sign = line.split('-')
+        num = np.float32(num)
+        result = floatToFixed(num, int(fracBits), (True if sign == 's' else False))
+        print(result, end=f'-{fracBits}-{sign}')
     
     
     

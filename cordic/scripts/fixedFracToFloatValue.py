@@ -1,22 +1,26 @@
 import sys 
 import numpy as np
 
-def fixedLengthFracToFloat(x, frac_bits): # twos complement signed number
+def fixedLengthFracToFloat(x, frac_bits, signed): # twos complement signed number
     value = np.float128(0.0)
-    
+     
+    cnt = 0
+    sign = 1
     pos = 0-frac_bits 
     while (x > 0):
-        value += (x & 0x1) * (2 ** pos)
+        if signed and cnt == 31:
+            sign = -1
+        value += sign * (x & 0x1) * (2 ** pos)
         x >>= 1
         pos+=1
- 
+        cnt += 1
+    
     return value 
 
 def main():
-
     for line in sys.stdin:
-        num, frac_bits = line.split("-")
-        result = fixedLengthFracToFloat(int(num), int(frac_bits))
+        num, frac_bits, sign = line.split("-")
+        result = fixedLengthFracToFloat(int(num), int(frac_bits), (True if sign == 's' else False))
         print(result)    
     
      
