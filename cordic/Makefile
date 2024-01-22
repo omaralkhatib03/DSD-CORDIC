@@ -2,7 +2,7 @@ RTL=RTL
 TB=tb
 INCLUDE=-I $(RTL) -I $(TB)
 INTERPERTER=scripts/interperter.py
-FRACTIONAL_BITS=30
+FRACTIONAL_BITS=31
 SIGN=u
 
 

@@ -1,5 +1,5 @@
 module unpacker #(
-    parameter FRACTIONAL_BITS = 30,
+    parameter FRACTIONAL_BITS = 31,
     parameter SIGNED = 0
 )(
     input [31:0] data,
