@@ -35,7 +35,7 @@
 // #define step 1/1024.0
 // #define N 261121
 
-#define TestsToRun 2
+#define TestsToRun 3
 
 const float steps[3] = {5, 1/8.0, 1/1024.0};
 const int Ns[3] = {52, 2041, 261121};

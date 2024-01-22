@@ -2,11 +2,11 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Jan 21, 2024 1:48:21 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1705844901853</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/software/hello_world_bsp</BspGeneratedLocation>
-        <BspSettingsFile>./settings.bsp</BspSettingsFile>
-        <SopcDesignFile>../../first_nios2_system.sopcinfo</SopcDesignFile>
+        <BspGeneratedTimeStamp>22-Jan-2024 21:27:28</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1705958848424</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>C:\Users\james\Desktop\Imperial\year3\DSD\DSD-Binary-Ballet\hardware\software\hello_world_bsp</BspGeneratedLocation>
+        <BspSettingsFile>.\settings.bsp</BspSettingsFile>
+        <SopcDesignFile>..\..\first_nios2_system.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
         <Cpu>cpu</Cpu>
         <SchemaVersion>1.9</SchemaVersion>
