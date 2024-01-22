@@ -1,5 +1,3 @@
 bin/
 sim/
 rom/
-cosine.v
-RTL/rom.sv
