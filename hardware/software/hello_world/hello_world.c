@@ -24,6 +24,8 @@
 #include <unistd.h>
 #include <math.h>
 
+//remember to add random seed test
+
 //test 1
 // #define step 5
 // #define N 52
@@ -37,18 +39,7 @@
 // #define N 261121
 
 #define TestsToRun 3
-// Test Case 4
-#define N 2323
-#define RANDSEED 334
-void generateRandomVector(float x[N])
-{
-  int i;
-  srand(RANDSEED);
-  for (i=0; i<N; i++)
-    {
-    x[i] = ((float) rand()/ (float) RAND_MAX) * MAXVAL;
-    }
-}
+
 
 const float steps[3] = {5, 1/8.0, 1/1024.0};
 const int Ns[3] = {52, 2041, 261121};
@@ -60,6 +51,7 @@ void generateVector(float x[], float step, int N){
     x[i] = x[i-1] + step;
   }
 }
+
 
 float sumVector(float x[], int M){
   int i;
