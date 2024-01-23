@@ -10,8 +10,7 @@ module unpacker #(
     wire [7:0] e;
     wire [5:0] shift;
     wire [7:0] E = data[30:23];
-    wire [31:0] unsignedConcated = {1'b1, data[22:0], {FRACTIONAL_BITS - 23{1'b0}}};
-    wire [31:0] concated = SIGNED ? {data[31], 1'b1, data[22:0], {FRACTIONAL_BITS - 22{1'b0}}} : unsignedConcated;
+    wire [31:0] concated = {SIGNED && data[31], 1'b1, data[22:0], {FRACTIONAL_BITS - 23{1'b0}}};
 
     assign e = -E + 8'd127; 
     assign shift = E > (127 - FRACTIONAL_BITS) ? e[5:0] : FRACTIONAL_BITS;

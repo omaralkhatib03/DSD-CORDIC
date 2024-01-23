@@ -63,7 +63,7 @@ def printTest(test):
             case r'anc-[0-3]?[0-9]-[su]': # for printing cos and an angle
                 _, fracBits, sign = dtype.split('-')
                 val = fFTF.fixedLengthFracToFloat(int(value, 16), int(fracBits), True if sign == 's' else False)
-                print(f'{0.60725 * val}') # for signed integers
+                print(f'{val}') # for signed integers
                 print(f'np.cos: {math.cos(angle)}')
             
             case r'ans-[0-3]?[0-9]-[su]': # for printing the sin of an angle 

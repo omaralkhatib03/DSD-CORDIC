@@ -32,6 +32,11 @@ module tb();
         theta = 32'h3f000000; // 0.5
         #1
         $display("theta:fl:%h,", theta, "cos-cordic:anc-31-u:%h", result);
+       
+        theta = 32'h3fe00000; // 1.75, should not be possible, expecting aprros 1.74
+        #1
+        $display("theta:fl:%h,", theta, "cos-cordic:anc-31-u:%h", result);
+
 
         theta = 32'hZ;
     end

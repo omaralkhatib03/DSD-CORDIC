@@ -19,6 +19,8 @@ def fixedLengthFracToFloat(x, frac_bits, signed): # twos complement signed numbe
 
 def main():
     for line in sys.stdin:
+        if line == "\n" or line == "":
+            continue   
         num, frac_bits, sign = line.split("-")
         result = fixedLengthFracToFloat(int(num), int(frac_bits), (True if sign == 's' else False))
         print(result)    

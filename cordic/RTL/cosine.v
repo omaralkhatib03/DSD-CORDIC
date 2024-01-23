@@ -18,10 +18,10 @@ wire [31:0] x_s [31:0];
 wire [31:0] y_s [31:0];
 wire [31:0] w_s [31:0];
 
-// 1a59214 = 1.646 - 24
-// d2c90a00  = 1.646 - 31 
-// 69648500 = = 1.646 - 30 signed
-engine en0(5'b0, angles[0], 32'h80000000, 32'h0, 32'h0, fixedFractionalAngle, x_s[0], y_s[0], w_s[0]);
+// 26dd38b0 30-s
+// 4dba7700 31-u
+
+engine en0(5'b0, angles[0], 32'h4dba7700, 32'h0, 32'h0, fixedFractionalAngle, x_s[0], y_s[0], w_s[0]);
 
 genvar i;
 

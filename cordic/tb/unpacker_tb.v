@@ -42,6 +42,11 @@ module tb() ;
         data = 32'h3f47ae14; // 0.78, out of range
         #1
         $display("data:fl:%h,", data, "result:fi-31-u:%h", result);
+        
+        data = 32'h3f1b74ee; // 0.78, out of range
+        #1
+        $display("data:fl:%h,", data, "result:fi-31-u:%h", result);
+        
 
         data = 32'hZ;
     end
