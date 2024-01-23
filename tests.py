@@ -20,6 +20,7 @@ def sumVector(lst):
         y += x_i + np.power(x_i, np.float32(2))
     return y
 
+
 def main():
     for i in range(0, len(steps)):
         print(f"Test {i + 1}")

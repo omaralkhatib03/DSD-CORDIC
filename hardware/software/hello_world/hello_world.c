@@ -86,7 +86,7 @@ void runTest(int N, float step) {
 
   for (;j < 10; j++) {
     exec_t1 = times(NULL);
-    y.f = trigSum(x, N);
+    y.f = sumVector(x, N);
     exec_t2 = times(NULL);
     diff = exec_t2 - exec_t1;
     gcvt(diff, 10, buf);
