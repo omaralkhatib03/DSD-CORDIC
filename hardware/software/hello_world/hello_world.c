@@ -37,6 +37,18 @@
 // #define N 261121
 
 #define TestsToRun 3
+// Test Case 4
+#define N 2323
+#define RANDSEED 334
+void generateRandomVector(float x[N])
+{
+  int i;
+  srand(RANDSEED);
+  for (i=0; i<N; i++)
+    {
+    x[i] = ((float) rand()/ (float) RAND_MAX) * MAXVAL;
+    }
+}
 
 const float steps[3] = {5, 1/8.0, 1/1024.0};
 const int Ns[3] = {52, 2041, 261121};
