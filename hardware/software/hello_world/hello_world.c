@@ -22,6 +22,7 @@
 #include <system.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <math.h>
 
 //test 1
 // #define step 5
@@ -58,6 +59,15 @@ float sumVector(float x[], int M){
   return sum;
 }
 
+float trigSum(float x[], int M){
+  int i;
+  float sum = 0;
+  for(i = 0; i < M; i++){
+    sum += 0.5*x[i] + (x[i] * x[i])*cosf((x[i]-128)/128);
+  }
+  return sum;
+}
+
 union MyFloat {
   float f;
   unsigned i;
@@ -76,7 +86,7 @@ void runTest(int N, float step) {
 
   for (;j < 10; j++) {
     exec_t1 = times(NULL);
-    y.f = sumVector(x, N);
+    y.f = trigSum(x, N);
     exec_t2 = times(NULL);
     diff = exec_t2 - exec_t1;
     gcvt(diff, 10, buf);
