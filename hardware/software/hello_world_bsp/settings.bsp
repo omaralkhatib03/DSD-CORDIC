@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Jan 19, 2024 12:17:08 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1705666628547</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Jan 24, 2024 6:40:48 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1706121648769</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/software/hello_world_bsp</BspGeneratedLocation>
         <BspSettingsFile>./settings.bsp</BspSettingsFile>
         <SopcDesignFile>../../first_nios2_system.sopcinfo</SopcDesignFile>
@@ -900,31 +900,31 @@
         </Setting>
         <MemoryMap>
                 <slaveDescriptor>onchip_mem</slaveDescriptor>
-                <addressRange>0x00080000 - 0x0008D6D7</addressRange>
+                <addressRange>0x00010000 - 0x0001D6D7</addressRange>
                 <addressSpan>55000</addressSpan>
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sys_clk_timer</slaveDescriptor>
-                <addressRange>0x00101000 - 0x0010101F</addressRange>
+                <addressRange>0x00021000 - 0x0002101F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes>timer</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>led_pio</slaveDescriptor>
-                <addressRange>0x00101020 - 0x0010102F</addressRange>
+                <addressRange>0x00021020 - 0x0002102F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sysid</slaveDescriptor>
-                <addressRange>0x00101030 - 0x00101037</addressRange>
+                <addressRange>0x00021030 - 0x00021037</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>jtag_uart</slaveDescriptor>
-                <addressRange>0x00101038 - 0x0010103F</addressRange>
+                <addressRange>0x00021038 - 0x0002103F</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>

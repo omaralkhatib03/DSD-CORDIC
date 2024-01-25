@@ -1,0 +1,62 @@
+   10340:	defff904 	addi	sp,sp,-28
+   10344:	dfc00615 	stw	ra,24(sp)
+   10348:	df000515 	stw	fp,20(sp)
+   1034c:	dc000415 	stw	r16,16(sp)
+   10350:	df000504 	addi	fp,sp,20
+   10354:	e13ffd15 	stw	r4,-12(fp)
+   10358:	e17ffe15 	stw	r5,-8(fp)
+   1035c:	e03ffc15 	stw	zero,-16(fp)
+   10360:	e03ffb15 	stw	zero,-20(fp)
+   10364:	00002706 	br	10404 <sumVector+0xc4>
+   10368:	e0bffb17 	ldw	r2,-20(fp)
+   1036c:	1085883a 	add	r2,r2,r2
+   10370:	1085883a 	add	r2,r2,r2
+   10374:	1007883a 	mov	r3,r2
+   10378:	e0bffd17 	ldw	r2,-12(fp)
+   1037c:	10c5883a 	add	r2,r2,r3
+   10380:	14000017 	ldw	r16,0(r2)
+   10384:	e0bffb17 	ldw	r2,-20(fp)
+   10388:	1085883a 	add	r2,r2,r2
+   1038c:	1085883a 	add	r2,r2,r2
+   10390:	1007883a 	mov	r3,r2
+   10394:	e0bffd17 	ldw	r2,-12(fp)
+   10398:	10c5883a 	add	r2,r2,r3
+   1039c:	10c00017 	ldw	r3,0(r2)
+   103a0:	e0bffb17 	ldw	r2,-20(fp)
+   103a4:	1085883a 	add	r2,r2,r2
+   103a8:	1085883a 	add	r2,r2,r2
+   103ac:	1009883a 	mov	r4,r2
+   103b0:	e0bffd17 	ldw	r2,-12(fp)
+   103b4:	1105883a 	add	r2,r2,r4
+   103b8:	11000017 	ldw	r4,0(r2)
+   103bc:	200b883a 	mov	r5,r4
+   103c0:	1809883a 	mov	r4,r3
+   103c4:	0010d3c0 	call	10d3c <__mulsf3>
+   103c8:	1007883a 	mov	r3,r2
+   103cc:	1805883a 	mov	r2,r3
+   103d0:	100b883a 	mov	r5,r2
+   103d4:	8009883a 	mov	r4,r16
+   103d8:	00108740 	call	10874 <__addsf3>
+   103dc:	1007883a 	mov	r3,r2
+   103e0:	1805883a 	mov	r2,r3
+   103e4:	100b883a 	mov	r5,r2
+   103e8:	e13ffc17 	ldw	r4,-16(fp)
+   103ec:	00108740 	call	10874 <__addsf3>
+   103f0:	1007883a 	mov	r3,r2
+   103f4:	e0fffc15 	stw	r3,-16(fp)
+   103f8:	e0bffb17 	ldw	r2,-20(fp)
+   103fc:	10800044 	addi	r2,r2,1
+   10400:	e0bffb15 	stw	r2,-20(fp)
+   10404:	e0fffb17 	ldw	r3,-20(fp)
+   10408:	e0bffe17 	ldw	r2,-8(fp)
+   1040c:	18bfd616 	blt	r3,r2,10368 <sumVector+0x28>
+   10410:	e0bffc17 	ldw	r2,-16(fp)
+   10414:	1007883a 	mov	r3,r2
+   10418:	1805883a 	mov	r2,r3
+   1041c:	e6ffff04 	addi	sp,fp,-4
+   10420:	dfc00217 	ldw	ra,8(sp)
+   10424:	df000117 	ldw	fp,4(sp)
+   10428:	dc000017 	ldw	r16,0(sp)
+   1042c:	dec00304 	addi	sp,sp,12
+   10430:	f800283a 	ret
+

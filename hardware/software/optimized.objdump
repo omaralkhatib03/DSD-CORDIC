@@ -1,0 +1,32 @@
+   102e8:	defffb04 	addi	sp,sp,-20
+   102ec:	dfc00415 	stw	ra,16(sp)
+   102f0:	dcc00315 	stw	r19,12(sp)
+   102f4:	dc800215 	stw	r18,8(sp)
+   102f8:	dc400115 	stw	r17,4(sp)
+   102fc:	dc000015 	stw	r16,0(sp)
+   10300:	01401a0e 	bge	zero,r5,1036c <sumVector+0x84>
+   10304:	294b883a 	add	r5,r5,r5
+   10308:	294b883a 	add	r5,r5,r5
+   1030c:	2021883a 	mov	r16,r4
+   10310:	2167883a 	add	r19,r4,r5
+   10314:	0025883a 	mov	r18,zero
+   10318:	84400017 	ldw	r17,0(r16)
+   1031c:	84000104 	addi	r16,r16,4
+   10320:	880b883a 	mov	r5,r17
+   10324:	8809883a 	mov	r4,r17
+   10328:	0010c580 	call	10c58 <__mulsf3>
+   1032c:	880b883a 	mov	r5,r17
+   10330:	1009883a 	mov	r4,r2
+   10334:	00107900 	call	10790 <__addsf3>
+   10338:	9009883a 	mov	r4,r18
+   1033c:	100b883a 	mov	r5,r2
+   10340:	00107900 	call	10790 <__addsf3>
+   10344:	1025883a 	mov	r18,r2
+   10348:	9c3ff31e 	bne	r19,r16,10318 <sumVector+0x30>
+   10350:	dfc00417 	ldw	ra,16(sp)
+   10354:	dcc00317 	ldw	r19,12(sp)
+   10358:	dc800217 	ldw	r18,8(sp)
+   1035c:	dc400117 	ldw	r17,4(sp)
+   10360:	dc000017 	ldw	r16,0(sp)
+   10364:	dec00504 	addi	sp,sp,20
+   10368:	f800283a 	ret
