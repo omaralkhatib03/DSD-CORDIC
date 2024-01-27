@@ -2,8 +2,8 @@ module cosine (
     input [31:0] angle,
     output [31:0] result,
     output [31:0] theta,
-    output [31:0] x_s_out [32:1],
-    output [31:0] w_s_out [32:1]
+    output [31:0] x_s_out [31:0],
+    output [31:0] w_s_out [31:0]
 );
 
 // unpacker: converts from floating point to fixed point
@@ -17,21 +17,21 @@ initial begin // with angles
     $readmemh("mem.hex", angles); 
 end
 
-wire [31:0] x_s [32:1];
-wire [31:0] y_s [32:1];
-wire [31:0] w_s [32:1];
+wire [31:0] x_s [31:0];
+wire [31:0] y_s [31:0];
+wire [31:0] w_s [31:0];
 
 // 26dd38b0 30-u
 // 4dba7700 31-u
 // 26dd3b80
-engine en0(5'b0, angles[0], 32'h26dd3b80, 32'h0, 32'h0, fixedFractionalAngle, x_s[1], y_s[1], w_s[1]);
+engine en0(5'b0, angles[0], 32'h26dd3b80, 32'h0, 32'h0, fixedFractionalAngle, x_s[0], y_s[0], w_s[0]);
 
 genvar i;
 
 generate
-    for (i = 5'd2; i < 6'd32; i = i + 1) begin : gen_cordic_engines
+    for (i = 5'd1; i < 6'd32; i = i + 1) begin : gen_cordic_engines
         wire[4:0] iter = i;
-        engine en(iter-1'b1, angles[i-1], x_s[i-1], y_s[i-1], w_s[i-1], fixedFractionalAngle, x_s[i], y_s[i], w_s[i]);
+        engine en(iter, angles[i], x_s[i-1], y_s[i-1], w_s[i-1], fixedFractionalAngle, x_s[i], y_s[i], w_s[i]);
     end
     
 endgenerate

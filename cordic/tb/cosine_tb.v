@@ -6,8 +6,8 @@ module tb();
     reg [31:0] angle;
     wire [31:0] result;
     wire [31:0] theta;
-    wire [31:0] x_s [32:1]; 
-    wire [31:0] w_s [32:1]; 
+    wire [31:0] x_s [31:0]; 
+    wire [31:0] w_s [31:0]; 
 
     cosine dut(angle, result, theta, x_s, w_s);
     
@@ -52,8 +52,8 @@ module tb();
 
     task printIterations();    
       int i;
-      for (i = 1; i < 0; i = i + 1) begin
-        $display("w_%0d",i,":fi-30-s:%h,", w_s[i], "cos-cordic%0d",i,":anc-30-s:%h", x_s[i]);
+      for (i = 0; i < 32; i = i + 1) begin
+        $display("w_%0d",i,":fi-30-s:%h,", w_s[i], "x_%0d",i,":anc-30-s:%h", x_s[i]);
       end 
     endtask: printIterations
 

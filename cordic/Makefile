@@ -6,10 +6,14 @@ FRACTIONAL_BITS=30
 SIGN=s
 
 
-.PHONY: clean unpacker rom cos
+.PHONY: clean unpacker rom cos plot
+
 
 cos: bin/cos mem.hex $(INTERPERTER)
 	./bin/cos | python $(INTERPERTER)
+
+plot:
+	./bin/cos | python $(INTERPERTER) | python scripts/convergencePlotter.py
 
 rom: bin/rom mem.hex $(INTERPERTER)
 	./bin/rom | python $(INTERPERTER)
