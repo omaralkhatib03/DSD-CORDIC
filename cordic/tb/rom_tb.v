@@ -16,7 +16,7 @@ module tb() ;
         for (i = 0; i < 32; i = i + 1) begin
             address = i;
             #1
-            $display("address:i:%d,", address, "data:fi-31-u:%h", data);
+            $display("address:i:%d,", address, "data:fi-30-s:%h", data);
         end
     end
 

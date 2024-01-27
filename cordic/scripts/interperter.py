@@ -53,7 +53,7 @@ def printTest(test):
     for signal in signals:
         name, dtype, value = signal.split(":")
         print(name, end=": ") 
-        if (name == "theta"):
+        if (name == "input"):
             angle = ieee_754_conversion(int(value, 16)) # ik its shit code, but this is only used for type an so its fine
         
         match rspm.fullmatch_in(dtype):

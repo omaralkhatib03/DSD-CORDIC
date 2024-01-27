@@ -3,42 +3,62 @@
 
 module tb();
 
-    reg [31:0] theta;
+    reg [31:0] angle;
     wire [31:0] result;
+    wire [31:0] theta;
+    wire [31:0] x_s [32:1]; 
+    wire [31:0] w_s [32:1]; 
 
-    cosine dut(theta, result);
-
+    cosine dut(angle, result, theta, x_s, w_s);
+    
     initial begin
         $dumpfile("sim/cosine.vcd");
         $dumpvars();
         
         
-        theta = 32'h3f800000; // 1
+        angle = 32'h3f800000; // 1
         #1
-        $display("theta:fl:%h,", theta, "cos-cordic:anc-31-u:%h", result);
+        $display("input:fl:%h,", angle, "cos-cordic:anc-30-s:%h,", result, "theta:fi-30-s:%h", theta);
+        printIterations();
 
-        theta = 32'hbf800000; // -1
+        angle = 32'hbf800000; // -1
         #1
-        $display("theta:fl:%h,", theta, "cos-cordic:anc-31-u:%h", result);
+        $display("input:fl:%h,", angle, "cos-cordic:anc-30-s:%h,", result, "theta:fi-30-s:%h", theta);
+        printIterations();
 
-        theta = 32'h30800000; // 2^-30, smallest value we can represent
+        angle = 32'h30800000; // 2^-30, smallest value we can represent
         #1
-        $display("theta:fl:%h,", theta, "cos-cordic:anc-31-u:%h", result);
+        $display("input:fl:%h,", angle, "cos-cordic:anc-30-s:%h,", result, "theta:fi-30-s:%h", theta);
+        printIterations();
 
-        theta = 32'h0;  
+        angle = 32'h0;  
         #1 
-        $display("theta:fl:%h,", theta, "cos-cordic:anc-31-u:%h", result);
+        $display("input:fl:%h,", angle, "cos-cordic:anc-30-s:%h,", result, "theta:fi-30-s:%h", theta);
+        printIterations();
        
-        theta = 32'h3f000000; // 0.5
+        angle = 32'h3f000000; // 0.5
         #1
-        $display("theta:fl:%h,", theta, "cos-cordic:anc-31-u:%h", result);
+        $display("input:fl:%h,", angle, "cos-cordic:anc-30-s:%h,", result, "theta:fi-30-s:%h", theta);
+        printIterations();
        
-        theta = 32'h3fe00000; // 1.75, should not be possible, expecting aprros 1.74
+        angle = 32'h3fe00000; // 1.75, should not be possible, expecting aprros 1.74
         #1
-        $display("theta:fl:%h,", theta, "cos-cordic:anc-31-u:%h", result);
+        $display("input:fl:%h,", angle, "cos-cordic:anc-30-s:%h,", result, "theta:fi-30-s:%h", theta);
+        printIterations();
 
-
-        theta = 32'hZ;
+        angle = 32'hZ;
     end
 
+
+    task printIterations();    
+      int i;
+      for (i = 1; i < 0; i = i + 1) begin
+        $display("w_%0d",i,":fi-30-s:%h,", w_s[i], "cos-cordic%0d",i,":anc-30-s:%h", x_s[i]);
+      end 
+    endtask: printIterations
+
 endmodule
+
+
+
+

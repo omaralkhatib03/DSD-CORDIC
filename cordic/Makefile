@@ -1,9 +1,9 @@
 RTL=RTL
 TB=tb
-INCLUDE=-I $(RTL) -I $(TB)
+INCLUDE=-I $(RTL) -I $(TB) -g2012
 INTERPERTER=scripts/interperter.py
-FRACTIONAL_BITS=31
-SIGN=u
+FRACTIONAL_BITS=30
+SIGN=s
 
 
 .PHONY: clean unpacker rom cos
@@ -23,7 +23,7 @@ bin/unpacker: $(RTL)/unpacker.sv $(TB)/unpacker_tb.v bin sim
 bin/rom: $(RTL)/rom.sv $(TB)/rom_tb.v bin sim
 	iverilog $(INCLUDE) -o $@ $^
 
-bin/cos: $(RTL)/cosine.v $(RTL)/rom.sv $(RTL)/engine.sv $(RTL)/unpacker.sv $(TB)/cosine_tb.v
+bin/cos: $(RTL)/cosine.sv $(RTL)/rom.sv $(RTL)/engine.sv $(RTL)/unpacker.sv $(TB)/cosine_tb.v
 	iverilog $(INCLUDE) -o $@ $^
 
 bin:
