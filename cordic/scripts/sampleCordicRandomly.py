@@ -1,0 +1,13 @@
+import numpy as np
+import random
+
+
+N = 100 # Number of iterations for the monte-carlo simulation
+
+print(N)
+for i in range(0, N):
+    angle = np.float32(random.uniform(-1,1))
+    ieeeFormatedAngle = angle.view("int32") 
+    print(f'{ieeeFormatedAngle}')
+    # sp.run([f'echo \'{ieeeFormatedAngle}\' | ./bin/monte_carlo'], shell=True)
+
