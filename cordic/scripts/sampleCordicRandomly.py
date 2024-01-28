@@ -9,5 +9,4 @@ for i in range(0, N):
     angle = np.float32(random.uniform(-1,1))
     ieeeFormatedAngle = angle.view("int32") 
     print(f'{ieeeFormatedAngle}')
-    # sp.run([f'echo \'{ieeeFormatedAngle}\' | ./bin/monte_carlo'], shell=True)
 

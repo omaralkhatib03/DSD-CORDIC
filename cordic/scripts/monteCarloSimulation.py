@@ -54,9 +54,17 @@ def main():
      
      
     print(f'N:{cnt}, Mean Error: {mean_error}, stdDiv: {stdDiv}, confidence_interval:{lower_bound} - {upper_bound}')  
-    
-    plt.hist(error)
-    plt.show()
+    print()
+   
+    sns.set(style="whitegrid")  # Set the style of the plot
+    sns.kdeplot(error, shade=True, color="skyblue")  # Kernel Density Estimation plot
+    plt.xlabel('Error')
+    plt.ylabel('Density')
+    plt.title('Distribution of Error')
+    plt.show()  
+
+    # plt.hist(error)
+    # plt.show()
 
 
 if __name__ == "__main__":
