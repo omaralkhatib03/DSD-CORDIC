@@ -51,8 +51,11 @@ def main():
     mean_error = np.mean(error)
     stdDiv = np.std(error)
     m, lower_bound, upper_bound = mean_confidence_interval(error)
-     
-     
+   
+    for i in range(0, len(cordic_angles)):
+        print(f'cos({theta[i]}) = {cosines[i]}, np.cos = {np.cos(theta[i])}, apx = {cordic_angles[i]}, exact = {cosines[i] == cordic_angles[i]}')
+
+
     print(f'N:{cnt}, Mean Error: {mean_error}, stdDiv: {stdDiv}, confidence_interval:{lower_bound} - {upper_bound}')  
     print()
    
