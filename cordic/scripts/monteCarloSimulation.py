@@ -60,7 +60,7 @@ def main():
     print()
    
     sns.set(style="whitegrid")  # Set the style of the plot
-    sns.kdeplot(error, shade=True, color="skyblue")  # Kernel Density Estimation plot
+    sns.kdeplot(error, fill=True, color="skyblue")  # Kernel Density Estimation plot
     plt.xlabel('Error')
     plt.ylabel('Density')
     plt.title('Distribution of Error')
