@@ -52,23 +52,20 @@ def main():
     stdDiv = np.std(error)
     m, lower_bound, upper_bound = mean_confidence_interval(error)
    
-    for i in range(0, len(cordic_angles)):
-        print(f'cos({theta[i]}) = {cosines[i]}, np.cos = {np.cos(theta[i])}, apx = {cordic_angles[i]}, exact = {cosines[i] == cordic_angles[i]}')
-
-
-    print(f'N:{cnt}, Mean Error: {mean_error}, stdDiv: {stdDiv}, confidence_interval:{lower_bound} - {upper_bound}')  
-    print()
-   
-    sns.set(style="whitegrid")  # Set the style of the plot
-    sns.kdeplot(error, fill=True, color="skyblue")  # Kernel Density Estimation plot
-    plt.xlabel('Error')
-    plt.ylabel('Density')
-    plt.title('Distribution of Error')
-    plt.show()  
-
-    # plt.hist(error)
-    # plt.show()
-
-
+    # for i in range(0, len(cordic_angles)):
+    #     print(f'cos({theta[i]}) = {cosines[i]}, np.cos = {np.cos(theta[i])}, apx = {cordic_angles[i]}, exact = {cosines[i] == cordic_angles[i]}')
+    #
+    #
+    # print(f'N:{cnt}, Mean Error: {mean_error}, stdDiv: {stdDiv}, confidence_interval:{lower_bound} - {upper_bound}')  
+    print(f'{mean_error}')
+   #  print()
+   # 
+   #  sns.set(style="whitegrid")  # Set the style of the plot
+   #  sns.kdeplot(error, fill=True, color="skyblue")  # Kernel Density Estimation plot
+   #  plt.xlabel('Error')
+   #  plt.ylabel('Density')
+   #  plt.title('Distribution of Error')
+   #  plt.show()  
+   #
 if __name__ == "__main__":
     main()

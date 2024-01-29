@@ -17,6 +17,9 @@ plot: bin/cos mem.hex
 monte_carlo: bin/monte_carlo mem.hex
 	python scripts/sampleCordicRandomly.py | ./bin/monte_carlo | python $(INTERPERTER) | python scripts/monteCarloSimulation.py
 
+iterations: bin/iterator mem.hex
+	python scripts/sampleCordicRandomly.py | ./bin/iterator | python $(INTERPERTER) | python scripts/monteCarloSimulation.py
+
 rom: bin/rom mem.hex $(INTERPERTER)
 	./bin/rom | python $(INTERPERTER)
 
@@ -34,6 +37,11 @@ bin/cos: $(RTL)/cosine.sv $(RTL)/rom.sv $(RTL)/engine.sv $(RTL)/unpacker.sv $(TB
 
 bin/monte_carlo: $(RTL)/cosine.sv $(RTL)/rom.sv $(RTL)/engine.sv $(RTL)/unpacker.sv $(TB)/monte_carlo_tb.sv
 	iverilog $(INCLUDE) -o $@ $^
+
+bin/iterator: $(RTL)/cosine_iterator.sv $(RTL)/rom.sv $(RTL)/engine.sv $(RTL)/unpacker.sv $(TB)/monte_carlo_tb.sv
+	iverilog $(INCLUDE) -o $@ $^
+	
+
 
 bin:
 	mkdir -p bin/
