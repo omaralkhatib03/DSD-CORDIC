@@ -12,7 +12,7 @@ def main():
     target_error = 0.5 * (10 ** -6)
     found_minimum = 0
      
-    for i in range(14, 32):
+    for i in range(10, 33):
     
         sp.run([f'./scripts/setIterations.sh {i}'], shell=True) 
         # print(tmp) 
@@ -26,7 +26,7 @@ def main():
             line_number+=1
             if line_number == 3:
                 mean_error = float(line)
-                mean_errors.append(float(line)) 
+                mean_errors.append(abs(float(line))) 
         
         if  abs(mean_error) < target_error and not found_minimum:
             minimum_iterations = i

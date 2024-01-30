@@ -60,12 +60,12 @@ def main():
     print(f'{mean_error}')
    #  print()
    # 
-   #  sns.set(style="whitegrid")  # Set the style of the plot
-   #  sns.kdeplot(error, fill=True, color="skyblue")  # Kernel Density Estimation plot
-   #  plt.xlabel('Error')
-   #  plt.ylabel('Density')
-   #  plt.title('Distribution of Error')
-   #  plt.show()  
+    # sns.set(style="whitegrid")  # Set the style of the plot
+    # sns.kdeplot(error, fill=True, color="skyblue")  # Kernel Density Estimation plot
+    # plt.xlabel('Error')
+    # plt.ylabel('Density')
+    # plt.title('Distribution of Error')
+    # plt.show()  
    #
 if __name__ == "__main__":
     main()

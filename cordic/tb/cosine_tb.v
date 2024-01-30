@@ -52,7 +52,7 @@ module tb();
 
     task printIterations;    
       int i;
-      for (i = 0; i < 32; i = i + 1) begin
+      for (i = 0; i < 0; i = i + 1) begin
         $display("w_%0d",i,":fi-30-s:%h,", w_s[i], "x_%0d",i,":anc-30-s:%h", x_s[i]);
       end 
     endtask: printIterations
