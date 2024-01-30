@@ -17,9 +17,9 @@ initial begin // with angles
     $readmemh("mem.hex", angles); 
 end
 
-wire [31:0] x_s [31:0];
-wire [31:0] y_s [31:0];
-wire [31:0] w_s [31:0];
+    wire [31:0] x_s [0:31];
+    wire [31:0] y_s [0:31];
+    wire [31:0] w_s [0:31];
 
 // 26dd38b0 30-u
 // 4dba7700 31-u
