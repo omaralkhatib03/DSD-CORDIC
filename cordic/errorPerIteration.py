@@ -15,26 +15,32 @@ def main():
     for i in range(10, 33):
     
         sp.run([f'./scripts/setIterations.sh {i}'], shell=True) 
-        # print(tmp) 
-        
-        cmdResult = sp.Popen("make iterations", shell=True, stdout=sp.PIPE)
 
-        mean_error = 0    
-        line_number = 0 
-        for line in cmdResult.stdout: 
-            # print(f'{line_number}: {line}')
-            line_number+=1
-            if line_number == 3:
-                mean_error = float(line)
-                mean_errors.append(abs(float(line))) 
-        
-        if  abs(mean_error) < target_error and not found_minimum:
-            minimum_iterations = i
-            error_at_minimum = mean_error
-            found_minimum = 1
-             
+        tmp = [] 
+        for _ in range(0, 5): 
+            cmdResult = sp.Popen("make iterations", shell=True, stdout=sp.PIPE)
+
+            mean_error = 0    
+            line_number = 0 
+            for line in cmdResult.stdout: 
+                line_number+=1
+                if line_number == 3:
+                  tmp.append(abs(float(line))) 
+            
         points.append(i)
+
+        snd_avg = np.mean(np.array(tmp))
+        mean_errors.append(abs(snd_avg))
         
+        
+        if abs(snd_avg) < target_error and not found_minimum:
+            minimum_iterations = i
+            error_at_minimum = snd_avg
+            found_minimum = 1
+        
+        tmp = []
+
+
     # print(mean_errors)
     print(f'Minimum Iterations: {minimum_iterations}, Error At Minimum: {error_at_minimum}')
     
