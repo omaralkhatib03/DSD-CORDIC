@@ -55,9 +55,9 @@ def main():
     print(f'Minimum Iterations: {minimum_iterations}, Error At Minimum: {error_at_minimum}, Confidence At Minimum: {confidence_at_minimum}, Standard Deviation at Minimum: {stdDiv_at_minimum}')
     
     plt.plot(points, errors)
-    plt.axhline(y = error_at_minimum + stdDiv, color='r', linestyle='--', linewidth=0.5)
-    plt.axhline(y = error_at_minimum - stdDiv, color='r', linestyle='--', linewidth=0.5)
-    plt.axvline(x = minimum_iterations, color='g', linestyle='--', linewidth=0.5)
+    plt.axhline(y = error_at_minimum + stdDiv, color='r', linestyle='--', linewidth=1)
+    plt.axhline(y = error_at_minimum - stdDiv, color='r', linestyle='--', linewidth=1)
+    plt.axvline(x = minimum_iterations, color='g', linestyle='--', linewidth=1)
     
     plt.xlabel('Number of Iterations')
     plt.ylabel('Mean Error (Monte Carlo)')
