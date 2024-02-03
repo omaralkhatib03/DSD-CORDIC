@@ -3,7 +3,7 @@
 # Machine generated for CPU 'cpu' in SOPC Builder design 'first_nios2_system'
 # SOPC Builder design path: ../../first_nios2_system.sopcinfo
 #
-# Generated: Wed Jan 10 16:20:33 GMT 2024
+# Generated: Tue Jan 23 16:47:13 GMT 2024
 
 # DO NOT MODIFY THIS FILE
 #
@@ -46,5 +46,5 @@
 # The cache attribute is specified which improves GDB performance
 # by allowing GDB to cache memory contents on the host.
 
-# onchip_mem
-memory 0x8000 0xd000 cache
+# sdram
+memory 0x800000 0x1000000 cache
