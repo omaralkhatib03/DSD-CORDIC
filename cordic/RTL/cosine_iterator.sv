@@ -29,14 +29,14 @@ engine en0(5'b0, angles[0], 32'h26dd3b80, 32'h0, 32'h0, fixedFractionalAngle, x_
 genvar i;
 
 generate
-    for (i = 5'd1; i < 6'd32; i = i + 1) begin : gen_cordic_engines
+    for (i = 5'd1; i < 6'd24; i = i + 1) begin : gen_cordic_engines
         wire[4:0] iter = i;
         engine en(iter, angles[i], x_s[i-1], y_s[i-1], w_s[i-1], fixedFractionalAngle, x_s[i], y_s[i], w_s[i]);
     end
 endgenerate
   
-assign result = x_s[31];
-assign theta = w_s[31];
+assign result = x_s[23];
+assign theta = w_s[23];
 assign x_s_out = x_s;
 assign w_s_out = w_s;
 

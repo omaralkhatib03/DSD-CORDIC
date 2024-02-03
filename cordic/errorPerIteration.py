@@ -16,7 +16,7 @@ def main():
     target_confidence = 0.95
     found_minimum = 0
      
-    for i in range(10, 33):
+    for i in range(10, 25):
     
         sp.run([f'./scripts/setIterations.sh {i}'], shell=True) 
         
@@ -24,6 +24,7 @@ def main():
 
 
         error = 1000
+        margin = 0
         confidence = 0
         stdDiv = 0
         line_number = 0 
@@ -33,31 +34,33 @@ def main():
                 string_line = str(line)
                 string_line = string_line[2:-3]
                 # print(string_line)
-                mean, std, conf = string_line.split(',') 
-                error = abs(float(mean))
-                errors.append(error)
-                confidence = float(conf)
-                confidences.append(confidence) 
-                stdDiv = float(std)
+                mean, std, marginOfError = string_line.split(',') 
                 
+                error = float(mean)
+                errors.append(abs(error))
+                
+                stdDiv = float(std)
+                margin = float(marginOfError)
+                confidences.append(margin)
                 
         points.append(i)
         
-        if error < target_error and confidence >= target_confidence and not found_minimum:
-            minimum_iterations = i
-            error_at_minimum = error
-            confidence_at_minimum = confidence
-            stdDiv_at_minimum = stdDiv
+        # if error < target_error and  and not found_minimum:
+            # minimum_iterations = i
+            # error_at_minimum = error
+            # confidence_at_minimum = confidence
+            # stdDiv_at_minimum = stdDiv
             
-            found_minimum = 1
+            # found_minimum = 1
 
     # print(errors)
-    print(f'Minimum Iterations: {minimum_iterations}, Error At Minimum: {error_at_minimum}, Confidence At Minimum: {confidence_at_minimum}, Standard Deviation at Minimum: {stdDiv_at_minimum}')
-    
-    plt.plot(points, errors)
-    plt.axhline(y = error_at_minimum + stdDiv, color='r', linestyle='--', linewidth=1)
-    plt.axhline(y = error_at_minimum - stdDiv, color='r', linestyle='--', linewidth=1)
-    plt.axvline(x = minimum_iterations, color='g', linestyle='--', linewidth=1)
+    # print(f'Minimum Iterations: {minimum_iterations}, Error At Minimum: {error_at_minimum}, Confidence At Minimum: {confidence_at_minimum}, Standard Deviation at Minimum: {stdDiv_at_minimum}')
+
+    plt.errorbar(x=points, y=errors, yerr=confidences,fmt='o', color='blue', ecolor='red', capsize=5, elinewidth=1, capthick=1, markersize=5)
+    plt.axhline(y = target_error, color='b', linestyle='--', linewidth=1)
+    plt.axhline(y = -target_error, color='b', linestyle='--', linewidth=1)
+    # plt.axhline(y = error_at_minimum - stdDiv, color='r', linestyle='--', linewidth=1)
+    # plt.axvline(x = minimum_iterations, color='g', linestyle='--', linewidth=1)
     
     plt.xlabel('Number of Iterations')
     plt.ylabel('Mean Error (Monte Carlo)')

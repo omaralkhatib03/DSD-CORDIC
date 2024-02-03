@@ -2,15 +2,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 import regex_spm as rspm
-import scipy.stats
+from scipy.stats import norm
 import seaborn as sns
 
-def mean_confidence_interval(data, confidence=0.95):
-    a = 1.0 * data
-    n = len(a)
-    m, se = np.mean(a), scipy.stats.sem(a)
-    h = se * scipy.stats.t.ppf((1 + confidence) / 2., n-1)
-    return m, m-h, m+h 
+# def mean_confidence_interval(data, confidence=0.95):
+#     a = 1.0 * data
+#     n = len(a)
+#     m, se = np.mean(a), scipy.stats.sem(a)
+#     h = se * scipy.stats.t.ppf((1 + confidence) / 2., n-1)
+#     return m, m-h, m+h 
                   
 def main():
     cordic_angles = []
@@ -50,11 +50,8 @@ def main():
     error = cordic_angles - cosines
     mean_error = np.mean(error)
     stdDiv = np.std(error)
-    _, lower_bound, upper_bound = mean_confidence_interval(error)
-    
-    confidence = np.sum([1 for i in error if (i > (mean_error - 2 * stdDiv) and (i < mean_error + 2 * stdDiv))]) / (cnt + 1)
-
-    
+    std_error = stdDiv / np.sqrt(cnt + 1)
+    marginOfError = 1.96 * std_error
     
     # for i in range(0, len(cordic_angles)):
         # print(f'cos({theta[i]}) = {cosines[i]}, np.cos = {np.cos(theta[i])}, apx = {cordic_angles[i]}, exact = {cosines[i] == cordic_angles[i]}')
@@ -62,7 +59,7 @@ def main():
 
     # print(f'N:{cnt}, Mean Error: {mean_error}, stdDiv: {stdDiv}, confidence:{confidence}')  
    
-    print(f'{mean_error}, {stdDiv}, {confidence}')
+    print(f'{mean_error}, {stdDiv}, {marginOfError}')
    
     # sns.set(style="whitegrid")  # Set the style of the plot
     # sns.kdeplot(error, fill=True, color="skyblue")  # Kernel Density Estimation plot
