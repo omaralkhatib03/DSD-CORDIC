@@ -23,6 +23,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <math.h>
+#include <unistd.h>
 
 //remember to add random seed test
 
@@ -106,11 +107,34 @@ void runTest(int N, float step) {
 int main()
 {
   printf("Task 2!\n");
-  int t = 0;
-  for (; t < TestsToRun; t++) {
-    printf("Test Case %d\n", t + 1);
-    runTest(Ns[t], steps[t]);
-    printf("\n");
-  }
+  // int t = 0;
+  // for (; t < TestsToRun; t++) {
+  //   printf("Test Case %d\n", t + 1);
+  //   runTest(Ns[t], steps[t]);
+  //   printf("\n");
+  // }
+  
+  MyFloat a;
+  MyFloat b;
+  MyFloat c;
+
+  a.i = 2;
+  b.i = 4;
+  c.i = ALT_CI_INT_MULT_0(a.i, b.i);
+
+  printf("a:%x, b:%x, c:%x\n", a.i, b.i, c.i);
+
+  a.f = 2.;
+  b.f = 2.;
+
+  printf("a:%x, b:%x\n", a.i, b.i);
+  
+  // int x = ALT_CI_FP_ADD_SUB_0(0b0, a.i, b.i);
+  // printf("%x\n", x);
+
+  // printf("got: %x\n", ALT_CI_FP_ADD_SUB_0(0b1, a.i, b.i));
+  
+
+
   return 0;
 }
