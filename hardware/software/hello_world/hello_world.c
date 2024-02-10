@@ -39,7 +39,9 @@
 // #define N 261121
 
 #define TestsToRun 3
-
+#define MAXVAL 1000
+#define RandN 2323
+#define RANDSEED 334
 
 const float steps[3] = {5, 1/8.0, 1/1024.0};
 const int Ns[3] = {52, 2041, 261121};
@@ -71,7 +73,14 @@ float trigSum(float x[], int M){
   }
   return sum;
 }
-
+// Test Case 4
+void generateRandomVector(float x[RandN]){
+  int i;
+  srand(RANDSEED);
+  for (i=0; i<RandN; i++){
+  x[i] = ((float) rand()/ (float) RAND_MAX) * MAXVAL;
+  }
+}
 union MyFloat {
   float f;
   unsigned i;
@@ -97,7 +106,27 @@ void runTest(int N, float step) {
   
   printf("Result: %f\n", y.f);
   printf("proc time avg: %f ms\n", (diff/10.));
+  printf("IEEE 754 Format: 0x%lx\n", (unsigned long) y.i);
 
+}
+
+void runRandomTest(float x[RandN]) {
+  MyFloat y;
+  clock_t diff;
+  clock_t exec_t1, exec_t2;
+  int j = 0;
+  float avgTicks = 0;
+
+  exec_t1 = times(NULL);
+  for (;j < 10; j++) {
+    y.f = trigSum(x, RandN);
+  }
+  exec_t2 = times(NULL);
+  printf("%ld\n", exec_t2 - exec_t1);
+  diff = (exec_t2 - exec_t1 ) ;
+  
+  printf("Result: %f\n", y.f);
+  printf("proc time avg: %f ms\n", (diff/10.));
   printf("IEEE 754 Format: 0x%lx\n", (unsigned long) y.i);
 
 }
@@ -111,5 +140,7 @@ int main()
     runTest(Ns[t], steps[t]);
     printf("\n");
   }
+  float x[RandN];
+  runRandomTest(x);
   return 0;
 }
