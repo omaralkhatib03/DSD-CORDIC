@@ -73,40 +73,42 @@ float trigSum(float x[], int M){
   return sum;
 }
 
+
+
+// void runTest(int N, float step) {
+//   float x[N];
+//   MyFloat y;
+//   clock_t diff;
+//   clock_t exec_t1, exec_t2;
+//   int j = 0;
+//   float avgTicks = 0;
+
+//   generateVector(x, step, N);
+//   char buf[50];
+
+//   for (;j < 10; j++) {
+//     exec_t1 = times(NULL);
+//     y.f = trigSum(x, N);
+//     exec_t2 = times(NULL);
+//     diff = exec_t2 - exec_t1;
+//     gcvt(diff, 10, buf);
+//     avgTicks += diff;
+//   }
+
+//   printf("Result: %d\n", (int) y.f);
+//   printf("proc time avg: %d ticks\n", (int) avgTicks/10);
+//   printf("IEEE 754 Format: 0x%lx\n", (unsigned long) y.i);
+
+// }
+
 union MyFloat {
   float f;
   unsigned i;
 } typedef MyFloat;
 
-void runTest(int N, float step) {
-  float x[N];
-  MyFloat y;
-  clock_t diff;
-  clock_t exec_t1, exec_t2;
-  int j = 0;
-  float avgTicks = 0;
-
-  generateVector(x, step, N);
-  char buf[50];
-
-  for (;j < 10; j++) {
-    exec_t1 = times(NULL);
-    y.f = trigSum(x, N);
-    exec_t2 = times(NULL);
-    diff = exec_t2 - exec_t1;
-    gcvt(diff, 10, buf);
-    avgTicks += diff;
-  }
-
-  printf("Result: %d\n", (int) y.f);
-  printf("proc time avg: %d ticks\n", (int) avgTicks/10);
-  printf("IEEE 754 Format: 0x%lx\n", (unsigned long) y.i);
-
-}
-
 int main()
 {
-  printf("Task 2!\n");
+  printf("Task 6!\n");
   // int t = 0;
   // for (; t < TestsToRun; t++) {
   //   printf("Test Case %d\n", t + 1);
@@ -118,22 +120,11 @@ int main()
   MyFloat b;
   MyFloat c;
 
-  a.i = 2;
-  b.i = 4;
-  c.i = ALT_CI_INT_MULT_0(a.i, b.i);
+  a.f = 18;
+  b.f = 6;
+  c.i = ALT_CI_FP_MULT_0(a.i, b.i);
 
   printf("a:%x, b:%x, c:%x\n", a.i, b.i, c.i);
-
-  a.f = 2.;
-  b.f = 2.;
-
-  printf("a:%x, b:%x\n", a.i, b.i);
-  
-  // int x = ALT_CI_FP_ADD_SUB_0(0b0, a.i, b.i);
-  // printf("%x\n", x);
-
-  // printf("got: %x\n", ALT_CI_FP_ADD_SUB_0(0b1, a.i, b.i));
-  
 
 
   return 0;
