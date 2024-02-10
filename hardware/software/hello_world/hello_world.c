@@ -82,17 +82,16 @@ void runTest(int N, float step) {
   float avgTicks = 0;
 
   generateVector(x, step, N);
-  char buf[50];
   exec_t1 = times(NULL);
   for (;j < 10; j++) {
     y.f = sumVector(x, N);
 
   }
   exec_t2 = times(NULL);
-  diff = (exec_t2 - exec_t1 )/10;
-  gcvt(diff, 10, buf);
-  printf("Result: %d\n", (int) y.f);
-  printf("proc time avg: %d ticks\n", diff);
+  diff = (exec_t2 - exec_t1 ) / 10.;
+  
+  printf("Result: %f\n", y.f);
+  printf("proc time avg: %f ms\n", diff);
   printf("IEEE 754 Format: 0x%lx\n", (unsigned long) y.i);
 
 }
