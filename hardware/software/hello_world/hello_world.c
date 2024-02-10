@@ -89,10 +89,10 @@ void runTest(int N, float step) {
 
   }
   exec_t2 = times(NULL);
-  diff = exec_t2 - exec_t1;
+  diff = (exec_t2 - exec_t1 )/10;
   gcvt(diff, 10, buf);
   printf("Result: %d\n", (int) y.f);
-  printf("proc time avg: %d ticks\n", (int) diff/10);
+  printf("proc time avg: %d ticks\n", diff);
   printf("IEEE 754 Format: 0x%lx\n", (unsigned long) y.i);
 
 }
