@@ -67,64 +67,83 @@ float sumVector(float x[], int M){
 float trigSum(float x[], int M){
   int i;
   float sum = 0;
+  float t1;
+  float t2;
+  float t3;
+  float t4;
+  float t5;
+
   for(i = 0; i < M; i++){
-    sum += 0.5*x[i] + (x[i] * x[i])*cosf((x[i]-128)/128);
+    t1 = ALT_CI_FP_MULT_0(0.5, x[i]);
+    t2 = ALT_CI_FP_MULT_0(x[i], x[i]);
+    t3 = ALT_CI_FP_ADD_SUB_0(0, x[i], 128);
+    t4 = ALT_CI_FP_MULT_0(t3, 0.0078125);
+    t5 = ALT_CI_FP_MULT_0(t2, cosf(t4));
+    t5 = ALT_CI_FP_ADD_SUB_0(1, t5, t1);
+    sum = ALT_CI_FP_ADD_SUB_0(1, sum, t5);
   }
   return sum;
 }
 
-
-
-// void runTest(int N, float step) {
-//   float x[N];
-//   MyFloat y;
-//   clock_t diff;
-//   clock_t exec_t1, exec_t2;
-//   int j = 0;
-//   float avgTicks = 0;
-
-//   generateVector(x, step, N);
-//   char buf[50];
-
-//   for (;j < 10; j++) {
-//     exec_t1 = times(NULL);
-//     y.f = trigSum(x, N);
-//     exec_t2 = times(NULL);
-//     diff = exec_t2 - exec_t1;
-//     gcvt(diff, 10, buf);
-//     avgTicks += diff;
-//   }
-
-//   printf("Result: %d\n", (int) y.f);
-//   printf("proc time avg: %d ticks\n", (int) avgTicks/10);
-//   printf("IEEE 754 Format: 0x%lx\n", (unsigned long) y.i);
-
-// }
 
 union MyFloat {
   float f;
   unsigned i;
 } typedef MyFloat;
 
+
+void runTest(int N, float step) {
+  float x[N];
+  MyFloat y;
+  clock_t diff;
+  clock_t exec_t1, exec_t2;
+  int j = 0;
+  float avgTicks = 0;
+
+  generateVector(x, step, N);
+  char buf[50];
+
+  for (;j < 10; j++) {
+    exec_t1 = times(NULL);
+    y.f = trigSum(x, N);
+    exec_t2 = times(NULL);
+    diff = exec_t2 - exec_t1;
+    gcvt(diff, 10, buf);
+    avgTicks += diff;
+  }
+
+  printf("Result: %d\n", (int) y.f);
+  printf("proc time avg: %d ticks\n", (int) avgTicks/10);
+  printf("IEEE 754 Format: 0x%lx\n", (unsigned long) y.i);
+
+}
+
+
 int main()
 {
   printf("Task 6!\n");
-  // int t = 0;
-  // for (; t < TestsToRun; t++) {
-  //   printf("Test Case %d\n", t + 1);
-  //   runTest(Ns[t], steps[t]);
-  //   printf("\n");
-  // }
+  int t = 0;
+  for (; t < TestsToRun; t++) {
+    printf("Test Case %d\n", t + 1);
+    runTest(Ns[t], steps[t]);
+    printf("\n");
+  }
+
   
-  MyFloat a;
-  MyFloat b;
-  MyFloat c;
+  // MyFloat a;
+  // MyFloat b;
+  // MyFloat c;
 
-  a.f = 18;
-  b.f = 6;
-  c.i = ALT_CI_FP_MULT_0(a.i, b.i);
+  // a.f = 1;
+  // b.f = 3;
+  // c.i = ALT_CI_FP_MULT_0(a.i, b.i);
+  // c.i = ALT_CI_FP_ADD_SUB_0(1, a.f, b.f);
 
-  printf("a:%x, b:%x, c:%x\n", a.i, b.i, c.i);
+  // printf("n: 1, a:%x, b:%x, c:%x\n", a.i, b.i, c.i);
+
+  // c.i = ALT_CI_FP_ADD_SUB_0(0, a.f, b.f);
+
+  // printf("n: 0, a:%x, b:%x, c:%x\n", a.i, b.i, c.i);
 
 
   return 0;
