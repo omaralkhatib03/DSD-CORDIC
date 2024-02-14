@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Feb 10, 2024 7:58:40 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1707595120743</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Feb 14, 2024 1:04:25 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1707915865918</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/software/hello_world_bsp</BspGeneratedLocation>
         <BspSettingsFile>./settings.bsp</BspSettingsFile>
         <SopcDesignFile>../../first_nios2_system.sopcinfo</SopcDesignFile>
@@ -854,7 +854,7 @@
                 <SettingName>hal.custom_newlib_flags</SettingName>
                 <Identifier>CUSTOM_NEWLIB_FLAGS</Identifier>
                 <Type>UnquotedString</Type>
-                <Value>none</Value>
+                <Value>$(ALT_CFLAGS) -O3 -fno-math-errno -mcustom-fadds=3 -mcustom-fmuls=0 -mcustom-fsubs=2</Value>
                 <DefaultValue>none</DefaultValue>
                 <DestinationFile>public_mk_define</DestinationFile>
                 <Description>Build a custom version of newlib with the specified space-separated compiler flags.</Description>

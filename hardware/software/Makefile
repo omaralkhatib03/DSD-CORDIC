@@ -14,6 +14,12 @@ update: d2u
 	cd $(PROJECT_BSP)/ && ./create-this-bsp
 
 clean:
+	cd $(PROJECT_NAME) && make clean
+
+clean_bsp:
+		cd $(PROJECT_BSP) && make clean
+
+clean_all:
 	cd $(PROJECT_NAME) && make clean_all
 
 test: tests.py

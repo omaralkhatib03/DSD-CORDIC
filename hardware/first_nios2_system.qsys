@@ -201,7 +201,7 @@
   <parameter name="dcache_bursts" value="false" />
   <parameter name="dcache_numTCDM" value="0" />
   <parameter name="dcache_ramBlockType" value="Automatic" />
-  <parameter name="dcache_size" value="16384" />
+  <parameter name="dcache_size" value="4096" />
   <parameter name="dcache_tagramBlockType" value="Automatic" />
   <parameter name="dcache_victim_buf_impl" value="reg" />
   <parameter name="debug_OCIOnchipTrace" value="_128" />
@@ -228,7 +228,7 @@
   <parameter name="icache_burstType" value="None" />
   <parameter name="icache_numTCIM" value="0" />
   <parameter name="icache_ramBlockType" value="Automatic" />
-  <parameter name="icache_size" value="16384" />
+  <parameter name="icache_size" value="8192" />
   <parameter name="icache_tagramBlockType" value="Automatic" />
   <parameter name="impl" value="Fast" />
   <parameter name="instAddrWidth" value="25" />
@@ -260,8 +260,8 @@
   <parameter name="mpu_numOfInstRegion" value="8" />
   <parameter name="mpu_useLimit" value="false" />
   <parameter name="mpx_enabled" value="false" />
-  <parameter name="mul_32_impl" value="2" />
-  <parameter name="mul_64_impl" value="1" />
+  <parameter name="mul_32_impl" value="0" />
+  <parameter name="mul_64_impl" value="0" />
   <parameter name="mul_shift_choice" value="1" />
   <parameter name="ocimem_ramBlockType" value="Automatic" />
   <parameter name="ocimem_ramInit" value="false" />

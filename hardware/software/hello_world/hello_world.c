@@ -39,6 +39,14 @@
 //  #define step 1/1024.0
 //  #define N 261121
 
+
+#define ALT_CI_FP_ADD_SUB_0(n,A,B) __builtin_custom_fnff(ALT_CI_FP_ADD_SUB_0_N+(n&ALT_CI_FP_ADD_SUB_0_N_MASK),(A),(B))
+#define ALT_CI_FP_ADD_SUB_0_N 0x2
+#define ALT_CI_FP_ADD_SUB_0_N_MASK ((1<<1)-1)
+#define ALT_CI_FP_MULT_0(A,B) __builtin_custom_fnff(ALT_CI_FP_MULT_0_N,(A),(B))
+#define ALT_CI_FP_MULT_0_N 0x0
+
+
 #define TestsToRun 3
 
 const float steps[3] = {5, 1 / 8.0, 1 / 1024.0};
