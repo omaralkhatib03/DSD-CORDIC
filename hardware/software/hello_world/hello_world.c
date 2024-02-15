@@ -25,20 +25,17 @@
 #include <math.h>
 #include <unistd.h>
 
-// remember to add random seed test
-
 // test 1
-//  #define step 5
-//  #define N 52
+ #define step1 5
+ #define N1 52
 
 // test 2
-//  #define step 1/8.0
-//  #define N 2041
+ #define step2 1/8.0
+ #define N2 2041
 
 // test 3
-//  #define step 1/1024.0
-//  #define N 261121
-
+ #define step3 1/1024.0
+ #define N3 261121
 
 #define ALT_CI_FP_ADD_SUB_0(n,A,B) __builtin_custom_fnff(ALT_CI_FP_ADD_SUB_0_N+(n&ALT_CI_FP_ADD_SUB_0_N_MASK),(A),(B))
 #define ALT_CI_FP_ADD_SUB_0_N 0x2
@@ -47,10 +44,6 @@
 #define ALT_CI_FP_MULT_0_N 0x0
 
 
-#define TestsToRun 3
-
-const float steps[3] = {5, 1 / 8.0, 1 / 1024.0};
-const int Ns[3] = {52, 2041, 261121};
 
 void generateVector(float x[], float step, int N)
 {
@@ -96,6 +89,49 @@ float sumVector(float x[], int M)
 //   return sum;
 // }
 
+float cosN(float x) {
+    float x2 = x * x;
+    float term2 = ALT_CI_FP_MULT_0(x2,0.5f);
+    float x4 = ALT_CI_FP_MULT_0(x2,x2);
+    float term3 = ALT_CI_FP_MULT_0(4.16666666666666019037e-02f,x4);
+    float x6 = ALT_CI_FP_MULT_0(x2,x4);
+    float term4 = ALT_CI_FP_MULT_0(-1.38888888888741095749e-03f,x6);
+    float x8 = ALT_CI_FP_MULT_0(x2,x6);
+    float term5 = ALT_CI_FP_MULT_0(2.48015872894767294178e-05f,x8);
+    float r = ALT_CI_FP_ADD_SUB_0(0, 1.0f,term2);
+    float x10 = ALT_CI_FP_MULT_0(x2,x8);
+    float term6 = ALT_CI_FP_MULT_0(-2.75573143513906633035e-07f,x10);
+    float x12 = ALT_CI_FP_MULT_0(x2,x10);
+    float term7 = ALT_CI_FP_MULT_0(2.08757232129817482790e-09f,x12);
+    float x14 = ALT_CI_FP_MULT_0(x2,x12);
+    float term8 = ALT_CI_FP_MULT_0(-1.13596475577881948265e-11f,x14);
+    r = ALT_CI_FP_ADD_SUB_0(1, r,term8);
+    r = ALT_CI_FP_ADD_SUB_0(1, r,term7);
+    r = ALT_CI_FP_ADD_SUB_0(1, r,term3);
+    r = ALT_CI_FP_ADD_SUB_0(1, r,term4);
+    r = ALT_CI_FP_ADD_SUB_0(1, r,term5);
+    r = ALT_CI_FP_ADD_SUB_0(1, r,term6);
+    return r;
+    // float r = ALT_CI_SUBBER_0(1.0f ,
+    //               ALT_CI_MMULT_0(x2 , ALT_CI_ADD_0(0.5f ,
+    //                   ALT_CI_MMULT_0(x2 , ALT_CI_ADD_0(4.16666666666666019037e-02 ,
+    //                       ALT_CI_MMULT_0(x2 , ALT_CI_ADD_0(-1.38888888888741095749e-03 ,
+    //                           ALT_CI_MMULT_0(x2 , ALT_CI_ADD_0(2.48015872894767294178e-05 ,
+    //                               ALT_CI_MMULT_0(x2 , ALT_CI_ADD_0(-2.75573143513906633035e-07 ,
+    //                                   ALT_CI_MMULT_0(x2 , ALT_CI_ADD_0(2.08757232129817482790e-09 ,
+    //                                       ALT_CI_MMULT_0(x2 , -1.13596475577881948265e-11)
+    //                                   ))
+    //                               ))
+    //                           ))
+    //                       ))
+    //                   ))
+    //               ))
+    //           );
+    // float r = ALT_CI_SUBBER_0(1.0,term);
+}
+
+
+
 float trigSum(float x[], int M)
 {
   int i;
@@ -103,11 +139,13 @@ float trigSum(float x[], int M)
 
   for (i = 0; i < M; i++)
   {
-    sum = ALT_CI_FP_ADD_SUB_0(1, sum, ALT_CI_FP_ADD_SUB_0(1, ALT_CI_FP_MULT_0(ALT_CI_FP_MULT_0(x[i], x[i]), 
-          cosf(ALT_CI_FP_MULT_0(ALT_CI_FP_ADD_SUB_0(0, x[i], 128), 0.0078125))), ALT_CI_FP_MULT_0(0.5, x[i])));
+    sum += 0.5f*x[i] + (x[i] * x[i])*cosf((x[i] + -128) * 0.0078125f);
   }
   return sum;
 }
+
+
+
 
 union MyFloat
 {
@@ -141,16 +179,17 @@ void runTest(int N, float step)
 
 int main()
 {
-  printf("Task 6!\n");
-
-  int t = 0;
-  for (; t < TestsToRun; t++)
-  {
-    printf("Test Case %d\n", t + 1);
-    runTest(Ns[t], steps[t]);
+    printf("Task 6!\n");
+    printf("Test Case %d\n", 1);
+    runTest(N1, step1);
     printf("\n");
-  }
-
+    printf("Test Case %d\n", 2);
+    runTest(N2, step2);
+    printf("\n");
+    printf("Test Case %d\n", 3);
+    runTest(N3, step3);
+    printf("\n");
+  
   // MyFloat a;
   // MyFloat b;
   // MyFloat c;
