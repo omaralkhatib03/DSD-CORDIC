@@ -44,7 +44,6 @@
 #define ALT_CI_FP_MULT_0_N 0x0
 
 
-
 void generateVector(float x[], float step, int N)
 {
   int i;
@@ -66,28 +65,6 @@ float sumVector(float x[], int M)
   }
   return sum;
 }
-
-// float trigSum(float x[], int M){
-//   int i;
-//   float sum = 0;
-//   float t1;
-//   float t2;
-//   float t3;
-//   float t4;
-//   float t5;
-//   float t6;
-
-//   for(i = 0; i < M; i++){
-//     t1 = ALT_CI_FP_MULT_0(0.5, x[i]);
-//     t2 = ALT_CI_FP_MULT_0(x[i], x[i]);
-//     t3 = ALT_CI_FP_ADD_SUB_0(0, x[i], 128);
-//     t4 = ALT_CI_FP_MULT_0(t3, 0.0078125);
-//     t5 = ALT_CI_FP_MULT_0(t2, cosf(t4));
-//     t6 = ALT_CI_FP_ADD_SUB_0(1, t5, t1);
-//     sum = ALT_CI_FP_ADD_SUB_0(1, sum, t6);
-//   }
-//   return sum;
-// }
 
 float cosN(float x) {
     float x2 = x * x;
@@ -112,23 +89,7 @@ float cosN(float x) {
     r = ALT_CI_FP_ADD_SUB_0(1, r,term5);
     r = ALT_CI_FP_ADD_SUB_0(1, r,term6);
     return r;
-    // float r = ALT_CI_SUBBER_0(1.0f ,
-    //               ALT_CI_MMULT_0(x2 , ALT_CI_ADD_0(0.5f ,
-    //                   ALT_CI_MMULT_0(x2 , ALT_CI_ADD_0(4.16666666666666019037e-02 ,
-    //                       ALT_CI_MMULT_0(x2 , ALT_CI_ADD_0(-1.38888888888741095749e-03 ,
-    //                           ALT_CI_MMULT_0(x2 , ALT_CI_ADD_0(2.48015872894767294178e-05 ,
-    //                               ALT_CI_MMULT_0(x2 , ALT_CI_ADD_0(-2.75573143513906633035e-07 ,
-    //                                   ALT_CI_MMULT_0(x2 , ALT_CI_ADD_0(2.08757232129817482790e-09 ,
-    //                                       ALT_CI_MMULT_0(x2 , -1.13596475577881948265e-11)
-    //                                   ))
-    //                               ))
-    //                           ))
-    //                       ))
-    //                   ))
-    //               ))
-    //           );
-    // float r = ALT_CI_SUBBER_0(1.0,term);
-}
+  }
 
 
 
