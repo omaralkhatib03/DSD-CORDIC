@@ -40,7 +40,7 @@ def main():
         i = y.view("int32")
         print(f'IEEE 754 Format: {hex(i)}')
         print(f'Double result: {double}') 
-        accuracy=100-(abs(y-double)*100/double) 
+        accuracy=(abs(y-double)/double) * 100 
         print(f'accuracy: {accuracy} %')
 
 

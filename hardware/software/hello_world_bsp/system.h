@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'first_nios2_system'
  * SOPC Builder design path: ../../first_nios2_system.sopcinfo
  *
- * Generated: Thu Feb 15 16:20:25 GMT 2024
+ * Generated: Fri Feb 16 22:35:24 GMT 2024
  */
 
 /*
@@ -72,7 +72,7 @@
 #define ALT_CPU_DCACHE_BYPASS_MASK 0x80000000
 #define ALT_CPU_DCACHE_LINE_SIZE 32
 #define ALT_CPU_DCACHE_LINE_SIZE_LOG2 5
-#define ALT_CPU_DCACHE_SIZE 4096
+#define ALT_CPU_DCACHE_SIZE 512
 #define ALT_CPU_EXCEPTION_ADDR 0x00800020
 #define ALT_CPU_FLASH_ACCELERATOR_LINES 0
 #define ALT_CPU_FLASH_ACCELERATOR_LINE_SIZE 0
@@ -88,7 +88,7 @@
 #define ALT_CPU_HAS_JMPI_INSTRUCTION
 #define ALT_CPU_ICACHE_LINE_SIZE 32
 #define ALT_CPU_ICACHE_LINE_SIZE_LOG2 5
-#define ALT_CPU_ICACHE_SIZE 8192
+#define ALT_CPU_ICACHE_SIZE 512
 #define ALT_CPU_INITDA_SUPPORTED
 #define ALT_CPU_INST_ADDR_WIDTH 0x19
 #define ALT_CPU_NAME "cpu"
@@ -113,7 +113,7 @@
 #define NIOS2_DCACHE_BYPASS_MASK 0x80000000
 #define NIOS2_DCACHE_LINE_SIZE 32
 #define NIOS2_DCACHE_LINE_SIZE_LOG2 5
-#define NIOS2_DCACHE_SIZE 4096
+#define NIOS2_DCACHE_SIZE 512
 #define NIOS2_EXCEPTION_ADDR 0x00800020
 #define NIOS2_FLASH_ACCELERATOR_LINES 0
 #define NIOS2_FLASH_ACCELERATOR_LINE_SIZE 0
@@ -128,7 +128,7 @@
 #define NIOS2_HAS_JMPI_INSTRUCTION
 #define NIOS2_ICACHE_LINE_SIZE 32
 #define NIOS2_ICACHE_LINE_SIZE_LOG2 5
-#define NIOS2_ICACHE_SIZE 8192
+#define NIOS2_ICACHE_SIZE 512
 #define NIOS2_INITDA_SUPPORTED
 #define NIOS2_INST_ADDR_WIDTH 0x19
 #define NIOS2_NUM_OF_SHADOW_REG_SETS 0
@@ -141,11 +141,12 @@
  *
  */
 
-#define ALT_CI_FP_ADD_SUB_0(n,A,B) __builtin_custom_inii(ALT_CI_FP_ADD_SUB_0_N+(n&ALT_CI_FP_ADD_SUB_0_N_MASK),(A),(B))
-#define ALT_CI_FP_ADD_SUB_0_N 0x2
-#define ALT_CI_FP_ADD_SUB_0_N_MASK ((1<<1)-1)
+#define ALT_CI_FP_ADD_0(A,B) __builtin_custom_inii(ALT_CI_FP_ADD_0_N,(A),(B))
+#define ALT_CI_FP_ADD_0_N 0x3
 #define ALT_CI_FP_MULT_0(A,B) __builtin_custom_inii(ALT_CI_FP_MULT_0_N,(A),(B))
 #define ALT_CI_FP_MULT_0_N 0x0
+#define ALT_CI_FP_SUB_0(A,B) __builtin_custom_inii(ALT_CI_FP_SUB_0_N,(A),(B))
+#define ALT_CI_FP_SUB_0_N 0x2
 
 
 /*
@@ -159,8 +160,9 @@
 #define __ALTERA_AVALON_SYSID_QSYS
 #define __ALTERA_AVALON_TIMER
 #define __ALTERA_NIOS2_GEN2
-#define __FP_ADD_SUB
+#define __FP_ADD
 #define __FP_MULT
+#define __FP_SUB
 
 
 /*
@@ -332,7 +334,7 @@
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1708013691
+#define SYSID_TIMESTAMP 1708122649
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 #endif /* __SYSTEM_H_ */

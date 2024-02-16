@@ -29,7 +29,7 @@ ALT_LDDEPS :=
 MAKEABLE_LIBRARY_ROOT_DIRS :=
 
 # Generic flags passed to the compiler for different types of input files.
-ALT_CFLAGS := -O3 -fno-math-errno -mcustom-fadds=3 -mcustom-fmuls=0 -mcustom-fsubs=2
+ALT_CFLAGS := -fno-math-errno -mcustom-fadds=3 -mcustom-fmuls=0 -mcustom-fsubs=2
 ALT_CXXFLAGS :=
 ALT_CPPFLAGS :=
 ALT_ASFLAGS :=
@@ -165,8 +165,8 @@ CREATE_LINKER_MAP := 1
 # Common arguments for ALT_CFLAGSs
 APP_CFLAGS_DEFINED_SYMBOLS :=
 APP_CFLAGS_UNDEFINED_SYMBOLS :=
-APP_CFLAGS_OPTIMIZATION := -O3
-APP_CFLAGS_DEBUG_LEVEL := -g
+APP_CFLAGS_OPTIMIZATION := -Ofast
+APP_CFLAGS_DEBUG_LEVEL := 
 APP_CFLAGS_WARNINGS := -Wall
 APP_CFLAGS_USER_FLAGS :=
 

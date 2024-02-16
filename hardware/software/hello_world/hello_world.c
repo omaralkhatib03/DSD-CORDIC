@@ -26,23 +26,27 @@
 #include <unistd.h>
 
 // test 1
- #define step1 5
- #define N1 52
+#define step1 5
+#define N1 52
 
 // test 2
- #define step2 1/8.0
- #define N2 2041
+#define step2 1 / 8.0
+#define N2 2041
 
 // test 3
- #define step3 1/1024.0
- #define N3 261121
+#define step3 1 / 1024.0
+#define N3 261121
 
-#define ALT_CI_FP_ADD_SUB_0(n,A,B) __builtin_custom_fnff(ALT_CI_FP_ADD_SUB_0_N+(n&ALT_CI_FP_ADD_SUB_0_N_MASK),(A),(B))
-#define ALT_CI_FP_ADD_SUB_0_N 0x2
-#define ALT_CI_FP_ADD_SUB_0_N_MASK ((1<<1)-1)
-#define ALT_CI_FP_MULT_0(A,B) __builtin_custom_fnff(ALT_CI_FP_MULT_0_N,(A),(B))
-#define ALT_CI_FP_MULT_0_N 0x0
-
+#define one  1.00000000000000000000e+00f /* 0x3FF00000, 0x00000000 */
+#define half 0.5f
+#define C1   4.16666666666666019037e-02f /* 0x3FA55555, 0x5555554C */
+#define C2  -1.38888888888741095749e-03f /* 0xBF56C16C, 0x16C15177 */
+#define C3   2.48015872894767294178e-05f /* 0x3EFA01A0, 0x19CB1590 */
+#define C4  -2.75573143513906633035e-07f /* 0xBE927E4F, 0x809C52AD */
+#define C5   2.08757232129817482790e-09f /* 0x3E21EE9E, 0xBDB4B1C4 */
+#define C6  -1.13596475577881948265e-11f /* 0xBDA8FAE9, 0xBE8838D4 */
+#define OneTwoEight 128
+#define reciprocalOneTwoEight 0.0078125f
 
 void generateVector(float x[], float step, int N)
 {
@@ -66,47 +70,29 @@ float sumVector(float x[], int M)
   return sum;
 }
 
-float cosN(float x) {
-    float x2 = x * x;
-    float term2 = ALT_CI_FP_MULT_0(x2,0.5f);
-    float x4 = ALT_CI_FP_MULT_0(x2,x2);
-    float term3 = ALT_CI_FP_MULT_0(4.16666666666666019037e-02f,x4);
-    float x6 = ALT_CI_FP_MULT_0(x2,x4);
-    float term4 = ALT_CI_FP_MULT_0(-1.38888888888741095749e-03f,x6);
-    float x8 = ALT_CI_FP_MULT_0(x2,x6);
-    float term5 = ALT_CI_FP_MULT_0(2.48015872894767294178e-05f,x8);
-    float r = ALT_CI_FP_ADD_SUB_0(0, 1.0f,term2);
-    float x10 = ALT_CI_FP_MULT_0(x2,x8);
-    float term6 = ALT_CI_FP_MULT_0(-2.75573143513906633035e-07f,x10);
-    float x12 = ALT_CI_FP_MULT_0(x2,x10);
-    float term7 = ALT_CI_FP_MULT_0(2.08757232129817482790e-09f,x12);
-    float x14 = ALT_CI_FP_MULT_0(x2,x12);
-    float term8 = ALT_CI_FP_MULT_0(-1.13596475577881948265e-11f,x14);
-    r = ALT_CI_FP_ADD_SUB_0(1, r,term8);
-    r = ALT_CI_FP_ADD_SUB_0(1, r,term7);
-    r = ALT_CI_FP_ADD_SUB_0(1, r,term3);
-    r = ALT_CI_FP_ADD_SUB_0(1, r,term4);
-    r = ALT_CI_FP_ADD_SUB_0(1, r,term5);
-    r = ALT_CI_FP_ADD_SUB_0(1, r,term6);
-    return r;
-  }
 
+float cosMcluren(float x) {
+  const float x2 = (x * x);
+  const float x4 = x2 * x2;
+  const float x6 = (x4 * x2);
+  const float x8 = (x4 * x4);
+  return one - x2 * half + (x4) * C1 + (x6) * C2;
+}
 
 
 float trigSum(float x[], int M)
 {
   int i;
   float sum = 0;
+  float el = 0;
 
   for (i = 0; i < M; i++)
   {
-    sum += 0.5f*x[i] + (x[i] * x[i])*cosf((x[i] + -128) * 0.0078125f);
+    el = x[i];
+    sum += half * el + (el * el) * cosMcluren((el - OneTwoEight) * reciprocalOneTwoEight);
   }
   return sum;
 }
-
-
-
 
 union MyFloat
 {
@@ -134,37 +120,23 @@ void runTest(int N, float step)
   diff = exec_t2 - exec_t1;
 
   printf("Result: %f\n", y.f);
-  printf("proc time avg: %f ms\n", (diff/10.));
-  printf("IEEE 754 Format: 0x%lx\n", (unsigned long) y.i);
+  printf("proc time avg: %f ms\n", (diff * 0.1f));
+  printf("IEEE 754 Format: 0x%lx\n", (unsigned long)y.i);
 }
 
 int main()
 {
-    printf("Task 6!\n");
-    printf("Test Case %d\n", 1);
-    runTest(N1, step1);
-    printf("\n");
-    printf("Test Case %d\n", 2);
-    runTest(N2, step2);
-    printf("\n");
-    printf("Test Case %d\n", 3);
-    runTest(N3, step3);
-    printf("\n");
-  
-  // MyFloat a;
-  // MyFloat b;
-  // MyFloat c;
+  printf("Task 6!\n");
+  printf("Test Case %d\n", 1);
+  runTest(N1, step1);
+  printf("\n");
+  printf("Test Case %d\n", 2);
+  runTest(N2, step2);
+  printf("\n");
+  printf("Test Case %d\n", 3);
+  runTest(N3, step3);
+  printf("\n");
 
-  // a.f = 1;
-  // b.f = 3;
-  // c.f = ALT_CI_FP_MULT_0(a.i, b.i);
-  // c.f = ALT_CI_FP_ADD_SUB_0(1, a.f, b.f);
-
-  // printf("n: 1, a:%x, b:%x, c:%x\n", a.i, b.i, c.i);
-
-  // c.f = ALT_CI_FP_ADD_SUB_0(0, a.f, b.f);
-
-  // printf("n: 0, a:%x, b:%x, c:%x\n", a.i, b.i, c.i);
 
   return 0;
 }

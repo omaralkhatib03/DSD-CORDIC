@@ -161,9 +161,9 @@ SOPC_SYSID_FLAG += --sidp=0x1001030
 ELF_PATCH_FLAG  += --sidp 0x1001030
 
 # The SOPC Timestamp 
-# setting SOPC_TIMESTAMP is 1708013691
-SOPC_SYSID_FLAG += --timestamp=1708013691
-ELF_PATCH_FLAG  += --timestamp 1708013691
+# setting SOPC_TIMESTAMP is 1708122649
+SOPC_SYSID_FLAG += --timestamp=1708122649
+ELF_PATCH_FLAG  += --timestamp 1708122649
 
 # Enable JTAG UART driver to recover when host is inactive causing buffer to 
 # full without returning error. Printf will not fail with this recovery. none 
@@ -175,7 +175,7 @@ ELF_PATCH_FLAG  += --timestamp 1708013691
 # Build a custom version of newlib with the specified space-separated compiler 
 # flags. The custom newlib build will be placed in the <bsp root>/newlib 
 # directory, and will be used only for applications that utilize this BSP. 
-NEWLIB_FLAGS += $(ALT_CFLAGS) -O3 -fno-math-errno -mcustom-fadds=3 -mcustom-fmuls=0 -mcustom-fsubs=2
+NEWLIB_FLAGS += $(ALT_CFLAGS) -Ofast -fno-math-errno -mcustom-fadds=3 -mcustom-fmuls=0 -mcustom-fsubs=2
 
 # Enable support for a subset of the C++ language. This option increases code 
 # footprint by adding support for C++ constructors. Certain features, such as 
