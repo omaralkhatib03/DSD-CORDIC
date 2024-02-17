@@ -3,4 +3,4 @@ sim/
 rom/
 scripts/changeNumberSystem.py
 mem.hex
-
+scripts/__pycache__/
