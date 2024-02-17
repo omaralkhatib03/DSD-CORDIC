@@ -29,7 +29,7 @@ ALT_LDDEPS :=
 MAKEABLE_LIBRARY_ROOT_DIRS :=
 
 # Generic flags passed to the compiler for different types of input files.
-ALT_CFLAGS :=
+ALT_CFLAGS := -fno-math-errno -mcustom-fadds=3 -mcustom-fmuls=0 -mcustom-fsubs=2
 ALT_CXXFLAGS :=
 ALT_CPPFLAGS :=
 ALT_ASFLAGS :=
@@ -142,17 +142,20 @@ ACDS_VERSION := 18.1
 ELF := hello_world.elf
 
 # Paths to C, C++, and assembly source files.
-C_SRCS := hello_world.c
+C_SRCS += hello_world.c
 CXX_SRCS :=
 ASM_SRCS :=
 
+SDIR_C_SRCS :=
+SDIR_CXX_SRCS :=
+SDIR_ASM_SRCS :=
 
 # Path to root of object file tree.
 OBJ_ROOT_DIR := obj
 
 # Options to control objdump.
 CREATE_OBJDUMP := 1
-OBJDUMP_INCLUDE_SOURCE := 1
+OBJDUMP_INCLUDE_SOURCE := 0
 OBJDUMP_FULL_CONTENTS := 0
 
 # Options to enable/disable optional files.
@@ -162,8 +165,8 @@ CREATE_LINKER_MAP := 1
 # Common arguments for ALT_CFLAGSs
 APP_CFLAGS_DEFINED_SYMBOLS :=
 APP_CFLAGS_UNDEFINED_SYMBOLS :=
-APP_CFLAGS_OPTIMIZATION := -O0
-APP_CFLAGS_DEBUG_LEVEL := -g
+APP_CFLAGS_OPTIMIZATION := -Ofast
+APP_CFLAGS_DEBUG_LEVEL := 
 APP_CFLAGS_WARNINGS := -Wall
 APP_CFLAGS_USER_FLAGS :=
 
@@ -188,6 +191,7 @@ APP_LIBRARY_NAMES :=
 BUILD_PRE_PROCESS :=
 BUILD_POST_PROCESS :=
 
+OBJDUMP_INCLUDE_SOURCE := 1
 QUARTUS_PROJECT_DIR := ../../
 
 

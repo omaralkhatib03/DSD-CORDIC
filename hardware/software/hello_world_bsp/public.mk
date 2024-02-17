@@ -156,14 +156,14 @@ SOPC_SYSID_FLAG += --id=0
 ELF_PATCH_FLAG  += --id 0
 
 # The SOPC System ID Base Address 
-# setting SOPC_SYSID_BASE_ADDRESS is 0x101030
-SOPC_SYSID_FLAG += --sidp=0x101030
-ELF_PATCH_FLAG  += --sidp 0x101030
+# setting SOPC_SYSID_BASE_ADDRESS is 0x1001030
+SOPC_SYSID_FLAG += --sidp=0x1001030
+ELF_PATCH_FLAG  += --sidp 0x1001030
 
 # The SOPC Timestamp 
-# setting SOPC_TIMESTAMP is 1705664410
-SOPC_SYSID_FLAG += --timestamp=1705664410
-ELF_PATCH_FLAG  += --timestamp 1705664410
+# setting SOPC_TIMESTAMP is 1708122649
+SOPC_SYSID_FLAG += --timestamp=1708122649
+ELF_PATCH_FLAG  += --timestamp 1708122649
 
 # Enable JTAG UART driver to recover when host is inactive causing buffer to 
 # full without returning error. Printf will not fail with this recovery. none 
@@ -175,15 +175,14 @@ ELF_PATCH_FLAG  += --timestamp 1705664410
 # Build a custom version of newlib with the specified space-separated compiler 
 # flags. The custom newlib build will be placed in the <bsp root>/newlib 
 # directory, and will be used only for applications that utilize this BSP. 
-# setting hal.custom_newlib_flags is none
+NEWLIB_FLAGS += $(ALT_CFLAGS) -Ofast -fno-math-errno -mcustom-fadds=3 -mcustom-fmuls=0 -mcustom-fsubs=2
 
 # Enable support for a subset of the C++ language. This option increases code 
 # footprint by adding support for C++ constructors. Certain features, such as 
 # multiple inheritance and exceptions are not supported. If false, adds 
 # -DALT_NO_C_PLUS_PLUS to ALT_CPPFLAGS in public.mk, and reduces code 
 # footprint. none 
-# setting hal.enable_c_plus_plus is false
-ALT_CPPFLAGS += -DALT_NO_C_PLUS_PLUS
+# setting hal.enable_c_plus_plus is true
 
 # When your application exits, close file descriptors, call C++ destructors, 
 # etc. Code footprint can be reduced by disabling clean exit. If disabled, adds 
@@ -227,8 +226,7 @@ ALT_CPPFLAGS += -DALT_NO_INSTRUCTION_EMULATION
 # access routines) to fail. You can define a symbol provided by each driver to 
 # prevent it from being removed. If true, adds -DALT_USE_SMALL_DRIVERS to 
 # ALT_CPPFLAGS in public.mk. none 
-# setting hal.enable_reduced_device_drivers is true
-ALT_CPPFLAGS += -DALT_USE_SMALL_DRIVERS
+# setting hal.enable_reduced_device_drivers is false
 
 # Turns on HAL runtime stack checking feature. Enabling this setting causes 
 # additional code to be placed into each subroutine call to generate an 
@@ -249,9 +247,7 @@ ALT_CPPFLAGS += -DALT_USE_SMALL_DRIVERS
 # are removed such as floating-point support in printf(), stdin input routines, 
 # and buffered I/O. The small C library is not compatible with Micrium 
 # MicroC/OS-II. If true, adds -msmallc to ALT_LDFLAGS in public.mk. none 
-# setting hal.enable_small_c_library is true
-ALT_LDFLAGS += -msmallc
-ALT_CPPFLAGS += -DSMALL_C_LIB
+# setting hal.enable_small_c_library is false
 
 # Enable SOPC Builder System ID. If a System ID SOPC Builder component is 
 # connected to the CPU associated with this BSP, it will be enabled in the 
@@ -365,6 +361,14 @@ ELF_PATCH_FLAG  += --stdin_dev jtag_uart
 # setting hal.stdout is jtag_uart
 ELF_PATCH_FLAG  += --stdout_dev jtag_uart
 
+
+#------------------------------------------------------------------------------
+#                 CUSTOM NEWLIB LIBRARY & INCLUDE PATHS
+#------------------------------------------------------------------------------
+
+NEWLIB_DIR = $(BSP_ROOT_DIR)/newlib
+ALT_INCLUDE_DIRS += $(NEWLIB_DIR)/nios2-elf/include
+ALT_LIBRARY_DIRS += $(NEWLIB_DIR)/nios2-elf/lib
 
 #------------------------------------------------------------------------------
 #                 SOFTWARE COMPONENT & DRIVER INCLUDE PATHS
