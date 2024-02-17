@@ -1,0 +1,29 @@
+/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/cordic/modelsim/cosine.sv {1 {vlog -work cordic-sim -sv -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/cordic/modelsim/cosine.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module cosine
+
+Top level modules:
+	cosine
+
+} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/cordic/modelsim/unpacker.sv {1 {vlog -work cordic-sim -sv -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/cordic/modelsim/unpacker.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module unpacker
+
+Top level modules:
+	unpacker
+
+} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/cordic/modelsim/engine.sv {1 {vlog -work cordic-sim -sv -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/cordic/modelsim/engine.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module engine
+
+Top level modules:
+	engine
+
+} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/cordic/modelsim/packer.sv {1 {vlog -work cordic-sim -sv -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/cordic/modelsim/packer.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module packer
+
+Top level modules:
+	packer
+
+} {} {}}
