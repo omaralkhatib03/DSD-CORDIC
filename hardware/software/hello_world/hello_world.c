@@ -48,6 +48,10 @@
 #define OneTwoEight 128
 #define reciprocalOneTwoEight 0.0078125f
 
+
+#define ALT_CI_CORDIC_COMB_0(A) __builtin_custom_fnf(ALT_CI_CORDIC_COMB_0_N,(A))
+#define ALT_CI_CORDIC_COMB_0_N 0x1
+
 void generateVector(float x[], float step, int N)
 {
   int i;
@@ -99,37 +103,6 @@ union MyFloat {
   unsigned i;
 } typedef MyFloat;
 
-void runTest(int N, float step) {
-  float x[N];
-  MyFloat y;
-  clock_t diff;
-  clock_t exec_t1, exec_t2;
-  int j = 0;
-  float avgTicks = 0;
-
-  generateVector(x, step, N);
-  char buf[50]; 
-
-  for (;j < 10; j++) {
-    exec_t1 = times(NULL);
-    y.f = sumVector(x, N);
-    exec_t2 = times(NULL);
-    diff = exec_t2 - exec_t1;
-    gcvt(diff, 10, buf);
-    avgTicks += diff;
-  }
-
-  printf("Result: %d\n", (int) y.f);
-  printf("proc time avg: %d ticks\n", (int) avgTicks/10);
-  printf("IEEE 754 Format: 0x%lx\n", (unsigned long) y.i);
- 
-}
-
-union MyFloat
-{
-  float f;
-  unsigned i;
-} typedef MyFloat;
 
 void runTest(int N, float step)
 {
@@ -157,17 +130,24 @@ void runTest(int N, float step)
 
 int main()
 {
-  printf("Task 6!\n");
-  printf("Test Case %d\n", 1);
-  runTest(N1, step1);
-  printf("\n");
-  printf("Test Case %d\n", 2);
-  runTest(N2, step2);
-  printf("\n");
-  printf("Test Case %d\n", 3);
-  runTest(N3, step3);
-  printf("\n");
+  // printf("Task 6!\n");
+  // printf("Test Case %d\n", 1);
+  // runTest(N1, step1);
+  // printf("\n");
+  // printf("Test Case %d\n", 2);
+  // runTest(N2, step2);
+  // printf("\n");
+  // printf("Test Case %d\n", 3);
+  // runTest(N3, step3);
+  // printf("\n");
 
+
+  MyFloat x;
+  x.f = 0.5f;
+  MyFloat y;
+  y.f = ALT_CI_CORDIC_COMB_0(x.f);
+
+  printf("y: %f x:%f \n", y.f, x.f);
 
   return 0;
 }
