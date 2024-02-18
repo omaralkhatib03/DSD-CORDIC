@@ -12,7 +12,7 @@ module tb();
     wire [WIDTH+1:0] w_s [31:0]; 
     reg status;
 
-    cosine dut(angle, result, theta, x_s, w_s);
+    cosine_iterator dut(angle, result, theta, x_s, w_s);
     
     int i;
     int seed = 123;

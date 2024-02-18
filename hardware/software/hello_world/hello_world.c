@@ -49,8 +49,8 @@
 #define reciprocalOneTwoEight 0.0078125f
 
 
-#define ALT_CI_CORDIC_COMB_0(A) __builtin_custom_fnf(ALT_CI_CORDIC_COMB_0_N,(A))
-#define ALT_CI_CORDIC_COMB_0_N 0x1
+#define ALT_CI_CORDIC_MULT_0(A) __builtin_custom_fnf(ALT_CI_CORDIC_MULT_0_N,(A))
+#define ALT_CI_CORDIC_MULT_0_N 0x1
 
 void generateVector(float x[], float step, int N)
 {
@@ -143,9 +143,9 @@ int main()
 
 
   MyFloat x;
-  x.f = 0.5f;
+  x.f = 1.f;
   MyFloat y;
-  y.f = ALT_CI_CORDIC_COMB_0(x.f);
+  y.f = ALT_CI_CORDIC_MULT_0(x.f);
 
   printf("y: %f x:%f \n", y.f, x.f);
 

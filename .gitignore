@@ -13,3 +13,4 @@
 !/hardware/*.qip
 !/hardware/*.sip
 !/hardware/.gitignore
+!.nvim/
