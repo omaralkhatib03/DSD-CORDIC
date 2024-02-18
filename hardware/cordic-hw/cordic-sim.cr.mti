@@ -1,0 +1,27 @@
+/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/cordic-hw/cosine.sv {0 {vlog -work work -sv -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/cordic-hw/cosine.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module cosine
+** Error: /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/cordic-hw/cosine.sv(11): (vlog-2900) The localparam 'angles' is declared without a default value.
+
+} {4.0 5.0} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/cordic-hw/cosine_tb.v {1 {vlog -work work -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/cordic-hw/cosine_tb.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module tb
+
+Top level modules:
+	tb
+
+} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/cordic-hw/unpacker_tb.v {1 {vlog -work work -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/cordic-hw/unpacker_tb.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module unpacker_tb
+
+Top level modules:
+	unpacker_tb
+
+} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/cordic-hw/packer_tb.sv {1 {vlog -work work -sv -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/cordic-hw/packer_tb.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module packer_tb
+
+Top level modules:
+	packer_tb
+
+} {} {}}
