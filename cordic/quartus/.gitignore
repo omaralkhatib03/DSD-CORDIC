@@ -12,7 +12,4 @@
 !*.qip
 !*.sip
 !.gitignore
-!simulation/
-!simulation/*
-!simulation/modelsim/*
 !.nvim/
