@@ -1,5 +1,6 @@
+import sys
 import numpy as np
-
+ 
 steps = np.array(
     [5, 0.125, 1 / 1024],
     dtype=np.float32,
@@ -30,19 +31,24 @@ def trigSumDouble (list):
     for x_i in list:
         y+= 0.5*x_i + (x_i * x_i)*np.cos((x_i-128)/128)
     return y
+
+
 def main():
+
+    results = [ 920413.562500, 36123108.000000, 4621531648.000000]
+
     for i in range(0, len(steps)):
         print(f"Test {i + 1}")
         test_vector = generateVector(Ns[i], steps[i])
         y = trigSum(test_vector)
         double = trigSumDouble(test_vector)
-        print(f"Step: {steps[i]}, N: {Ns[i]}, Result: {y}")
+        print(f"Step: {steps[i]}, N: {Ns[i]}, Result: {results[i]}")
         i = y.view("int32")
         print(f'IEEE 754 Format: {hex(i)}')
         print(f'Double result: {double}') 
         accuracy=(abs(y-double)/double) * 100 
         print(f'accuracy: {accuracy} %')
-
+    
 
 if __name__ == "__main__":
     main()

@@ -22,7 +22,6 @@
 #include <system.h>
 #include <stdio.h>
 #include <unistd.h>
-#include <math.h>
 #include <unistd.h>
 
 // test 1
@@ -48,9 +47,9 @@
 #define OneTwoEight 128
 #define reciprocalOneTwoEight 0.0078125f
 
+#define ALT_CI_COS_CORDIC_0(A) __builtin_custom_fnf(ALT_CI_COS_CORDIC_0_N,(A))
+#define ALT_CI_COS_CORDIC_0_N 0x1
 
-#define ALT_CI_CORDIC_MULT_0(A) __builtin_custom_fnf(ALT_CI_CORDIC_MULT_0_N,(A))
-#define ALT_CI_CORDIC_MULT_0_N 0x1
 
 void generateVector(float x[], float step, int N)
 {
@@ -93,7 +92,7 @@ float trigSum(float x[], int M)
   for (i = 0; i < M; i++)
   {
     el = x[i];
-    sum += half * el + (el * el) * cosMcluren((el - OneTwoEight) * reciprocalOneTwoEight);
+    sum += half * el + (el * el) * ALT_CI_COS_CORDIC_0((el - OneTwoEight) * reciprocalOneTwoEight);
   }
   return sum;
 }
@@ -130,24 +129,24 @@ void runTest(int N, float step)
 
 int main()
 {
-  // printf("Task 6!\n");
-  // printf("Test Case %d\n", 1);
-  // runTest(N1, step1);
-  // printf("\n");
-  // printf("Test Case %d\n", 2);
-  // runTest(N2, step2);
-  // printf("\n");
-  // printf("Test Case %d\n", 3);
-  // runTest(N3, step3);
-  // printf("\n");
+  printf("Task 6!\n");
+  printf("Test Case %d\n", 1);
+  runTest(N1, step1);
+  printf("\n");
+  printf("Test Case %d\n", 2);
+  runTest(N2, step2);
+  printf("\n");
+  printf("Test Case %d\n", 3);
+  runTest(N3, step3);
+  printf("\n");
 
 
-  MyFloat x;
-  x.f = 1.f;
-  MyFloat y;
-  y.f = ALT_CI_CORDIC_MULT_0(x.f);
+  // MyFloat x;
+  // x.f = 1.f;
+  // MyFloat y;
+  // y.f = ALT_CI_COS_CORDIC_0(x.f);
 
-  printf("y: %f x:%f \n", y.f, x.f);
+  // printf("y: %f x:%f \n", y.f, x.f);
 
   return 0;
 }

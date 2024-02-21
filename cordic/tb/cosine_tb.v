@@ -1,4 +1,4 @@
-`timescale 1 ns / 100 ps
+`timescale 100ps / 100ps
 
 
 module tb();
@@ -8,7 +8,7 @@ module tb();
     wire [31:0] result;
     
     initial
-      clk = 1'b0;
+      clk = 1'b1;
 
     always 
       #1 clk = ~clk;
@@ -27,21 +27,23 @@ module tb();
         angle = 32'h3f800000; // 1
         #8
         $display("input:fl:%h,", angle, "cos-cordic:fl:%h", result);
-        
+        $finish(0);
+
         angle = 32'hbf800000; // -1
-        #10
+        
+        #8
         $display("input:fl:%h,", angle, "cos-cordic:fl:%h", result);
 
         angle = 32'h33800000; // 2^-30, smallest value we can represent
-        #10
+        #8
         $display("input:fl:%h,", angle, "cos-cordic:fl:%h", result);
 
         angle = 32'h0;  
-        #10
+        #8
         $display("input:fl:%h,", angle, "cos-cordic:fl:%h", result);
        
         angle = 32'h3f000000; // 0.5
-        #10
+        #8
         $display("input:fl:%h,", angle, "cos-cordic:fl:%h", result);
         
 
