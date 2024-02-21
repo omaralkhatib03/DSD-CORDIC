@@ -15,7 +15,7 @@ module unpacker #(
     // TODO: Implement GRS Rounding
     assign e = -E + 8'd127; 
     assign shift = E > (127 - FRACTIONAL_BITS) ? e[5:0] : FRACTIONAL_BITS;
-    assign result = data == 0 ? 32'b0 : concated >> shift;
+    assign result = data == 0 ? {FRACTIONAL_BITS+2{1'b0}} : concated >> shift;
 
 endmodule
 

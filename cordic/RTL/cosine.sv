@@ -29,8 +29,8 @@ engine en0(5'b0, angles[0], 26'h9b74ee, 26'h0, 26'h0, fixedFractionalAngle, x_s[
 genvar i;
 
 generate
-    for (i = 5'd1; i < 6'd19; i = i + 1) begin : gen_cordic_engines
-        wire[4:0] iter = i;
+    for (i = 32'd1; i < 6'd19; i = i + 1) begin : gen_cordic_engines
+        wire[4:0] iter = i[4:0];
         engine en(iter, angles[i], x_s[i-1], y_s[i-1], w_s[i-1], fixedFractionalAngle, x_s[i], y_s[i], w_s[i]);
     end
     
