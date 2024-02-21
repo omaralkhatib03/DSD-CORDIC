@@ -5,14 +5,14 @@ module cosine#(
     input reset,
     input clk_en,
     input [31:0] angle,
-    output reg [31:0] result
+    output [31:0] result
 );
 
 localparam [(WIDTH+2)*32-1:0] angles = {26'h0, 26'h1, 26'h1, 26'h1, 26'h1, 26'h1, 26'h1, 26'h1, 26'h1, 26'h3, 26'h8, 26'h10, 26'h1f, 26'h40, 26'h7f, 26'h100, 26'h200, 26'h3ff, 26'h7ff, 26'h1000, 26'h1fff, 26'h3fff, 26'h7fff, 26'hffff, 26'h1fffd, 26'h3ffea, 26'h7ff55, 26'hffaad, 26'h1fd5ba, 26'h3eb6ec, 26'h76b19c,26'hc90fdb};
 localparam x_p_init = 26'h9b74ee;
 
-localparam pipeline_stages = 4;
-localparam [32*(pipeline_stages+1)-1:0] blocks_per_stage = {32'd20, 32'd15, 32'd10, 32'd5, 32'd0};
+localparam pipeline_stages = 3;
+localparam [32*(pipeline_stages+1)-1:0] blocks_per_stage = {32'd16, 32'd11, 32'd5, 32'd0};
 
 // this is read from right to left, i.e stage_1 has blocks_per_stage[-1] blocks 
 // Also, its cummulative, i.e the first pipeline starts at 0 and adds 4
@@ -30,15 +30,15 @@ logic [WIDTH+1:0] w_p [pipeline_stages:0];
 genvar i;
 genvar j;
 
-  assign x_p[0] = x_p_init;  
-  assign y_p[0] = 26'h0;
-  assign w_p[0] = fixedFractionalAngle;
+  // assign x_p[0] = x_p_init;  
+  // assign y_p[0] = 26'h0;
+  // assign w_p[0] = fixedFractionalAngle;
 
-// always_ff @(posedge clk) begin 
-//   x_p[0] <= x_p_init;  
-//   y_p[0] <= 26'h0;
-//   w_p[0] <= fixedFractionalAngle;
-// end
+always_ff @(posedge clk) begin 
+  x_p[0] <= x_p_init;  
+  y_p[0] <= 26'h0;
+  w_p[0] <= fixedFractionalAngle;
+end
 
 generate
    for (i = 'd0; i < pipeline_stages; i++) begin : gen_cordic_pipeline
