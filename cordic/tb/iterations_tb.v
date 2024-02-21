@@ -11,7 +11,7 @@ module tb();
     wire [width+1:0] x_s [31:0]; 
     wire [width+1:0] w_s [31:0]; 
 
-    cosine dut(angle, result, theta, x_s, w_s);
+    cosine_iterator dut(angle, result, theta, x_s, w_s);
     
     initial begin
         $dumpfile("sim/cosine.vcd");

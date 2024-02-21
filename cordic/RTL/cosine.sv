@@ -24,14 +24,14 @@ end
     wire [WIDTH+1:0] y_s [0:31];
     wire [WIDTH+1:0] w_s [0:31];
 
-engine en0(5'b0, angles[0], 26'h9b74ee, 26'h0, 26'h0, fixedFractionalAngle, x_s[0], y_s[0], w_s[0]);
+engine en0(5'b0, angles[0], 26'h9b74ee, 26'h0, fixedFractionalAngle, x_s[0], y_s[0], w_s[0]);
 
 genvar i;
 
 generate
     for (i = 32'd1; i < 6'd19; i = i + 1) begin : gen_cordic_engines
         wire[4:0] iter = i[4:0];
-        engine en(iter, angles[i], x_s[i-1], y_s[i-1], w_s[i-1], fixedFractionalAngle, x_s[i], y_s[i], w_s[i]);
+        engine en(iter, angles[i], x_s[i-1], y_s[i-1], w_s[i-1], x_s[i], y_s[i], w_s[i]);
     end
     
 endgenerate
@@ -39,8 +39,8 @@ endgenerate
 
 
 packer pckr(x_s[18], result);
-// assign result = x_s[18]; 
-assign theta = w_s[18];
+
+assign theta = w_s[18]; // cant use packer for this
 assign x_s_out = x_s;
 assign w_s_out = w_s;
 
