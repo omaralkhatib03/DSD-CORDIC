@@ -64,7 +64,7 @@ def printTest(test):
                 _, fracBits, sign = dtype.split('-')
                 val = fFTF.fixedLengthFracToFloat(int(value, 16), int(fracBits), True if sign == 's' else False)
                 print(f'{val}') # for signed integers
-                print(f'np.cos: {math.cos(np.float64(angle))}')
+                print(f'np.cos: {math.cos(angle)}')
             
             case r'ans-[0-3]?[0-9]-[su]': # for printing the sin of an angle 
                 _, fracBits, sign = dtype.split('-')

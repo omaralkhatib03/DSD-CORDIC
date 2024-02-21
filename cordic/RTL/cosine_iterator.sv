@@ -1,30 +1,33 @@
-module cosine (
+module cosine #(
+  parameter WIDTH = 24
+)
+(
     input [31:0] angle,
     output [31:0] result,
-    output [31:0] theta,
-    output [31:0] x_s_out [31:0],
-    output [31:0] w_s_out [31:0]
+    output [WIDTH+1:0] theta,
+    output [WIDTH+1:0] x_s_out [31:0],
+    output [WIDTH+1:0] w_s_out [31:0]
 );
 
 // unpacker: converts from floating point to fixed point
-wire [31:0] fixedFractionalAngle;
+wire [WIDTH+1:0] fixedFractionalAngle;
 unpacker upckr(angle, fixedFractionalAngle);
 
 // rom
-reg [31:0] angles [0:31];
+reg [WIDTH+1:0] angles [0:31];
 
 initial begin // with angles
     $readmemh("mem.hex", angles); 
 end
 
-wire [31:0] x_s [31:0];
-wire [31:0] y_s [31:0];
-wire [31:0] w_s [31:0];
+    wire [WIDTH+1:0] x_s [0:31];
+    wire [WIDTH+1:0] y_s [0:31];
+    wire [WIDTH+1:0] w_s [0:31];
 
 // 26dd38b0 30-u
 // 4dba7700 31-u
 // 26dd3b80
-engine en0(5'b0, angles[0], 32'h26dd3b80, 32'h0, 32'h0, fixedFractionalAngle, x_s[0], y_s[0], w_s[0]);
+engine en0(5'b0, angles[0], 26'h9b74ee, 26'h0, 26'h0, fixedFractionalAngle, x_s[0], y_s[0], w_s[0]);
 
 genvar i;
 
@@ -33,18 +36,16 @@ generate
         wire[4:0] iter = i;
         engine en(iter, angles[i], x_s[i-1], y_s[i-1], w_s[i-1], fixedFractionalAngle, x_s[i], y_s[i], w_s[i]);
     end
+    
 endgenerate
-  
-assign result = x_s[23];
+
+
+packer pckr(x_s[23], result);
+
 assign theta = w_s[23];
 assign x_s_out = x_s;
 assign w_s_out = w_s;
 
-
-
 // make packer
-
-
-
 
 endmodule
