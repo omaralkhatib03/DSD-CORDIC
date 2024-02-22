@@ -3,36 +3,42 @@
 
 module tb() ;
     
-    parameter width = 24;
+    parameter WIDTH = 24;
 
-    reg [width+1:0] data; 
-
+    reg [31:0] data; 
+    wire [WIDTH+1:0] fixed;
     wire [31:0] result;
 
-    packer dut(data, result);
+    unpacker #(.FRACTIONAL_BITS(WIDTH)) upckr(data, fixed);
+    packer #(.WIDTH(WIDTH)) dut(fixed, result);
 
     initial begin
         $dumpfile("sim/unpacker.vcd");
         $dumpvars();
         
         
-        data = 26'h1000000; // 1
+        data = 32'h3f800000; // 1
         #1
-        $display("data:fi-24-s:%h,", data, "result:fl:%h", result);
+        $display("data:fl:%h,", data, "result:fl:%h", result);
 
-        data = 32'h3000000; // -1
+        
+        data = 32'hbf800000; // -1
         #1
-        $display("data:fi-24-s:%h,", data, "result:fl:%h", result);
+        $display("data:fl:%h,", data, "result:fl:%h", result);
    
-        data = 32'h0800000;  
+
+        data = 32'h3f000000; // 0.5
         #1 
-        $display("data:fi-24-s:%h,", data, "result:fl:%h", result);
+        $display("data:fl:%h,", data, "result:fl:%h", result);
 
 
-        data = 32'h0c0f909;  
+        data = 32'h3f47ae14;  
         #1 
-        $display("data:fi-24-s:%h,", data, "result:fl:%h", result);
+        $display("data:fl:%h,", data, "result:fl:%h", result);
 
+        data = 32'h3f0a9594;
+        #1 
+        $display("data:fl:%h,", data, "result:fl:%h", result);
 
         data = 32'hZ;
     end

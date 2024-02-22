@@ -1,6 +1,10 @@
-module cosine#(
-  parameter WIDTH = 24
-) (
+module cosine #(
+parameter WIDTH = 24,
+parameter LIMIT = 26'h9b74ee,
+parameter ITERATIONS = 25
+
+)
+(
     input clk, 
     input reset,
     input clk_en,
@@ -20,8 +24,7 @@ localparam [32*(pipeline_stages+1)-1:0] blocks_per_stage = {32'd16, 32'd11, 32'd
 
 
 wire [WIDTH+1:0] fixedFractionalAngle;
-
-unpacker #( .FRACTIONAL_BITS(WIDTH) ) upckr(angle, fixedFractionalAngle);
+unpacker #(.FRACTIONAL_BITS(WIDTH)) upckr(angle, fixedFractionalAngle);
 
 logic [WIDTH+1:0] x_p [pipeline_stages:0];
 logic [WIDTH+1:0] y_p [pipeline_stages:0];

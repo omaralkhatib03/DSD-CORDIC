@@ -3,16 +3,19 @@
 
 module tb();
     
-    reg clk, reset, clk_en;
+    parameter WIDTH = 24;
+
     reg [31:0] angle;
     wire [31:0] result;
-    
+    wire [WIDTH+1:0] theta;
+    wire [WIDTH+1:0] x_s [31:0]; 
+    wire [WIDTH+1:0] w_s [31:0]; 
+
     initial
       clk = 1'b1;
 
     always 
       #1 clk = ~clk;
-
 
     cosine dut(clk, reset, clk_en, angle, result);
      

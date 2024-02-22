@@ -6,7 +6,7 @@ def fixedLengthFracToFloat(x, frac_bits, signed): # twos complement signed numbe
      
     cnt = 0
     sign = 1
-    pos = 0-frac_bits 
+    pos = 0-(frac_bits)
     while (x > 0):
         if signed and cnt == frac_bits + 1:
             sign = -1

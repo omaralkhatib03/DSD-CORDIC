@@ -49,7 +49,10 @@ module tb() ;
         #1
         $display("data:fl:%h,", data, "result:fi-24-s:%h", result);
         
-
+        data = 32'h3f0a9594;
+        #1
+        $display("data:fl:%h,", data, "result:fi-24-s:%h", result);
+ 
         data = 32'hZ;
     end
 
