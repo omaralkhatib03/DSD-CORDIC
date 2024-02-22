@@ -1,5 +1,8 @@
-import sys 
+import sys
 import numpy as np
+import subprocess as sp
+import math
+
 
 def floatToFixed(num, fracBits, signed):
     if 0 == num:
@@ -36,20 +39,23 @@ def floatToFixed(num, fracBits, signed):
 
 
 
-def main():
-    for line in sys.stdin:
-        if line == "\n" or line == "":
-            continue
-
-        num, fracBits, sign = line.split('-')
-        num = np.float32(num)
-        result = floatToFixed(num, int(fracBits), True if sign == 's' else False)
-        print(result, end=f'-{fracBits}-{sign}')
-    
-    
-    
-if __name__ == "__main__":
-    main()
+def limit(iterations):
+    val = 1
+    for i in range(0, 32):
+        val *= 1 / (math.sqrt(1 + 2 ** (-2 * i)))
 
 
+    return val
 
+for line in sys.stdin:
+
+    width, iterations = line.split(',')
+    width = int(width)
+    iterations = int(iterations) 
+    limit_factor = f'{width+2}\\\'h' + hex(floatToFixed(np.float32(limit(32)), width, True))[2:]
+
+    # print(f'Limit Factor: {limit(iterations)}')
+    sp.run([f'./scripts/setLimit.sh {limit_factor}'], shell=True)
+    sp.run([f'./scripts/setWidth.sh {width}'], shell=True)
+    sp.run([f'./scripts/setIterations.sh {iterations}'], shell=True) 
+    sp.run(['make clean'], shell=True)

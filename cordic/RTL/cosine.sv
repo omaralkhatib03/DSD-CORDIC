@@ -1,5 +1,8 @@
 module cosine #(
-  parameter WIDTH = 24
+parameter WIDTH = 24,
+parameter LIMIT = 26'h9b74ee,
+parameter ITERATIONS = 25
+
 )
 (
     input [31:0] angle,
@@ -11,7 +14,7 @@ module cosine #(
 
 // unpacker: converts from floating point to fixed point
 wire [WIDTH+1:0] fixedFractionalAngle;
-unpacker upckr(angle, fixedFractionalAngle);
+unpacker #(.FRACTIONAL_BITS(WIDTH)) upckr(angle, fixedFractionalAngle);
 
 // rom
 reg [WIDTH+1:0] angles [0:31];
@@ -24,23 +27,22 @@ end
     wire [WIDTH+1:0] y_s [0:31];
     wire [WIDTH+1:0] w_s [0:31];
 
-engine en0(5'b0, angles[0], 26'h9b74ee, 26'h0, fixedFractionalAngle, x_s[0], y_s[0], w_s[0]);
+engine #(.WIDTH(WIDTH)) en0(5'b0, angles[0], LIMIT, {WIDTH+2{1'h0}}, fixedFractionalAngle, x_s[0], y_s[0], w_s[0]);
 
 genvar i;
 
 generate
-    for (i = 32'd1; i < 6'd19; i = i + 1) begin : gen_cordic_engines
+    for (i = 32'd1; i < ITERATIONS; i = i + 1) begin : gen_cordic_engines
         wire[4:0] iter = i[4:0];
-        engine en(iter, angles[i], x_s[i-1], y_s[i-1], w_s[i-1], x_s[i], y_s[i], w_s[i]);
+        engine #(.WIDTH(WIDTH)) en(iter, angles[i], x_s[i-1], y_s[i-1], w_s[i-1], x_s[i], y_s[i], w_s[i]);
     end
-    
 endgenerate
 
 
 
-packer pckr(x_s[18], result);
+packer #(.WIDTH(WIDTH)) pckr(x_s[ITERATIONS-1], result);
 
-assign theta = w_s[18]; // cant use packer for this
+assign theta = fixedFractionalAngle;
 assign x_s_out = x_s;
 assign w_s_out = w_s;
 

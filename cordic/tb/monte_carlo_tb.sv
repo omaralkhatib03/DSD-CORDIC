@@ -11,7 +11,7 @@ module tb();
     wire [WIDTH+1:0] x_s [31:0]; 
     wire [WIDTH+1:0] w_s [31:0]; 
 
-    cosine_iterator dut(angle, result, theta, x_s, w_s);
+    cosine dut(angle, result, theta, x_s, w_s);
     
     int i;
     int N;
@@ -25,7 +25,7 @@ module tb();
         for (i = 0; i < N; i = i + 1) begin 
           _ = $fscanf('h8000_0000, "%d", angle);
           #1
-          $display("input:fl:%h,", angle, "cos-cordic:fl:%h,", result, "theta:fi-24-s:%h", theta);
+          $display("input:fl:%h,", angle, "cos-cordic:fl:%h,", result, "theta:fl:%h", angle);
         end
        // printIterations();
         

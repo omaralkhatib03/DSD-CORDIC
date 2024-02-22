@@ -10,11 +10,6 @@ module unpacker #(
     localparam zeros = FRACTIONAL_BITS - 23;
     localparam fbitsMantissa = `max2((23-FRACTIONAL_BITS), 0);
     
-    // initial begin
-    //   $display(fbitsMantissa);
-    // end
-
-
     wire [7:0] e;
     wire [5:0] shift;
     wire [7:0] E = data[30:23];
