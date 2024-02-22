@@ -1,10 +1,7 @@
 module cosine #(
 parameter WIDTH = 22,
-parameter LIMIT = 24'h26dd3b,
-parameter ITERATIONS = 25
-
-)
-(
+parameter LIMIT = 24'h26dd3b
+)(
     input clk, 
     input reset,
     input clk_en,
