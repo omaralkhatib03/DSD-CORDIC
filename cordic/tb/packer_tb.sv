@@ -3,7 +3,7 @@
 
 module tb() ;
     
-    parameter WIDTH = 24;
+    parameter WIDTH = 22;
 
     reg [31:0] data; 
     wire [WIDTH+1:0] fixed;

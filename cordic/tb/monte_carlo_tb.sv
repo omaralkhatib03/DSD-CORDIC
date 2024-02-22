@@ -3,20 +3,29 @@
 
 module tb();
     
-    parameter WIDTH = 24;
+    parameter WIDTH = 22;
 
     reg [31:0] angle;
     wire [31:0] result;
-    wire [WIDTH+1:0] theta;
-    wire [WIDTH+1:0] x_s [31:0]; 
-    wire [WIDTH+1:0] w_s [31:0]; 
+    reg clk, clk_en, reset;
 
-    cosine_iterator dut(angle, result, theta, x_s, w_s);
+    cosine dut(clk, reset, clk_en, angle, result);
     
     int i;
     int N;
     int _;
+
+    initial
+      clk = 1'b1;
+
+    always 
+      #1 clk = ~clk;
+
+
     initial begin
+        reset = 1'b0;
+        clk_en = 1'b1;
+
         $dumpfile("sim/cosine.vcd");
         // $dumpvars();
         
@@ -24,20 +33,15 @@ module tb();
 
         for (i = 0; i < N; i = i + 1) begin 
           _ = $fscanf('h8000_0000, "%d", angle);
-          #1
+          #10
           $display("input:fl:%h,", angle, "cos-cordic:fl:%h,", result, "theta:fl:%h", angle);
         end
-       // printIterations();
-        
+
+        $finish(0);
+
     end
 
 
-  task printIterations;    
-      int i;
-      for (i = 0; i < 2; i = i + 1) begin
-        $display("w_%0d",i,":fi-24-s:%h,", w_s[i], "x_%0d",i,":anc-24-s:%h", x_s[i]);
-      end 
-    endtask: printIterations
 endmodule
 
 

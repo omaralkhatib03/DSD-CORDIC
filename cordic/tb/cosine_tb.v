@@ -3,13 +3,11 @@
 
 module tb();
     
-    parameter WIDTH = 24;
 
     reg [31:0] angle;
     wire [31:0] result;
-    wire [WIDTH+1:0] theta;
-    wire [WIDTH+1:0] x_s [31:0]; 
-    wire [WIDTH+1:0] w_s [31:0]; 
+  
+    reg clk, clk_en, reset;
 
     initial
       clk = 1'b1;
@@ -28,25 +26,24 @@ module tb();
         
         
         angle = 32'h3f800000; // 1
-        #8
+        #10
         $display("input:fl:%h,", angle, "cos-cordic:fl:%h", result);
-        $finish(0);
 
         angle = 32'hbf800000; // -1
         
-        #8
+        #10
         $display("input:fl:%h,", angle, "cos-cordic:fl:%h", result);
 
         angle = 32'h33800000; // 2^-30, smallest value we can represent
-        #8
+        #10
         $display("input:fl:%h,", angle, "cos-cordic:fl:%h", result);
 
         angle = 32'h0;  
-        #8
+        #10
         $display("input:fl:%h,", angle, "cos-cordic:fl:%h", result);
        
         angle = 32'h3f000000; // 0.5
-        #8
+        #10
         $display("input:fl:%h,", angle, "cos-cordic:fl:%h", result);
         
 

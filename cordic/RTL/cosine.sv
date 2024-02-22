@@ -1,6 +1,6 @@
 module cosine #(
-parameter WIDTH = 24,
-parameter LIMIT = 26'h9b74ee,
+parameter WIDTH = 22,
+parameter LIMIT = 24'h26dd3b,
 parameter ITERATIONS = 25
 
 )
@@ -12,8 +12,8 @@ parameter ITERATIONS = 25
     output [31:0] result
 );
 
-localparam [(WIDTH+2)*32-1:0] angles = {26'h0, 26'h1, 26'h1, 26'h1, 26'h1, 26'h1, 26'h1, 26'h1, 26'h1, 26'h3, 26'h8, 26'h10, 26'h1f, 26'h40, 26'h7f, 26'h100, 26'h200, 26'h3ff, 26'h7ff, 26'h1000, 26'h1fff, 26'h3fff, 26'h7fff, 26'hffff, 26'h1fffd, 26'h3ffea, 26'h7ff55, 26'hffaad, 26'h1fd5ba, 26'h3eb6ec, 26'h76b19c,26'hc90fdb};
-localparam x_p_init = 26'h9b74ee;
+localparam [(WIDTH+2)*32-1:0] angles = {24'h0,24'h1,24'h1,24'h1,24'h1,24'h1,24'h1,24'h1,24'h1,24'h1,24'h2,24'h4,24'h7,24'h10,24'h1f,24'h40,24'h80,24'hff,24'h1ff,24'h400,24'h7ff,24'hfff,24'h1fff,24'h3fff,24'h7fff,24'hfffa,24'h1ffd5,24'h3feab,24'h7f56e,24'hfadbb,24'h1dac67,24'h3243f6};
+// localparam x_p_init = 26'h9b74ee;
 
 localparam pipeline_stages = 3;
 localparam [32*(pipeline_stages+1)-1:0] blocks_per_stage = {32'd16, 32'd11, 32'd5, 32'd0};
@@ -38,8 +38,8 @@ genvar j;
   // assign w_p[0] = fixedFractionalAngle;
 
 always_ff @(posedge clk) begin 
-  x_p[0] <= x_p_init;  
-  y_p[0] <= 26'h0;
+  x_p[0] <= LIMIT;  
+  y_p[0] <={WIDTH+2{1'h0}};
   w_p[0] <= fixedFractionalAngle;
 end
 
@@ -53,11 +53,11 @@ generate
     wire [WIDTH+1:0] y_s [(nextStage - currStage)-1:0];
     wire [WIDTH+1:0] w_s [(nextStage - currStage)-1:0]; 
    
-    engine en0(currStage[4:0], angles[currStage[4:0]*(WIDTH+2)+:(WIDTH+2)], x_p[i], y_p[i], w_p[i], x_s[0], y_s[0], w_s[0]);     
+    engine #(.WIDTH(WIDTH)) en0(currStage[4:0], angles[currStage[4:0]*(WIDTH+2)+:(WIDTH+2)], x_p[i], y_p[i], w_p[i], x_s[0], y_s[0], w_s[0]);     
 
     for (j = 'd1; j < (nextStage - currStage); j = j + 1) begin : gen_cordic_engines
       localparam [31:0] iter = j + currStage;
-      engine en(iter[4:0], angles[iter[4:0]*(WIDTH+2)+:(WIDTH+2)], x_s[j-1], y_s[j-1], w_s[j-1], x_s[j], y_s[j], w_s[j]);
+      engine #(.WIDTH(WIDTH)) en(iter[4:0], angles[iter[4:0]*(WIDTH+2)+:(WIDTH+2)], x_s[j-1], y_s[j-1], w_s[j-1], x_s[j], y_s[j], w_s[j]);
     end
    
     always_ff @(posedge clk) begin : pipeline_propogate 

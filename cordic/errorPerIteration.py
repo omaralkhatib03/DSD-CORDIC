@@ -1,10 +1,25 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D 
-import sys
 import subprocess as sp
 import math
 import itertools
+
+
+def setAnlges(width):
+    sp.run(['make mem.hex'], shell=True)
+
+    with open('mem.hex', 'r') as fp:
+        hex_list = [c for c in fp.readlines()]
+        hex_list = [c[:-1] for c in hex_list]
+        hex_list.reverse()
+        hex_list = [f'{width+2}\'h{x}' for x in hex_list]
+        hex_list = '"{' + ','.join(hex_list) + '}"'
+
+        sp.run([f'./scripts/setAngles.sh {hex_list}'], shell=True)
+        
+    # print(f'angles: {hex_list}')
+
 
 
 def floatToFixed(num, fracBits, signed):
@@ -71,16 +86,18 @@ def main():
         # print(limit_factor)
         
         sp.run([f'./scripts/setWidth.sh {width}'], shell=True)
+        sp.run(['make clean'], shell=True)
+        setAnlges(width)
+
 
         widths.append(width)
         iterations.append([])
         
-        for i in range(10, 26):
+        for i in range(16, 17):
         
             limit_factor = f'{width+2}\\\'h' + hex(floatToFixed(np.float32(limit(i)), width, True))[2:]
             sp.run([f'./scripts/setLimit.sh {limit_factor}'], shell=True)
-            sp.run([f'./scripts/setIterations.sh {i}'], shell=True) 
-            sp.run(['make clean'], shell=True)
+            # sp.run([f'./scripts/setIterations.sh {i}'], shell=True) 
             cmdResult = sp.Popen("make monte_carlo", shell=True, stdout=sp.PIPE)
 
 
@@ -104,19 +121,24 @@ def main():
                     stdDiv = float(std)
                     margin = float(marginOfError)
                     confidences.append(margin)
-                    
+                     
             iterations[error_cnt].append(i)
 
         error_cnt += 1        
-        print(f'Error: {error}, Error + margin: {abs(error + margin)}, Error - margin: {abs(error - margin)}')
-        if error < target_error and abs(error - margin) < target_error and abs(error + margin) < target_error and not found_minimum:
-            
-            minimum_iterations = i
-            error_at_minimum = error
-            confidence_at_minimum = confidence
-            stdDiv_at_minimum = stdDiv
-            minimum_width = width
-            found_minimum = 1
+        # print(f'Error: {error}, Error + margin: {abs(error + margin)}, Error - margin: {abs(error - margin)}')
+        # if error < target_error and abs(error - margin) < target_error and abs(error + margin) < target_error and not found_minimum:
+        #     
+        #     minimum_iterations = i
+        #     error_at_minimum = error
+        #     confidence_at_minimum = confidence
+        #     stdDiv_at_minimum = stdDiv
+        #     minimum_width = width
+        #     found_minimum = 1
+   
+
+    exit();
+
+    # The following code only plots for comb cordic, since the number of iterations isnt being changed here
 
     # print(errors)
     print(f'Minimum Iterations: {minimum_iterations}, Minimum Width: {minimum_width}, Error At Minimum: {error_at_minimum}, Confidence At Minimum: {confidence_at_minimum}, Standard Deviation at Minimum: {stdDiv_at_minimum}')
