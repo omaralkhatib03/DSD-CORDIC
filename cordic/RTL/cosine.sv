@@ -10,7 +10,6 @@ parameter LIMIT = 24'h26dd3b
 );
 
 localparam [(WIDTH+2)*32-1:0] angles = {24'h0,24'h1,24'h1,24'h1,24'h1,24'h1,24'h1,24'h1,24'h1,24'h1,24'h2,24'h4,24'h7,24'h10,24'h1f,24'h40,24'h80,24'hff,24'h1ff,24'h400,24'h7ff,24'hfff,24'h1fff,24'h3fff,24'h7fff,24'hfffa,24'h1ffd5,24'h3feab,24'h7f56e,24'hfadbb,24'h1dac67,24'h3243f6};
-// localparam x_p_init = 26'h9b74ee;
 
 localparam pipeline_stages = 3;
 localparam [32*(pipeline_stages+1)-1:0] blocks_per_stage = {32'd16, 32'd11, 32'd5, 32'd0};
@@ -26,19 +25,20 @@ unpacker #(.FRACTIONAL_BITS(WIDTH)) upckr(angle, fixedFractionalAngle);
 logic [WIDTH+1:0] x_p [pipeline_stages:0];
 logic [WIDTH+1:0] y_p [pipeline_stages:0];
 logic [WIDTH+1:0] w_p [pipeline_stages:0];
+logic [WIDTH+1:0] packerInput;
 
 genvar i;
 genvar j;
 
-  // assign x_p[0] = x_p_init;  
-  // assign y_p[0] = 26'h0;
-  // assign w_p[0] = fixedFractionalAngle;
+assign x_p[0] = LIMIT;  
+assign y_p[0] = {WIDTH+2{1'h0}};
+assign w_p[0] = fixedFractionalAngle;
 
-always_ff @(posedge clk) begin 
-  x_p[0] <= LIMIT;  
-  y_p[0] <={WIDTH+2{1'h0}};
-  w_p[0] <= fixedFractionalAngle;
-end
+// always_ff @(posedge clk) begin 
+  // x_p[0] <= LIMIT;  
+  // y_p[0] <={WIDTH+2{1'h0}};
+  // w_p[0] <= fixedFractionalAngle;
+// end
 
 generate
    for (i = 'd0; i < pipeline_stages; i++) begin : gen_cordic_pipeline
@@ -56,22 +56,26 @@ generate
       localparam [31:0] iter = j + currStage;
       engine #(.WIDTH(WIDTH)) en(iter[4:0], angles[iter[4:0]*(WIDTH+2)+:(WIDTH+2)], x_s[j-1], y_s[j-1], w_s[j-1], x_s[j], y_s[j], w_s[j]);
     end
-   
-    always_ff @(posedge clk) begin : pipeline_propogate 
-      if (reset || ~clk_en) begin 
-        x_p[i+1] <= {WIDTH+2{1'b0}};
-        y_p[i+1] <= {WIDTH+2{1'b0}};
-        w_p[i+1] <= {WIDTH+2{1'b0}};
-      end else begin 
-        x_p[i+1] <= x_s[(nextStage - currStage) - 1];
-        y_p[i+1] <= y_s[(nextStage - currStage) - 1];
-        w_p[i+1] <= w_s[(nextStage - currStage) - 1];
-      end
-    end 
+
+    if (i == pipeline_stages - 1)
+      assign packerInput = x_s[(nextStage-currStage) - 1];
+    else begin
+      always_ff @(posedge clk) begin : pipeline_propogate 
+        if (reset || ~clk_en) begin 
+          x_p[i+1] <= {WIDTH+2{1'b0}};
+          y_p[i+1] <= {WIDTH+2{1'b0}};
+          w_p[i+1] <= {WIDTH+2{1'b0}};
+        end else begin 
+          x_p[i+1] <= x_s[(nextStage - currStage) - 1];
+          y_p[i+1] <= y_s[(nextStage - currStage) - 1];
+          w_p[i+1] <= w_s[(nextStage - currStage) - 1];
+        end
+      end 
+    end
    end 
 endgenerate
 
-packer #( .WIDTH(WIDTH)) pckr(x_p[pipeline_stages], result);
+packer #( .WIDTH(WIDTH)) pckr(packerInput, result);
 
 
 

@@ -246,7 +246,8 @@
   <parameter name="resetSynchronousEdges" value="NONE" />
  </module>
  <module name="cos_cordic_0" kind="cos_cordic" version="1.0" enabled="1">
-  <parameter name="WIDTH" value="24" />
+  <parameter name="LIMIT" value="2547003" />
+  <parameter name="WIDTH" value="22" />
  </module>
  <module name="cpu" kind="altera_nios2_gen2" version="18.1" enabled="1">
   <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="4" />
