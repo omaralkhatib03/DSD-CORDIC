@@ -12,4 +12,5 @@
 !*.qip
 !*.sip
 !.gitignore
-!.nvim/
+!rtl_diagrams/
+!rtl_diagrams/*.pdf
