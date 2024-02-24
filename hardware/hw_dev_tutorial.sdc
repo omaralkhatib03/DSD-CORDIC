@@ -1,4 +1,5 @@
 #Update -period with clock period (in nanoseconds) of the clock driving the fpga
+#create_clock -name top_clk -period 20 [get_ports clk]
 create_clock -name sopc_clk -period 20 [get_ports iCLK_50]
 
 #Setting LED outputs as false path, since no timing requirement

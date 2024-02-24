@@ -47,9 +47,8 @@
 #define OneTwoEight 128
 #define reciprocalOneTwoEight 0.0078125f
 
-#define ALT_CI_COS_CORDIC_0(A) __builtin_custom_fnf(ALT_CI_COS_CORDIC_0_N,(A))
-#define ALT_CI_COS_CORDIC_0_N 0x1
-
+#define ALT_CI_COMPUTE_TERM_0(A) __builtin_custom_fnf(ALT_CI_COMPUTE_TERM_0_N,(A))
+#define ALT_CI_COMPUTE_TERM_0_N 0x1
 
 void generateVector(float x[], float step, int N)
 {
@@ -91,9 +90,9 @@ float trigSum(float x[], int M)
 
   for (i = 0; i < M; i++)
   {
-    el = x[i];
-    sum += half * el + (el * el) * ALT_CI_COS_CORDIC_0((el - OneTwoEight) * reciprocalOneTwoEight);
+    sum += ALT_CI_COMPUTE_TERM_0(x[i]);
   }
+
   return sum;
 }
 
@@ -140,12 +139,11 @@ int main()
   runTest(N3, step3);
   printf("\n");
 
-
   // MyFloat x;
-  // x.f = 1.f;
+  // x.f = 255.f;
   // MyFloat y;
-  // y.f = ALT_CI_COS_CORDIC_0(x.f);
-
+  // y.f = ALT_CI_COMPUTE_TERM_0(x.f);
+  // 
   // printf("y: %f x:%f \n", y.f, x.f);
 
   return 0;
