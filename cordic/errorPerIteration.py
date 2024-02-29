@@ -5,6 +5,8 @@ import sys
 import subprocess as sp
 import math
 import itertools
+import seaborn as sns
+from matplotlib.colors import ListedColormap
 
 
 def floatToFixed(num, fracBits, signed):
@@ -53,7 +55,6 @@ def main():
     confidences = []
     iterations = []
     widths = []
-    plotMap = []
     minimum_iterations = 32 
     minimum_width = 32
     error_at_minimum = 0.0
@@ -61,12 +62,16 @@ def main():
     stdDiv_at_minimum = 0.0
     
     target_error = 0.5 * (10 ** -6)
-    target_confidence = 0.95
+    # target_confidence = 0.95
     found_minimum = 0
     
+    WIDTH_START = 18
+    WIDTH_END = 23
+    ITERATIONS_START = 10
+    ITERATIONS_END = 19
 
-    error_cnt = 0
-    for width in range(22, 23):
+    cnt = 0
+    for width in range(WIDTH_START, WIDTH_END):
 
         # print(limit_factor)
         
@@ -74,8 +79,11 @@ def main():
 
         widths.append(width)
         iterations.append([])
-        
-        for i in range(10, 26):
+        errors.append([]) 
+        confidences.append([]) 
+
+
+        for i in range(ITERATIONS_START, ITERATIONS_END):
         
             limit_factor = f'{width+2}\\\'h' + hex(floatToFixed(np.float32(limit(i)), width, True))[2:]
             sp.run([f'./scripts/setLimit.sh {limit_factor}'], shell=True)
@@ -89,6 +97,7 @@ def main():
             confidence = 0
             stdDiv = 0
             line_number = np.longlong(0) 
+
             for line in cmdResult.stdout: 
                 # print(line)
                 line_number += 1
@@ -99,78 +108,67 @@ def main():
                     print(f'line: {line}')
                     mean, std, marginOfError = string_line.split(',') 
                     error = float(mean)
-                    errors.append(abs(error))
+                    errors[cnt].append(abs(error))
                     
                     stdDiv = float(std)
                     margin = float(marginOfError)
-                    confidences.append(margin)
+                    confidences[cnt].append(margin)
                     
-            iterations[error_cnt].append(i)
+            iterations[cnt].append(i)
 
-        error_cnt += 1        
+        cnt += 1        
         print(f'Error: {error}, Error + margin: {abs(error + margin)}, Error - margin: {abs(error - margin)}')
-        if error < target_error and abs(error - margin) < target_error and abs(error + margin) < target_error and not found_minimum:
+        # if error < target_error and abs(error - margin) < target_error and abs(error + margin) < target_error and not found_minimum:
             
-            minimum_iterations = i
-            error_at_minimum = error
-            confidence_at_minimum = confidence
-            stdDiv_at_minimum = stdDiv
-            minimum_width = width
-            found_minimum = 1
+        #     minimum_iterations = i
+        #     error_at_minimum = error
+        #     confidence_at_minimum = confidence
+        #     stdDiv_at_minimum = stdDiv
+        #     minimum_width = width
+        #     found_minimum = 1
 
-    # print(errors)
-    print(f'Minimum Iterations: {minimum_iterations}, Minimum Width: {minimum_width}, Error At Minimum: {error_at_minimum}, Confidence At Minimum: {confidence_at_minimum}, Standard Deviation at Minimum: {stdDiv_at_minimum}')
-    x_iter = list(itertools.chain.from_iterable(iterations))
-    # y_err = list(itertools.chain.from_iterable(errors))
-    plt.errorbar(x=np.array(x_iter), y=np.array(errors), yerr=confidences,fmt='o', color='blue', ecolor='red', capsize=5, elinewidth=1, capthick=1, markersize=5)
+    
+    for i in range(0, len(widths)):
+        plt.errorbar(x=np.array(iterations[i]), y=np.array(errors[i]), yerr=confidences[i], fmt='o', capsize=5, elinewidth=1, capthick=1, markersize=5, label=f'Fractional Bits: {widths[i]}')
+       
+
+    # plt.errorbar(x=np.array(iterations), y=np.array(errors), yerr=confidences,fmt='o', color='blue', capsize=5, elinewidth=1, capthick=1, markersize=5)
+    plt.legend(bbox_to_anchor=(1.1, 1.05))
     plt.axhline(y = target_error, color='b', linestyle='--', linewidth=1)
     plt.axhline(y = -target_error, color='b', linestyle='--', linewidth=1)
-    # plt.axhline(y = error_at_minimum - stdDiv, color='r', linestyle='--', linewidth=1)
-    # plt.axvline(x = minimum_iterations, color='g', linestyle='--', linewidth=1)
-    
+   
     plt.xlabel('Number of Iterations')
     plt.ylabel('Mean Error (Monte Carlo)')
     plt.title('Mean Error Vs Number Of Iterations')
     plt.grid(True)
 
 
-    # # Convert lists to numpy arrays
-    # # iterations = np.array(iterations)
-    # # errors = np.array(errors)
-    # # widths = np.array(widths)
-    
-    # X = [] 
-    # for i in range(0, len(iterations)):    
-    #     for _ in iterations[i]:
-    #         X.append(widths[i])
 
-    # Y = list(itertools.chain.from_iterable(iterations))
-    
-    # X = np.array(X)
-    # Y = np.array(Y)
-    # Z = np.array(errors)
-    
-    # print(f'X: {X}')
+    widths_3d = []
+    iterations_3d = []
+    errors_3d = []
+    # confidences_3d = []
+    for i in range(0, len(widths)):
+        for j in range(0, len(iterations[i])):
+            widths_3d.append(widths[i])
+            iterations_3d.append(iterations[i][j])
+            errors_3d.append(errors[i][j])
+            # confidences_3d.append(confidences[i][j])
+            
+    cmap = ListedColormap(sns.color_palette("magma", 256).as_hex())
+ 
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(widths_3d, iterations_3d, errors_3d, c=widths_3d, marker='o', cmap=cmap)
+    ax.set_xlabel('Fractional Bits')
+    ax.set_ylabel('Number of Iterations')
+    ax.set_zlabel('Mean Error (Monte Carlo)')
+    ax.set_title('Mean Error Vs Number Of Iterations Vs Fractional Bits')
+    ax.legend() 
 
-    
-    # # Create 3D plot
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111, projection='3d')
 
-    # # Plot surface
-    # # ax.scatter(X, Y, Z, cmap='viridis')
-    # ax.scatter(X, Y, Z)
-
-    # # Set labels and title
-    # ax.set_xlabel('Iterations')
-    # ax.set_ylabel('Widths')
-    # ax.set_zlabel('Errors')
-    # ax.set_title('3D Surface Plot of Errors, Iterations, and Widths')
-
-    
     plt.show()
     
-    print('debug') 
     
 
 if __name__ == "__main__":
