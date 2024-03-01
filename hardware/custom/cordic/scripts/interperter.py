@@ -76,6 +76,9 @@ def printTest(test):
                 _, fracBits, sign = dtype.split('-')
                 val = fFTF.fixedLengthFracToFloat(int(value, 16), int(fracBits), True if sign == 's' else False)
                 print(f'{val}') # for signed integers
+
+            case r'x': # convert IEEE-745 float format to decimal
+                print(f'{(ieee_754_conversion(int(value, 16)) - 128 ) / 128}')
             
             case _:  # or print anything else 
                 print(f'{value}')

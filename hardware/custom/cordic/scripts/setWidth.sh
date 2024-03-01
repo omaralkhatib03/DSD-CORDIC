@@ -8,8 +8,8 @@ cat ./RTL/cosine.sv | grep 'parameter WIDTH ='
 sed -i "s/FRACTIONAL_BITS=.*/FRACTIONAL_BITS=$width/g" ./Makefile
 cat ./Makefile | grep 'FRACTIONAL_BITS='
 
-sed -i "s/parameter FRACTIONAL_BITS = .*,/parameter FRACTIONAL_BITS = $width,/g" ././RTL/unpacker.sv
-cat ./RTL/unpacker.sv | grep 'parameter FRACTIONAL_BITS = '
+sed -i "s/parameter FRACTIONAL_BITS = .*/parameter FRACTIONAL_BITS = $width/g" ././RTL/sdiv.sv
+cat ./RTL/sdiv.sv | grep 'parameter FRACTIONAL_BITS = '
 
 sed -i "s/parameter WIDTH = .*;/parameter WIDTH = $width;/g" ./tb/monte_carlo_tb.sv
 cat ./tb/monte_carlo_tb.sv | grep 'parameter WIDTH ='

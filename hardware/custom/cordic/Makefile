@@ -24,7 +24,7 @@ unpacker: bin/unpacker $(INTERPERTER)
 packer: bin/packer $(INTERPERTER)
 	./bin/packer | python $(INTERPERTER)
 
-bin/unpacker: $(RTL)/unpacker.sv $(TB)/unpacker_tb.v bin sim
+bin/unpacker: $(RTL)/sdiv.sv $(RTL)/unpacker.sv $(TB)/unpacker_tb.v bin sim
 	iverilog $(INCLUDE) -o $@ $^
 
 	iverilog $(INCLUDE) -o $@ $^
