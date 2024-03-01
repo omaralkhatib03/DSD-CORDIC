@@ -12,7 +12,7 @@ parameter LIMIT = 24'h26dd3b
 localparam [(WIDTH+2)*32-1:0] angles = {24'h0,24'h1,24'h1,24'h1,24'h1,24'h1,24'h1,24'h1,24'h1,24'h1,24'h2,24'h4,24'h7,24'h10,24'h1f,24'h40,24'h80,24'hff,24'h1ff,24'h400,24'h7ff,24'hfff,24'h1fff,24'h3fff,24'h7fff,24'hfffa,24'h1ffd5,24'h3feab,24'h7f56e,24'hfadbb,24'h1dac67,24'h3243f6};
 
 localparam pipeline_stages = 3;
-localparam [32*(pipeline_stages+1)-1:0] blocks_per_stage = {32'd16, 32'd11, 32'd4, 32'd0};
+localparam [32*(pipeline_stages+1)-1:0] blocks_per_stage = {32'd16, 32'd11, 32'd3, 32'd0};
 
 // this is read from right to left, i.e stage_1 has blocks_per_stage[-1] blocks 
 // Also, its cummulative, i.e the first pipeline starts at 0 and adds 4

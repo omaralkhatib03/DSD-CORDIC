@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'first_nios2_system'
  * SOPC Builder design path: ../../first_nios2_system.sopcinfo
  *
- * Generated: Sat Feb 24 13:57:34 GMT 2024
+ * Generated: Fri Mar 01 16:54:05 GMT 2024
  */
 
 /*
@@ -143,12 +143,6 @@
 
 #define ALT_CI_COMPUTE_TERM_0(A) __builtin_custom_ini(ALT_CI_COMPUTE_TERM_0_N,(A))
 #define ALT_CI_COMPUTE_TERM_0_N 0x1
-#define ALT_CI_FP_ADD_0(A,B) __builtin_custom_inii(ALT_CI_FP_ADD_0_N,(A),(B))
-#define ALT_CI_FP_ADD_0_N 0x3
-#define ALT_CI_FP_MULT_0(A,B) __builtin_custom_inii(ALT_CI_FP_MULT_0_N,(A),(B))
-#define ALT_CI_FP_MULT_0_N 0x0
-#define ALT_CI_FP_SUB_0(A,B) __builtin_custom_inii(ALT_CI_FP_SUB_0_N,(A),(B))
-#define ALT_CI_FP_SUB_0_N 0x2
 
 
 /*
@@ -163,9 +157,6 @@
 #define __ALTERA_AVALON_TIMER
 #define __ALTERA_NIOS2_GEN2
 #define __COMPUTE_TERM
-#define __FP_ADD
-#define __FP_MULT
-#define __FP_SUB
 
 
 /*
@@ -337,7 +328,7 @@
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1708782861
+#define SYSID_TIMESTAMP 1709311843
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 #endif /* __SYSTEM_H_ */
