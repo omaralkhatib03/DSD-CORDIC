@@ -1,0 +1,16 @@
+# Ignore everything
+*
+
+# But not these files
+!.gitignore
+!*.xlsx
+!*.qsys
+!*.bdf
+!*.qpf
+!*.qsf
+!*.sdc
+!*.qip
+!*.sip
+!.gitignore
+!rtl_diagrams/
+!rtl_diagrams/*.pdf

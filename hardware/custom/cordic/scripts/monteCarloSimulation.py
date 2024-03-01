@@ -29,7 +29,7 @@ def main():
                 cnt += 1
                      
             case r'input':
-                theta.append(np.float32(value))
+                theta.append(np.float64(value))
 
             # case r'np\.cos':
             #     cosines.append(np.float32(value))

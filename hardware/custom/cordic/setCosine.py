@@ -41,9 +41,8 @@ def floatToFixed(num, fracBits, signed):
 
 def limit(iterations):
     val = 1
-    for i in range(0, 32):
+    for i in range(0, iterations):
         val *= 1 / (math.sqrt(1 + 2 ** (-2 * i)))
-
 
     return val
 
@@ -52,10 +51,9 @@ for line in sys.stdin:
     width, iterations = line.split(',')
     width = int(width)
     iterations = int(iterations) 
-    limit_factor = f'{width+2}\\\'h' + hex(floatToFixed(np.float32(limit(32)), width, True))[2:]
+    limit_factor = f'{width+2}\\\'h' + hex(floatToFixed(np.float32(limit(iterations)), width, True))[2:]
 
     # print(f'Limit Factor: {limit(iterations)}')
     sp.run([f'./scripts/setLimit.sh {limit_factor}'], shell=True)
     sp.run([f'./scripts/setWidth.sh {width}'], shell=True)
-    sp.run([f'./scripts/setIterations.sh {iterations}'], shell=True) 
     sp.run(['make clean'], shell=True)

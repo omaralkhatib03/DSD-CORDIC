@@ -1,10 +1,9 @@
 module cosine #(
-parameter WIDTH = 24,
-parameter LIMIT = 26'h9b74ee,
+parameter WIDTH = 22,
+parameter LIMIT = 24'h26dd3b,
 parameter ITERATIONS = 25
 
-)
-(
+)(
     input [31:0] angle,
     output [31:0] result,
     output [WIDTH+1:0] theta,
@@ -14,7 +13,9 @@ parameter ITERATIONS = 25
 
 // unpacker: converts from floating point to fixed point
 wire [WIDTH+1:0] fixedFractionalAngle;
-unpacker #(.FRACTIONAL_BITS(WIDTH)) upckr(angle, fixedFractionalAngle);
+wire [31:0] interm;
+unpacker upckr(angle, interm);
+sdiv #(.FRACTIONAL_BITS(WIDTH)) subdiv128(interm, fixedFractionalAngle);
 
 // rom
 reg [WIDTH+1:0] angles [0:31];
@@ -37,7 +38,6 @@ generate
         engine #(.WIDTH(WIDTH)) en(iter, angles[i], x_s[i-1], y_s[i-1], w_s[i-1], x_s[i], y_s[i], w_s[i]);
     end
 endgenerate
-
 
 
 packer #(.WIDTH(WIDTH)) pckr(x_s[ITERATIONS-1], result);
