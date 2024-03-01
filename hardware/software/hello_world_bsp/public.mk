@@ -161,9 +161,9 @@ SOPC_SYSID_FLAG += --sidp=0x1001030
 ELF_PATCH_FLAG  += --sidp 0x1001030
 
 # The SOPC Timestamp 
-# setting SOPC_TIMESTAMP is 1709311843
-SOPC_SYSID_FLAG += --timestamp=1709311843
-ELF_PATCH_FLAG  += --timestamp 1709311843
+# setting SOPC_TIMESTAMP is 1709313177
+SOPC_SYSID_FLAG += --timestamp=1709313177
+ELF_PATCH_FLAG  += --timestamp 1709313177
 
 # Enable JTAG UART driver to recover when host is inactive causing buffer to 
 # full without returning error. Printf will not fail with this recovery. none 
@@ -175,7 +175,7 @@ ELF_PATCH_FLAG  += --timestamp 1709311843
 # Build a custom version of newlib with the specified space-separated compiler 
 # flags. The custom newlib build will be placed in the <bsp root>/newlib 
 # directory, and will be used only for applications that utilize this BSP. 
-# setting hal.custom_newlib_flags is none
+NEWLIB_FLAGS += $(ALT_CFLAGS) -Ofast -fno-math-errno -mcustom-fadds=0
 
 # Enable support for a subset of the C++ language. This option increases code 
 # footprint by adding support for C++ constructors. Certain features, such as 
@@ -361,6 +361,14 @@ ELF_PATCH_FLAG  += --stdin_dev jtag_uart
 # setting hal.stdout is jtag_uart
 ELF_PATCH_FLAG  += --stdout_dev jtag_uart
 
+
+#------------------------------------------------------------------------------
+#                 CUSTOM NEWLIB LIBRARY & INCLUDE PATHS
+#------------------------------------------------------------------------------
+
+NEWLIB_DIR = $(BSP_ROOT_DIR)/newlib
+ALT_INCLUDE_DIRS += $(NEWLIB_DIR)/nios2-elf/include
+ALT_LIBRARY_DIRS += $(NEWLIB_DIR)/nios2-elf/lib
 
 #------------------------------------------------------------------------------
 #                 SOFTWARE COMPONENT & DRIVER INCLUDE PATHS
