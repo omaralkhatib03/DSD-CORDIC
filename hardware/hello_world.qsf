@@ -110,6 +110,7 @@ set_global_assignment -name EDA_OUTPUT_DATA_FORMAT NONE -section_id eda_simulati
 set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
 set_global_assignment -name BDF_FILE hello_world.bdf
 set_global_assignment -name QSYS_FILE first_nios2_system.qsys
+set_global_assignment -name SYSTEMVERILOG_FILE custom/cordic/RTL/sdiv.sv
 set_global_assignment -name SYSTEMVERILOG_FILE custom/cordic/RTL/cosine.sv
 set_global_assignment -name SYSTEMVERILOG_FILE custom/cordic/RTL/engine.sv
 set_global_assignment -name SYSTEMVERILOG_FILE custom/cordic/RTL/packer.sv

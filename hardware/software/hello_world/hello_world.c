@@ -47,8 +47,8 @@
 #define OneTwoEight 128
 #define reciprocalOneTwoEight 0.0078125f
 
-#define ALT_CI_COMPUTE_TERM_0(A) __builtin_custom_fnf(ALT_CI_COMPUTE_TERM_0_N,(A))
-#define ALT_CI_COMPUTE_TERM_0_N 0x1
+#define ALT_CI_TERM_0(A) __builtin_custom_fnf(ALT_CI_TERM_0_N,(A))
+#define ALT_CI_TERM_0_N 0x0
 
 void generateVector(float x[], float step, int N)
 {
@@ -90,7 +90,7 @@ float trigSum(float x[], int M)
 
   for (i = 0; i < M; i++)
   {
-    sum += ALT_CI_COMPUTE_TERM_0(x[i]);
+    sum += ALT_CI_TERM_0(x[i]);
   }
 
   return sum;

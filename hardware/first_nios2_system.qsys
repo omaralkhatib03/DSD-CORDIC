@@ -17,14 +17,6 @@
          type = "int";
       }
    }
-   element compute_term_0
-   {
-      datum _sortIndex
-      {
-         value = "7";
-         type = "int";
-      }
-   }
    element cpu
    {
       datum _sortIndex
@@ -97,35 +89,19 @@
          type = "String";
       }
    }
-   element fp_add_0
+   element first_nios2_system
    {
-      datum _sortIndex
+      datum _originalDeviceFamily
       {
-         value = "5";
-         type = "int";
-      }
-   }
-   element fp_mult_0
-   {
-      datum _sortIndex
-      {
-         value = "4";
-         type = "int";
-      }
-   }
-   element fp_sub_0
-   {
-      datum _sortIndex
-      {
-         value = "6";
-         type = "int";
+         value = "Cyclone V";
+         type = "String";
       }
    }
    element jtag_uart
    {
       datum _sortIndex
       {
-         value = "8";
+         value = "5";
          type = "int";
       }
    }
@@ -141,7 +117,7 @@
    {
       datum _sortIndex
       {
-         value = "11";
+         value = "8";
          type = "int";
       }
    }
@@ -181,7 +157,7 @@
    {
       datum _sortIndex
       {
-         value = "9";
+         value = "6";
          type = "int";
       }
    }
@@ -197,7 +173,7 @@
    {
       datum _sortIndex
       {
-         value = "10";
+         value = "7";
          type = "int";
       }
    }
@@ -207,6 +183,14 @@
       {
          value = "16781360";
          type = "String";
+      }
+   }
+   element term_0
+   {
+      datum _sortIndex
+      {
+         value = "4";
+         type = "int";
       }
    }
 }
@@ -245,7 +229,6 @@
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
  </module>
- <module name="compute_term_0" kind="compute_term" version="1.0" enabled="1" />
  <module name="cpu" kind="altera_nios2_gen2" version="18.1" enabled="1">
   <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="4" />
   <parameter name="AUTO_CLK_RESET_DOMAIN" value="4" />
@@ -259,7 +242,7 @@
   <parameter name="cpuArchRev" value="1" />
   <parameter name="cpuID" value="0" />
   <parameter name="cpuReset" value="false" />
-  <parameter name="customInstSlavesSystemInfo"><![CDATA[<info><slave name="fp_mult_0" baseAddress="0" addressSpan="1" clockCycleType="MULTICYCLE" /><slave name="fp_add_0" baseAddress="3" addressSpan="1" clockCycleType="MULTICYCLE" /><slave name="fp_sub_0" baseAddress="2" addressSpan="1" clockCycleType="MULTICYCLE" /><slave name="compute_term_0" baseAddress="1" addressSpan="1" clockCycleType="MULTICYCLE" /></info>]]></parameter>
+  <parameter name="customInstSlavesSystemInfo"><![CDATA[<info><slave name="term_0" baseAddress="0" addressSpan="1" clockCycleType="MULTICYCLE" /></info>]]></parameter>
   <parameter name="customInstSlavesSystemInfo_nios_a" value="&lt;info/&gt;" />
   <parameter name="customInstSlavesSystemInfo_nios_b" value="&lt;info/&gt;" />
   <parameter name="customInstSlavesSystemInfo_nios_c" value="&lt;info/&gt;" />
@@ -424,9 +407,6 @@
   <parameter name="tracefilename" value="" />
   <parameter name="userDefinedSettings" value="" />
  </module>
- <module name="fp_add_0" kind="fp_add" version="1.0" enabled="1" />
- <module name="fp_mult_0" kind="fp_mult" version="2.0" enabled="1" />
- <module name="fp_sub_0" kind="fp_sub" version="1.0" enabled="1" />
  <module
    name="jtag_uart"
    kind="altera_avalon_jtag_uart"
@@ -715,6 +695,7 @@
    enabled="1">
   <parameter name="id" value="0" />
  </module>
+ <module name="term_0" kind="term" version="2.0" enabled="1" />
  <connection
    kind="avalon"
    version="18.1"
@@ -804,37 +785,10 @@
    kind="nios_custom_instruction"
    version="18.1"
    start="cpu.custom_instruction_master"
-   end="fp_mult_0.nios_custom_instruction_slave">
-  <parameter name="CIName" value="fp_mult_0" />
+   end="term_0.nios_custom_instruction_slave">
+  <parameter name="CIName" value="term_0" />
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0" />
- </connection>
- <connection
-   kind="nios_custom_instruction"
-   version="18.1"
-   start="cpu.custom_instruction_master"
-   end="fp_add_0.nios_custom_instruction_slave">
-  <parameter name="CIName" value="fp_add_0" />
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="3" />
- </connection>
- <connection
-   kind="nios_custom_instruction"
-   version="18.1"
-   start="cpu.custom_instruction_master"
-   end="fp_sub_0.nios_custom_instruction_slave">
-  <parameter name="CIName" value="fp_sub_0" />
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="2" />
- </connection>
- <connection
-   kind="nios_custom_instruction"
-   version="18.1"
-   start="cpu.custom_instruction_master"
-   end="compute_term_0.nios_custom_instruction_slave">
-  <parameter name="CIName" value="compute_term_0" />
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="1" />
  </connection>
  <connection kind="reset" version="18.1" start="clk_0.clk_reset" end="cpu.reset" />
  <connection

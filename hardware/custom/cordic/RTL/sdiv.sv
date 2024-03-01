@@ -13,6 +13,6 @@ module sdiv#(
 
 
   wire [31:0] fullAngle = ((data + 32'hC0000000) >> 7);
-  assign angle = {fullAngle[25:fbitsMantissa], {(zeros >= 0 ? zeros : 0){1'b0}}};
+  assign angle = {fullAngle[24:fbitsMantissa], {(zeros >= 0 ? zeros : 0){1'b0}}};
 
 endmodule
