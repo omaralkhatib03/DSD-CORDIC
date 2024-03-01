@@ -23,9 +23,9 @@ module tb() ;
         #1
         $display("x:fl:%h,", data, "data:x:%h,", data, "result:fi-22-s:%h", result);
 
-        data = 32'hbf800000; // -1
-        #1
-        $display("x:fl:%h,", data, "data:x:%h,", data, "result:fi-22-s:%h", result);
+        // data = 32'hbf800000; // -1  Illegal test case, input range [0, 255]
+        // #1
+        // $display("x:fl:%h,", data, "data:x:%h,", data, "result:fi-22-s:%h", result);
     
         data = 32'h33800000; // 2^-30, smallest value we can represent
         #1

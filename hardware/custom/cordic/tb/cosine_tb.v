@@ -28,9 +28,9 @@ module tb();
         #10
         $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
 
-        angle = 32'hbf800000; // -1
-        #10
-        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
+        // angle = 32'hbf800000; // -1 Illegal test case, input range [0, 255]
+        // #10
+        // $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
 
         angle = 32'h33800000; // 2^-30, smallest value we can represent
         #10
