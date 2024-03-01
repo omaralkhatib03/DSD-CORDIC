@@ -20,7 +20,10 @@ localparam [32*(pipeline_stages+1)-1:0] blocks_per_stage = {32'd16, 32'd11, 32'd
 
 
 wire [WIDTH+1:0] fixedFractionalAngle;
-unpacker #(.FRACTIONAL_BITS(WIDTH)) upckr(angle, fixedFractionalAngle);
+wire [31:0] interm;
+unpacker upckr(angle, interm);
+sdiv #(.FRACTIONAL_BITS(WIDTH)) subdiv128(interm, fixedFractionalAngle);
+
 
 logic [WIDTH+1:0] x_p [pipeline_stages:0];
 logic [WIDTH+1:0] y_p [pipeline_stages:0];
@@ -30,15 +33,15 @@ logic [WIDTH+1:0] packerInput;
 genvar i;
 genvar j;
 
-assign x_p[0] = LIMIT;  
-assign y_p[0] = {WIDTH+2{1'h0}};
-assign w_p[0] = fixedFractionalAngle;
+// assign x_p[0] = LIMIT;  
+// assign y_p[0] = {WIDTH+2{1'h0}};
+// assign w_p[0] = fixedFractionalAngle;
 
-// always_ff @(posedge clk) begin 
-  // x_p[0] <= LIMIT;  
-  // y_p[0] <={WIDTH+2{1'h0}};
-  // w_p[0] <= fixedFractionalAngle;
-// end
+always_ff @(posedge clk) begin 
+  x_p[0] <= LIMIT;  
+  y_p[0] <={WIDTH+2{1'h0}};
+  w_p[0] <= fixedFractionalAngle;
+end
 
 generate
    for (i = 'd0; i < pipeline_stages; i++) begin : gen_cordic_pipeline
@@ -76,7 +79,5 @@ generate
 endgenerate
 
 packer #( .WIDTH(WIDTH)) pckr(packerInput, result);
-
-
 
 endmodule

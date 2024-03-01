@@ -29,7 +29,7 @@ bin/unpacker: $(RTL)/sdiv.sv $(RTL)/unpacker.sv $(TB)/unpacker_tb.v bin sim
 
 	iverilog $(INCLUDE) -o $@ $^
 
-bin/cos: $(RTL)/cosine.sv $(RTL)/engine.sv $(RTL)/unpacker.sv $(TB)/cosine_tb.v $(RTL)/packer.sv $(RTL)/packer.sv
+bin/cos: $(RTL)/sdiv.sv $(RTL)/cosine.sv $(RTL)/engine.sv $(RTL)/unpacker.sv $(TB)/cosine_tb.v $(RTL)/packer.sv $(RTL)/packer.sv
 	iverilog $(INCLUDE) -o $@ $^
 
 bin/monte_carlo: $(RTL)/cosine.sv $(RTL)/engine.sv $(RTL)/unpacker.sv $(TB)/monte_carlo_tb.sv $(RTL)/packer.sv
