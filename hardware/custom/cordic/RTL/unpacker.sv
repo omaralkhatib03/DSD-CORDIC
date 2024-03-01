@@ -13,6 +13,7 @@ module unpacker #(
 
     wire signed [7:0] e;
     wire signed [7:0] shift;
+    wire unsigned [7:0] right_shift;
     wire [7:0] E = data[30:23];
     wire [INTEGER_BITS+FRACTIONAL_BITS-1:0] concated;
     wire [INTEGER_BITS+FRACTIONAL_BITS-1:0] shifted_value;
@@ -22,8 +23,10 @@ module unpacker #(
     assign shift = E > (127 - FRACTIONAL_BITS) ? e : FRACTIONAL_BITS[7:0] + 1'b1;
 
     assign concated = {{(INTEGER_BITS-2 + fbitsMantissa){1'b0}}, SIGNED && data[31], 1'b1, data[22:fbitsMantissa], {(zeros >= 0 ? zeros : 0){1'b0}}}; 
-    assign shifted_value = shift < 0 ? concated << -shift : concated >> shift;
-  
+    assign right_shift = -shift; 
+
+    // quartus complains here saying 'changing signed shift to unsigned', but it synthesizes correctly so its fine
+    assign shifted_value = shift < 0 ? concated << right_shift : concated >> shift; 
     assign result = data == 0 ? {INTEGER_BITS+FRACTIONAL_BITS{1'b0}} : shifted_value;
 
 endmodule
