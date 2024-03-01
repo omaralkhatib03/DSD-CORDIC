@@ -1,7 +1,7 @@
 module cosine #(
 parameter WIDTH = 22,
 parameter LIMIT = 24'h26dd3b,
-parameter ITERATIONS = 25
+parameter ITERATIONS = 18
 
 )(
     input [31:0] angle,

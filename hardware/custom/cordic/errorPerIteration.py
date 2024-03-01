@@ -65,9 +65,9 @@ def main():
     # target_confidence = 0.95
     found_minimum = 0
     
-    WIDTH_START = 18
+    WIDTH_START = 15
     WIDTH_END = 23
-    ITERATIONS_START = 10
+    ITERATIONS_START = 11
     ITERATIONS_END = 19
 
     cnt = 0
@@ -155,7 +155,7 @@ def main():
             errors_3d.append(errors[i][j])
             # confidences_3d.append(confidences[i][j])
             
-    cmap = ListedColormap(sns.color_palette("magma", 256).as_hex())
+    cmap = ListedColormap(sns.color_palette("viridis", 256).as_hex())
  
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')

@@ -23,8 +23,8 @@ cat ./tb/packer_tb.sv | grep '$display(\"data:fi-.*-s:%h,\", data, \"result:fl:%
 sed -i "s/parameter WIDTH = .*;/parameter WIDTH = $width;/g" ./tb/packer_tb.sv
 cat ./tb/packer_tb.sv | grep 'parameter WIDTH ='
 
-sed -i "s/\$display(\"data:fl:%h,\", data, \"result:fi-.*-s:%h\", result);/\$display(\"data:fl:%h,\", data, \"result:fi-$width-s:%h\", result);/g" ./tb/unpacker_tb.v
-cat ./tb/unpacker_tb.v | grep '\$display(\"data:fl:%h,\", data, \"result:fi-.*-s:%h\", result);'
+sed -i "s/\$display(\"x:fl:%h,\", data, \"data:x:%h,\", data, \"result:fi-.*-s:%h\", result);/\$display(\"x:fl:%h,\", data, \"data:x:%h,\", data, \"result:fi-$width-s:%h\", result);/g" ./tb/unpacker_tb.v
+cat ./tb/unpacker_tb.v | grep '\$display(\"x:fl:%h,\", data, \"data:x:%h,\", data, \"result:fi-.*-s:%h\", result);'
 
 sed -i "s/parameter WIDTH = .*;/parameter WIDTH = $width;/g" ./tb/unpacker_tb.v
 cat ./tb/unpacker_tb.v | grep 'parameter WIDTH ='

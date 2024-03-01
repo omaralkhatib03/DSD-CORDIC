@@ -2,7 +2,7 @@ import numpy as np
 import random
 
 
-N = 1000 # Number of iterations for the monte-carlo simulation
+N = 10000 # Number of iterations for the monte-carlo simulation
 
 print(N)
 for i in range(0, N):
