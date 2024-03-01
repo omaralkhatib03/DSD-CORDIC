@@ -19,7 +19,7 @@ module tb();
         
         angle = 32'h3f800000; // 1
         #1
-        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
+        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "cos-cordic:fl:%h", result);
 
         // angle = 32'hbf800000; // -1 Illegal test case, input range [0, 255]
         // #1
@@ -27,39 +27,39 @@ module tb();
 
         angle = 32'h33800000; // 2^-30, smallest value we can represent
         #1
-        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
+        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "cos-cordic:fl:%h", result);
 
         angle = 32'h0;  
         #1
-        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
+        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "cos-cordic:fl:%h", result);
        
         angle = 32'h3f000000; // 0.5
         #1
-        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
+        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "cos-cordic:fl:%h", result);
         
         angle = 32'h3f1b74ee;
         #1
-        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
+        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "cos-cordic:fl:%h", result);
         
         angle  = 32'h3f0a9594;
         #1
-        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
+        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "cos-cordic:fl:%h", result);
 
         angle = 32'h437f0000;
         #1
-        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
+        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "cos-cordic:fl:%h", result);
  
         angle = 32'h43000000;
         #1
-        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
+        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "cos-cordic:fl:%h", result);
  
         angle = 32'h42c80000;
         #1
-        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
+        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "cos-cordic:fl:%h", result);
         
         angle = 32'h43400000;
         #1
-        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
+        $display("x:fl:%h,", angle, "angle:x:%h,", angle, "cos-cordic:fl:%h", result);
 
         $finish;
 
