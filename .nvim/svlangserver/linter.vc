@@ -1,10 +1,16 @@
 +incdir+/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/cordic/RTL
 +incdir+/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/cordic/tb
 +incdir+/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom
++incdir+/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/first_nios2_system
++incdir+/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/first_nios2_system/synthesis
++incdir+/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/first_nios2_system/synthesis/submodules
 +incdir+/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware
 +incdir+/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/pll
 +incdir+/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/cordic/RTL
 +incdir+/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/cordic/tb
 +incdir+/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom
++incdir+/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/first_nios2_system
++incdir+/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/first_nios2_system/synthesis
++incdir+/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/first_nios2_system/synthesis/submodules
 +incdir+/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware
 +incdir+/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/pll
