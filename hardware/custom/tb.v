@@ -22,19 +22,19 @@ top dut(
   .write(write), 
   .writedata(writedata),
   .address(address),
-  .readdata(readdata),
-  .waitreq(waitreq)
+  .readdata(readdata)
 );
 
  
-  initial
+  initial begin
+    reset_n = 1'b1; // reset should now be active low, in accordance with the rest of the system, its not needed for avalon
     clk = 1'b1;
+  end
 
   always 
     #1 clk = ~clk;
 
   initial begin
-    reset_n = 1'b1; // reset should now be active low, in accordance with the rest of the system, its not needed for avalon
 
     // set acc register
     writedata = 32'h0;
@@ -63,29 +63,30 @@ top dut(
     write = 1'b0;
     read = 1'b1; // -> should result in wait req going high
     #2 
-    read = 1'b0;
+    read = 1'b0; // -> waitreq should remain 0
+    // read = 1'b0;
 
     #12 // wait 6 cycles for computation to finish
-    read = 1'b1; // -> waitreq should remain 0
-
-    #4 
-    read = 1'b0;
-    #2
-
-    // set acc register
-    writedata = 32'h0;
-    address = 1'b1;
-    write = 1'b1;
-
-    #2
-    writedata = 32'h437f0000;
-    address = 1'b0;
-    
-    #2 
-    write = 1'b0;
-    read = 1'b1;
-    address = 1'b1;
-
+    read = 1'b0; // -> waitreq should remain 0
+    //
+    // #4 
+    // read = 1'b0;
+    // #2
+    //
+    // // set acc register
+    // writedata = 32'h0;
+    // address = 1'b1;
+    // write = 1'b1;
+    //
+    // #2
+    // writedata = 32'h437f0000;
+    // address = 1'b0;
+    // 
+    // #2 
+    // write = 1'b0;
+    // read = 1'b1;
+    // address = 1'b1;
+    //
      
     // $finish(0);
 

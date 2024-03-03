@@ -23,6 +23,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <unistd.h>
+#include <io.h>
+// #include <alt_dma.h>
 
 // test 1
 #define step1 5
@@ -47,8 +49,7 @@
 #define OneTwoEight 128
 #define reciprocalOneTwoEight 0.0078125f
 
-#define ALT_CI_TERM_0(A) __builtin_custom_fnf(ALT_CI_TERM_0_N,(A))
-#define ALT_CI_TERM_0_N 0x0
+
 
 void generateVector(float x[], float step, int N)
 {
@@ -90,7 +91,7 @@ float trigSum(float x[], int M)
 
   for (i = 0; i < M; i++)
   {
-    sum += ALT_CI_TERM_0(x[i]);
+    // sum += ALT_CI_TERM_0(x[i]);
   }
 
   return sum;
@@ -128,16 +129,18 @@ void runTest(int N, float step)
 
 int main()
 {
-  printf("Task 6!\n");
-  printf("Test Case %d\n", 1);
-  runTest(N1, step1);
-  printf("\n");
-  printf("Test Case %d\n", 2);
-  runTest(N2, step2);
-  printf("\n");
-  printf("Test Case %d\n", 3);
-  runTest(N3, step3);
-  printf("\n");
+
+  
+  // printf("Task 6!\n");
+  // printf("Test Case %d\n", 1);
+  // runTest(N1, step1);
+  // printf("\n");
+  // printf("Test Case %d\n", 2);
+  // runTest(N2, step2);
+  // printf("\n");
+  // printf("Test Case %d\n", 3);
+  // runTest(N3, step3);
+  // printf("\n");
 
   // MyFloat x;
   // x.f = 255.f;
@@ -145,6 +148,17 @@ int main()
   // y.f = ALT_CI_COMPUTE_TERM_0(x.f);
   // 
   // printf("y: %f x:%f \n", y.f, x.f);
+
+  // int read;
+  // IOWR(F_OF_X_0_BASE, 1, 0x0);
+  // read = IORD(F_OF_X_0_BASE, 1); // should read 0
+  // printf("read: %x\n", read);
+  // IOWR(F_OF_X_0_BASE, 0, 0x437f0000);
+  // read = IORD(F_OF_X_0_BASE, 1); // should num
+  // printf("read: %x\n", read);
+  // IOWR(F_OF_X_0_BASE, 0, 0x43000000); 
+  // read = IORD(F_OF_X_0_BASE, 1); // should num
+  // printf("read: %x\n", read);
 
   return 0;
 }

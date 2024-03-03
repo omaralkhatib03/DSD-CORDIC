@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'first_nios2_system'
  * SOPC Builder design path: ../../first_nios2_system.sopcinfo
  *
- * Generated: Fri Mar 01 16:39:42 GMT 2024
+ * Generated: Sun Mar 03 12:54:59 GMT 2024
  */
 
 /*
@@ -137,26 +137,18 @@
 
 
 /*
- * Custom instruction macros
- *
- */
-
-#define ALT_CI_TERM_0(A) __builtin_custom_ini(ALT_CI_TERM_0_N,(A))
-#define ALT_CI_TERM_0_N 0x0
-
-
-/*
  * Define for each module class mastered by the CPU
  *
  */
 
+#define __ALTERA_AVALON_DMA
 #define __ALTERA_AVALON_JTAG_UART
 #define __ALTERA_AVALON_NEW_SDRAM_CONTROLLER
 #define __ALTERA_AVALON_PIO
 #define __ALTERA_AVALON_SYSID_QSYS
 #define __ALTERA_AVALON_TIMER
 #define __ALTERA_NIOS2_GEN2
-#define __TERM
+#define __F_OF_X
 
 
 /*
@@ -175,24 +167,72 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/jtag_uart"
-#define ALT_STDERR_BASE 0x1001038
+#define ALT_STDERR_BASE 0x1001060
 #define ALT_STDERR_DEV jtag_uart
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/jtag_uart"
-#define ALT_STDIN_BASE 0x1001038
+#define ALT_STDIN_BASE 0x1001060
 #define ALT_STDIN_DEV jtag_uart
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/jtag_uart"
-#define ALT_STDOUT_BASE 0x1001038
+#define ALT_STDOUT_BASE 0x1001060
 #define ALT_STDOUT_DEV jtag_uart
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
 #define ALT_STDOUT_TYPE "altera_avalon_jtag_uart"
 #define ALT_SYSTEM_NAME "first_nios2_system"
+
+
+/*
+ * dma_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_dma_0 altera_avalon_dma
+#define DMA_0_ALLOW_BYTE_TRANSACTIONS 1
+#define DMA_0_ALLOW_DOUBLEWORD_TRANSACTIONS 1
+#define DMA_0_ALLOW_HW_TRANSACTIONS 1
+#define DMA_0_ALLOW_QUADWORD_TRANSACTIONS 1
+#define DMA_0_ALLOW_WORD_TRANSACTIONS 1
+#define DMA_0_BASE 0x1001020
+#define DMA_0_IRQ 0
+#define DMA_0_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define DMA_0_LENGTHWIDTH 24
+#define DMA_0_MAX_BURST_SIZE 128
+#define DMA_0_NAME "/dev/dma_0"
+#define DMA_0_SPAN 32
+#define DMA_0_TYPE "altera_avalon_dma"
+
+
+/*
+ * f_of_x_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_f_of_x_0 f_of_x
+#define F_OF_X_0_BASE 0x1001058
+#define F_OF_X_0_IRQ -1
+#define F_OF_X_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define F_OF_X_0_NAME "/dev/f_of_x_0"
+#define F_OF_X_0_SPAN 8
+#define F_OF_X_0_TYPE "f_of_x"
+
+
+/*
+ * f_of_x_0 configuration as viewed by dma_0_write_master
+ *
+ */
+
+#define DMA_0_WRITE_MASTER_F_OF_X_0_BASE 0x1001058
+#define DMA_0_WRITE_MASTER_F_OF_X_0_IRQ -1
+#define DMA_0_WRITE_MASTER_F_OF_X_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define DMA_0_WRITE_MASTER_F_OF_X_0_NAME "/dev/f_of_x_0"
+#define DMA_0_WRITE_MASTER_F_OF_X_0_SPAN 8
+#define DMA_0_WRITE_MASTER_F_OF_X_0_TYPE "f_of_x"
 
 
 /*
@@ -212,7 +252,7 @@
  */
 
 #define ALT_MODULE_CLASS_jtag_uart altera_avalon_jtag_uart
-#define JTAG_UART_BASE 0x1001038
+#define JTAG_UART_BASE 0x1001060
 #define JTAG_UART_IRQ 16
 #define JTAG_UART_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define JTAG_UART_NAME "/dev/jtag_uart"
@@ -230,7 +270,7 @@
  */
 
 #define ALT_MODULE_CLASS_led_pio altera_avalon_pio
-#define LED_PIO_BASE 0x1001020
+#define LED_PIO_BASE 0x1001040
 #define LED_PIO_BIT_CLEARING_EDGE_REGISTER 0
 #define LED_PIO_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define LED_PIO_CAPTURE 0
@@ -291,6 +331,44 @@
 
 
 /*
+ * sdram configuration as viewed by dma_0_read_master
+ *
+ */
+
+#define DMA_0_READ_MASTER_SDRAM_BASE 0x800000
+#define DMA_0_READ_MASTER_SDRAM_CAS_LATENCY 3
+#define DMA_0_READ_MASTER_SDRAM_CONTENTS_INFO
+#define DMA_0_READ_MASTER_SDRAM_INIT_NOP_DELAY 0.0
+#define DMA_0_READ_MASTER_SDRAM_INIT_REFRESH_COMMANDS 2
+#define DMA_0_READ_MASTER_SDRAM_IRQ -1
+#define DMA_0_READ_MASTER_SDRAM_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define DMA_0_READ_MASTER_SDRAM_IS_INITIALIZED 1
+#define DMA_0_READ_MASTER_SDRAM_NAME "/dev/sdram"
+#define DMA_0_READ_MASTER_SDRAM_POWERUP_DELAY 100.0
+#define DMA_0_READ_MASTER_SDRAM_REFRESH_PERIOD 15.625
+#define DMA_0_READ_MASTER_SDRAM_REGISTER_DATA_IN 1
+#define DMA_0_READ_MASTER_SDRAM_SDRAM_ADDR_WIDTH 0x16
+#define DMA_0_READ_MASTER_SDRAM_SDRAM_BANK_WIDTH 2
+#define DMA_0_READ_MASTER_SDRAM_SDRAM_COL_WIDTH 8
+#define DMA_0_READ_MASTER_SDRAM_SDRAM_DATA_WIDTH 16
+#define DMA_0_READ_MASTER_SDRAM_SDRAM_NUM_BANKS 4
+#define DMA_0_READ_MASTER_SDRAM_SDRAM_NUM_CHIPSELECTS 1
+#define DMA_0_READ_MASTER_SDRAM_SDRAM_ROW_WIDTH 12
+#define DMA_0_READ_MASTER_SDRAM_SHARED_DATA 0
+#define DMA_0_READ_MASTER_SDRAM_SIM_MODEL_BASE 0
+#define DMA_0_READ_MASTER_SDRAM_SPAN 8388608
+#define DMA_0_READ_MASTER_SDRAM_STARVATION_INDICATOR 0
+#define DMA_0_READ_MASTER_SDRAM_TRISTATE_BRIDGE_SLAVE ""
+#define DMA_0_READ_MASTER_SDRAM_TYPE "altera_avalon_new_sdram_controller"
+#define DMA_0_READ_MASTER_SDRAM_T_AC 5.5
+#define DMA_0_READ_MASTER_SDRAM_T_MRD 3
+#define DMA_0_READ_MASTER_SDRAM_T_RCD 20.0
+#define DMA_0_READ_MASTER_SDRAM_T_RFC 70.0
+#define DMA_0_READ_MASTER_SDRAM_T_RP 20.0
+#define DMA_0_READ_MASTER_SDRAM_T_WR 14.0
+
+
+/*
  * sys_clk_timer configuration
  *
  */
@@ -322,13 +400,13 @@
  */
 
 #define ALT_MODULE_CLASS_sysid altera_avalon_sysid_qsys
-#define SYSID_BASE 0x1001030
+#define SYSID_BASE 0x1001050
 #define SYSID_ID 0
 #define SYSID_IRQ -1
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1709310926
+#define SYSID_TIMESTAMP 1709470350
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 #endif /* __SYSTEM_H_ */

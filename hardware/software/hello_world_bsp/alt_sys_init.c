@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'first_nios2_system'
  * SOPC Builder design path: ../../first_nios2_system.sopcinfo
  *
- * Generated: Sat Jan 20 20:16:43 GMT 2024
+ * Generated: Sun Mar 03 12:46:56 GMT 2024
  */
 
 /*
@@ -59,6 +59,7 @@
  */
 
 #include "altera_nios2_gen2_irq.h"
+#include "altera_avalon_dma.h"
 #include "altera_avalon_jtag_uart.h"
 #include "altera_avalon_sysid_qsys.h"
 #include "altera_avalon_timer.h"
@@ -68,6 +69,7 @@
  */
 
 ALTERA_NIOS2_GEN2_IRQ_INSTANCE ( CPU, cpu);
+ALTERA_AVALON_DMA_INSTANCE ( DMA_0, dma_0);
 ALTERA_AVALON_JTAG_UART_INSTANCE ( JTAG_UART, jtag_uart);
 ALTERA_AVALON_SYSID_QSYS_INSTANCE ( SYSID, sysid);
 ALTERA_AVALON_TIMER_INSTANCE ( SYS_CLK_TIMER, sys_clk_timer);
@@ -94,6 +96,7 @@ void alt_irq_init ( const void* base )
 void alt_sys_init( void )
 {
     ALTERA_AVALON_TIMER_INIT ( SYS_CLK_TIMER, sys_clk_timer);
+    ALTERA_AVALON_DMA_INIT ( DMA_0, dma_0);
     ALTERA_AVALON_JTAG_UART_INIT ( JTAG_UART, jtag_uart);
     ALTERA_AVALON_SYSID_QSYS_INIT ( SYSID, sysid);
 }
