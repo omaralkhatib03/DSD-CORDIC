@@ -149,16 +149,16 @@ int main()
   // 
   // printf("y: %f x:%f \n", y.f, x.f);
 
-  // int read;
-  // IOWR(F_OF_X_0_BASE, 1, 0x0);
-  // read = IORD(F_OF_X_0_BASE, 1); // should read 0
-  // printf("read: %x\n", read);
-  // IOWR(F_OF_X_0_BASE, 0, 0x437f0000);
-  // read = IORD(F_OF_X_0_BASE, 1); // should num
-  // printf("read: %x\n", read);
-  // IOWR(F_OF_X_0_BASE, 0, 0x43000000); 
-  // read = IORD(F_OF_X_0_BASE, 1); // should num
-  // printf("read: %x\n", read);
+  int read;
+  IOWR(F_OF_X_0_BASE, 1, 0x0);
+  read = IORD(F_OF_X_0_BASE, 1); // should read 0
+  printf("read: %x\n", read);
+  IOWR(F_OF_X_0_BASE, 0, 0x437f0000);
+  read = IORD(F_OF_X_0_BASE, 1); // should num
+  printf("read: %x\n", read);
+  IOWR(F_OF_X_0_BASE, 0, 0x43000000); 
+  read = IORD(F_OF_X_0_BASE, 1); // should num
+  printf("read: %x\n", read);
 
   return 0;
 }
