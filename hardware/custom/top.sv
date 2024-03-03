@@ -52,7 +52,7 @@ term trm (
   .result(result)
 );
 
-localparam acc_cycles = 4;
+localparam acc_cycles = 3;
 reg [acc_cycles:0] acc_clk_enables;
 int j;
 

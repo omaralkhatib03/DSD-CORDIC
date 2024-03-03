@@ -1113,3 +1113,237 @@ run
 run
 run
 run
+# Compile of fp_add.v was successful.
+# Compile of fp_mult.v was successful.
+# Compile of fp_sub.v was successful.
+# Compile of tb.v was successful.
+# Compile of cosine.sv was successful.
+# Compile of engine.sv was successful.
+# Compile of packer.sv was successful.
+# Compile of unpacker.sv was successful.
+# Compile of dspba_library.vhd was successful.
+# Compile of dspba_library_package.vhd was successful.
+# Compile of fp_add_0002.vhd was successful.
+# Compile of dspba_library.vhd was successful.
+# Compile of dspba_library_package.vhd was successful.
+# Compile of fp_mult_0002.vhd was successful.
+# Compile of dspba_library.vhd was successful.
+# Compile of dspba_library_package.vhd was successful.
+# Compile of fp_sub_0002.vhd was successful.
+# Compile of sdiv.sv was successful.
+# Compile of term.sv was successful.
+# Compile of top.sv was successful.
+# Compile of fp_acc.v was successful.
+# Compile of dspba_library.vhd was successful.
+# Compile of dspba_library_package.vhd was successful.
+# Compile of fp_acc_0002.vhd was successful.
+# 24 compiles, 0 failed with no errors.
+restart
+# Loading work.tb
+# Loading work.top
+# Loading work.term
+# Loading work.fp_mult
+# Loading work.cosine
+# Loading work.unpacker
+# Loading work.sdiv
+# Loading work.packer
+# Loading work.fp_add
+# Loading work.fp_acc
+# Loading work.engine
+# Loading work.dspba_library_package
+# Loading work.fp_mult_0002(normal)
+# Loading work.dspba_delay(delay)
+# Loading work.fp_add_0002(normal)
+# Loading work.fp_acc_0002(normal)
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# Compile of fp_add.v was successful.
+# Compile of fp_mult.v was successful.
+# Compile of fp_sub.v was successful.
+# Compile of tb.v was successful.
+# Compile of cosine.sv was successful.
+# Compile of engine.sv was successful.
+# Compile of packer.sv was successful.
+# Compile of unpacker.sv was successful.
+# Compile of dspba_library.vhd was successful.
+# Compile of dspba_library_package.vhd was successful.
+# Compile of fp_add_0002.vhd was successful.
+# Compile of dspba_library.vhd was successful.
+# Compile of dspba_library_package.vhd was successful.
+# Compile of fp_mult_0002.vhd was successful.
+# Compile of dspba_library.vhd was successful.
+# Compile of dspba_library_package.vhd was successful.
+# Compile of fp_sub_0002.vhd was successful.
+# Compile of sdiv.sv was successful.
+# Compile of term.sv was successful.
+# Compile of top.sv was successful.
+# Compile of fp_acc.v was successful.
+# Compile of dspba_library.vhd was successful.
+# Compile of dspba_library_package.vhd was successful.
+# Compile of fp_acc_0002.vhd was successful.
+# 24 compiles, 0 failed with no errors.
+restart
+# Loading work.tb
+# Loading work.top
+# Loading work.term
+# Loading work.fp_mult
+# Loading work.cosine
+# Loading work.unpacker
+# Loading work.sdiv
+# Loading work.packer
+# Loading work.fp_add
+# Loading work.fp_acc
+# Loading work.engine
+# Loading work.dspba_library_package
+# Loading work.fp_mult_0002(normal)
+# Loading work.dspba_delay(delay)
+# Loading work.fp_add_0002(normal)
+# Loading work.fp_acc_0002(normal)
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# Compile of fp_add.v was successful.
+# Compile of fp_mult.v was successful.
+# Compile of fp_sub.v was successful.
+# Compile of tb.v failed with 1 errors.
+# Compile of cosine.sv was successful.
+# Compile of engine.sv was successful.
+# Compile of packer.sv was successful.
+# Compile of unpacker.sv was successful.
+# Compile of dspba_library.vhd was successful.
+# Compile of dspba_library_package.vhd was successful.
+# Compile of fp_add_0002.vhd was successful.
+# Compile of dspba_library.vhd was successful.
+# Compile of dspba_library_package.vhd was successful.
+# Compile of fp_mult_0002.vhd was successful.
+# Compile of dspba_library.vhd was successful.
+# Compile of dspba_library_package.vhd was successful.
+# Compile of fp_sub_0002.vhd was successful.
+# Compile of sdiv.sv was successful.
+# Compile of term.sv was successful.
+# Compile of top.sv was successful.
+# Compile of fp_acc.v was successful.
+# Compile of dspba_library.vhd was successful.
+# Compile of dspba_library_package.vhd was successful.
+# Compile of fp_acc_0002.vhd was successful.
+# 24 compiles, 1 failed with 1 error.
+# Compile of fp_add.v was successful.
+# Compile of fp_mult.v was successful.
+# Compile of fp_sub.v was successful.
+# Compile of tb.v was successful.
+# Compile of cosine.sv was successful.
+# Compile of engine.sv was successful.
+# Compile of packer.sv was successful.
+# Compile of unpacker.sv was successful.
+# Compile of dspba_library.vhd was successful.
+# Compile of dspba_library_package.vhd was successful.
+# Compile of fp_add_0002.vhd was successful.
+# Compile of dspba_library.vhd was successful.
+# Compile of dspba_library_package.vhd was successful.
+# Compile of fp_mult_0002.vhd was successful.
+# Compile of dspba_library.vhd was successful.
+# Compile of dspba_library_package.vhd was successful.
+# Compile of fp_sub_0002.vhd was successful.
+# Compile of sdiv.sv was successful.
+# Compile of term.sv was successful.
+# Compile of top.sv was successful.
+# Compile of fp_acc.v was successful.
+# Compile of dspba_library.vhd was successful.
+# Compile of dspba_library_package.vhd was successful.
+# Compile of fp_acc_0002.vhd was successful.
+# 24 compiles, 0 failed with no errors.
+restart
+# Loading work.tb
+# Loading work.top
+# Loading work.term
+# Loading work.fp_mult
+# Loading work.cosine
+# Loading work.unpacker
+# Loading work.sdiv
+# Loading work.packer
+# Loading work.fp_add
+# Loading work.fp_acc
+# Loading work.engine
+# Loading work.dspba_library_package
+# Loading work.fp_mult_0002(normal)
+# Loading work.dspba_delay(delay)
+# Loading work.fp_add_0002(normal)
+# Loading work.fp_acc_0002(normal)
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
