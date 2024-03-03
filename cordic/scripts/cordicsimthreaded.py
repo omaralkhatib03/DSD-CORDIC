@@ -117,6 +117,9 @@ def main():
             #print("Iterations: ", angle_results['num_iterations'],"Fraction Bits: ", fraction_bit, "Angle: ", angle, "Error: ", "Result: ", angle_results['x'], "Cosine: ", cosine_values[k])
     #num_iterations, scale_factors = scale_factor(max_iterations)
     #plot(results['num_iterations'], results['x'], "Number of Iterations", "cos(0)", "cos(0) vs Number of Iterations")
+    combs = [(fraction_bit, angle) for fraction_bit in fraction_bits for angle in angles]
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        executor.map(rotation_mode, combs)
 
     with open('Resultsrand.csv', 'w+') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=results[0].keys())

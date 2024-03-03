@@ -1,5 +1,7 @@
 # Ignore everything
 # *
+# Ignore CSV files
+*.csv
 
 # But not these files
 !.gitignore
