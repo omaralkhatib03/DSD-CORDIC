@@ -1,4 +1,11 @@
-/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add/fp_add_0002.vhd {1 {vcom -work work -2002 -explicit -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add/fp_add_0002.vhd
+/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_acc/dspba_library_package.vhd {1 {vcom -work work -2002 -explicit -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_acc/dspba_library_package.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling package dspba_library_package
+
+} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add/fp_add_0002.vhd {1 {vcom -work work -2002 -explicit -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add/fp_add_0002.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -33,6 +40,20 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Loading package std_logic_1164
 -- Compiling package dspba_library_package
 
+} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_acc/dspba_library.vhd {1 {vcom -work work -2002 -explicit -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_acc/dspba_library.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package dspba_library_package
+-- Compiling entity dspba_delay
+-- Compiling architecture delay of dspba_delay
+-- Loading package NUMERIC_STD
+-- Compiling entity dspba_sync_reg
+-- Compiling architecture sync_reg of dspba_sync_reg
+-- Compiling entity dspba_pipe
+-- Compiling architecture rtl of dspba_pipe
+
 } {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/cordic/RTL/sdiv.sv {1 {vlog -work work -sv -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/cordic/RTL/sdiv.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module sdiv
@@ -61,14 +82,7 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	fp_add
 
-} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/cordic/RTL/unpacker.sv {1 {vlog -work work -sv -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/cordic/RTL/unpacker.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module unpacker
-
-Top level modules:
-	unpacker
-
-} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub/dspba_library.vhd {1 {vcom -work work -2002 -explicit -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub/dspba_library.vhd
+} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult/dspba_library.vhd {1 {vcom -work work -2002 -explicit -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult/dspba_library.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -89,7 +103,7 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	cosine
 
-} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult/dspba_library.vhd {1 {vcom -work work -2002 -explicit -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult/dspba_library.vhd
+} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub/dspba_library.vhd {1 {vcom -work work -2002 -explicit -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub/dspba_library.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -103,19 +117,19 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity dspba_pipe
 -- Compiling architecture rtl of dspba_pipe
 
-} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub/fp_sub_0002.vhd {1 {vcom -work work -2002 -explicit -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub/fp_sub_0002.vhd
+} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/cordic/RTL/unpacker.sv {1 {vlog -work work -sv -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/cordic/RTL/unpacker.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module unpacker
+
+Top level modules:
+	unpacker
+
+} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add/dspba_library_package.vhd {1 {vcom -work work -2002 -explicit -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add/dspba_library_package.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Loading package MATH_REAL
--- Loading package dspba_library_package
--- Loading package altera_mf_components
--- Loading package altera_lnsim_components
--- Loading package LPM_COMPONENTS
--- Compiling entity fp_sub_0002
--- Compiling architecture normal of fp_sub_0002
+-- Compiling package dspba_library_package
 
 } {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult/fp_mult_0002.vhd {1 {vcom -work work -2002 -explicit -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult/fp_mult_0002.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
@@ -131,12 +145,54 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity fp_mult_0002
 -- Compiling architecture normal of fp_mult_0002
 
-} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add/dspba_library_package.vhd {1 {vcom -work work -2002 -explicit -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add/dspba_library_package.vhd
+} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub/fp_sub_0002.vhd {1 {vcom -work work -2002 -explicit -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub/fp_sub_0002.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Compiling package dspba_library_package
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package dspba_library_package
+-- Loading package altera_mf_components
+-- Loading package altera_lnsim_components
+-- Loading package LPM_COMPONENTS
+-- Compiling entity fp_sub_0002
+-- Compiling architecture normal of fp_sub_0002
+
+} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_acc/fp_acc_0002.vhd {1 {vcom -work work -2002 -explicit -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_acc/fp_acc_0002.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package dspba_library_package
+-- Loading package altera_mf_components
+-- Loading package altera_lnsim_components
+-- Loading package LPM_COMPONENTS
+-- Compiling entity fp_acc_0002
+-- Compiling architecture normal of fp_acc_0002
+
+} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_acc.v {1 {vlog -work work -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_acc.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module fp_acc
+
+Top level modules:
+	fp_acc
+
+} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult.v {1 {vlog -work work -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module fp_mult
+
+Top level modules:
+	fp_mult
+
+} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub.v {1 {vlog -work work -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module fp_sub
+
+Top level modules:
+	fp_sub
 
 } {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add/dspba_library.vhd {1 {vcom -work work -2002 -explicit -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add/dspba_library.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
@@ -151,19 +207,5 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling architecture sync_reg of dspba_sync_reg
 -- Compiling entity dspba_pipe
 -- Compiling architecture rtl of dspba_pipe
-
-} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub.v {1 {vlog -work work -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module fp_sub
-
-Top level modules:
-	fp_sub
-
-} {} {}} /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult.v {1 {vlog -work work -stats=none /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module fp_mult
-
-Top level modules:
-	fp_mult
 
 } {} {}}

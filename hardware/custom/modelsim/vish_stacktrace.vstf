@@ -1,0 +1,24 @@
+# Current time Sun Mar  3 19:56:35 2024
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vish
+# Id = "10.5b"
+# Version = "2016.10"
+# Date = "Oct  5 2016"
+# Platform = linuxpe
+# 0    0x085b4868: 'sym_hash_find_cov_rec + 0x38' in '/home/omar/intelFPGA_lite/18.1/modelsim_ase/linuxaloem/vish'
+# 1    0x085b534c: 'sym_insert_cov + 0x5c' in '/home/omar/intelFPGA_lite/18.1/modelsim_ase/linuxaloem/vish'
+# 2    0x085b2b24: '<unknown (@0x85b2b24)>'
+# 3    0x085b326b: 'dbg_sym_load_block + 0x14b' in '/home/omar/intelFPGA_lite/18.1/modelsim_ase/linuxaloem/vish'
+# 4    0x085b3b2e: '<unknown (@0x85b3b2e)>'
+# 5    0x085b61e3: 'parser_sym_load_block + 0xc3' in '/home/omar/intelFPGA_lite/18.1/modelsim_ase/linuxaloem/vish'
+# 6    0x0836c700: 'tclprim_ParserGetFullPath + 0x1e0' in '/home/omar/intelFPGA_lite/18.1/modelsim_ase/linuxaloem/vish'
+# 7    0x084c7901: 'TclInvokeStringCommand + 0x71' in '/home/omar/intelFPGA_lite/18.1/modelsim_ase/linuxaloem/vish'
+# 8    0x084cc41d: '<unknown (@0x84cc41d)>'
+# 9    0x0851503a: '<unknown (@0x851503a)>'
+# 10   0x0851d9dc: '<unknown (@0x851d9dc)>'
+# 11   0x084ce59c: 'TclEvalObjEx + 0x6c' in '/home/omar/intelFPGA_lite/18.1/modelsim_ase/linuxaloem/vish'
+# 12   0x084cea36: 'Tcl_EvalObjEx + 0x36' in '/home/omar/intelFPGA_lite/18.1/modelsim_ase/linuxaloem/vish'
+# 13   0xf7fb3eac: 'Itcl_EvalMemberCode + 0x3cc' in '/home/omar/intelFPGA_lite/18.1/modelsim_ase/bin/../linux/itcl3.4/libitcl3.4.so'
+# 14   0x0d9ec2db: '<unknown (@0xd9ec2db)>'
+# 15   0x09d973bb: '<unknown (@0x9d973bb)>'
+# 16   0x00006a5d: '<unknown (@0x6a5d)>'

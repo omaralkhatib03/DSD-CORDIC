@@ -24,7 +24,7 @@
 #include <unistd.h>
 #include <unistd.h>
 #include <io.h>
-// #include <alt_dma.h>
+#include <sys/alt_dma.h>
 
 // test 1
 #define step1 5
@@ -78,29 +78,33 @@ float cosMcluren(float x) {
   const float x2 = (x * x);
   const float x4 = x2 * x2;
   const float x6 = (x4 * x2);
-  const float x8 = (x4 * x4);
+  // const float x8 = (x4 * x4);
   return one - x2 * half + (x4) * C1 + (x6) * C2;
 }
 
-
-float trigSum(float x[], int M)
-{
-  int i;
-  float sum = 0;
-  float el = 0;
-
-  for (i = 0; i < M; i++)
-  {
-    // sum += ALT_CI_TERM_0(x[i]);
-  }
-
-  return sum;
-}
 
 union MyFloat {
   float f;
   unsigned i;
 } typedef MyFloat;
+
+
+float trigSum(float x[], int M)
+{
+  int i;
+  // float sum = 0;
+  MyFloat el;
+  
+  IOWR(F_OF_X_0_BASE, 1, 0x0); // reset peripheral to sum from 0
+
+  for (i = 0; i < M; i++)
+  {
+    el.f = x[i];
+    IOWR(F_OF_X_0_BASE, 0, el.i);
+  }
+
+  return IORD(F_OF_X_0_BASE, 1);
+}
 
 
 void runTest(int N, float step)
@@ -112,11 +116,12 @@ void runTest(int N, float step)
   int j = 0;
 
   generateVector(x, step, N);
+
   exec_t1 = times(NULL);
 
   for (; j < 10; j++)
   {
-    y.f = trigSum(x, N);
+    y.i = trigSum(x, N);
   }
 
   exec_t2 = times(NULL);
@@ -127,20 +132,21 @@ void runTest(int N, float step)
   printf("IEEE 754 Format: 0x%lx\n", (unsigned long)y.i);
 }
 
+
 int main()
 {
 
   
-  // printf("Task 6!\n");
-  // printf("Test Case %d\n", 1);
-  // runTest(N1, step1);
-  // printf("\n");
-  // printf("Test Case %d\n", 2);
-  // runTest(N2, step2);
-  // printf("\n");
-  // printf("Test Case %d\n", 3);
-  // runTest(N3, step3);
-  // printf("\n");
+  printf("Task 8!\n");
+  printf("Test Case %d\n", 1);
+  runTest(N1, step1);
+  printf("\n");
+  printf("Test Case %d\n", 2);
+  runTest(N2, step2);
+  printf("\n");
+  printf("Test Case %d\n", 3);
+  runTest(N3, step3);
+  printf("\n");
 
   // MyFloat x;
   // x.f = 255.f;
@@ -149,16 +155,73 @@ int main()
   // 
   // printf("y: %f x:%f \n", y.f, x.f);
 
-  int read;
-  IOWR(F_OF_X_0_BASE, 1, 0x0);
-  read = IORD(F_OF_X_0_BASE, 1); // should read 0
-  printf("read: %x\n", read);
-  IOWR(F_OF_X_0_BASE, 0, 0x437f0000);
-  read = IORD(F_OF_X_0_BASE, 1); // should num
-  printf("read: %x\n", read);
-  IOWR(F_OF_X_0_BASE, 0, 0x43000000); 
-  read = IORD(F_OF_X_0_BASE, 1); // should num
-  printf("read: %x\n", read);
+  // int read;
+  // IOWR(F_OF_X_0_BASE, 1, 0x0); 
+  // read = IORD(F_OF_X_0_BASE, 1); 
+  // printf("read: %x\n", read); // should read 0
+  // IOWR(F_OF_X_0_BASE, 0, 0x437f0000);
+  // read = IORD(F_OF_X_0_BASE, 1); 
+  // printf("read: %x\n", read); // should num
+  // IOWR(F_OF_X_0_BASE, 0, 0x43000000); 
+  // read = IORD(F_OF_X_0_BASE, 1); 
+  // printf("read: %x\n", read); // should num
+  // IOWR(F_OF_X_0_BASE, 1, 0x0);
+  // read = IORD(F_OF_X_0_BASE, 1); 
+  // printf("read: %x\n", read); // should read 0
+
+
+
+
+
+  // float x[N3];
+  // MyFloat y;
+  // int status;
+  // clock_t diff;
+  // clock_t exec_t1, exec_t2;
+  // int j = 0;
+
+  // generateVector(x, step3, N3);
+
+  // int startAddress = (int)&x;
+  // int endAddress = (int)&x + sizeof(x);
+  // printf("Start Address of x: %p\n", &x);
+  // printf("End Address of x: %p\n", &x + sizeof(x));
+  // printf("Size of x: %dB, Assertion: %d\n", sizeof(x), sizeof(x) == (endAddress - startAddress));
+
+  // // open dma device
+
+  // alt_dma_txchan txchan = alt_dma_txchan_open("/dev/dma_0");
+
+  // if (txchan == NULL)
+  // {
+  //   printf("Failed to open dma channel\n");
+  //   return 1;
+  // }
+
+
+  // printf("DMA tx channel opened\n");
+
+  // // configure device
+  // alt_dma_txchan_ioctl(txchan, ALT_DMA_SET_MODE_32, NULL);
+  // alt_dma_txchan_ioctl(txchan, ALT_DMA_TX_ONLY_ON, F_OF_X_0_BASE + 0x0);
+  
+  // // reset peripheral to sum from 0
+  // IOWR(F_OF_X_0_BASE, 1, 0x0);  
+  // read = IORD(F_OF_X_0_BASE, 1);
+  // printf("read: %x\n", read); // should read 0
+
+  // exec_t1 = times(NULL);
+  // status = alt_dma_txchan_send(txchan, startAddress, sizeof(x), NULL, NULL);
+  // exec_t2 = times(NULL);  
+  // printf("status: %d\n", status);
+
+  // usleep(1000);
+  // y.i = IORD(F_OF_X_0_BASE, 1);
+  // diff = exec_t2 - exec_t1;
+  // printf("Result: %f\n", y.f);
+  // printf("proc time avg: %f ms\n", (diff * 0.1f));
+  // printf("IEEE 754 Format: 0x%lx\n", (unsigned long)y.i);
+
 
   return 0;
 }
