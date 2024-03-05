@@ -60,9 +60,9 @@ endmodule
 // Retrieval info: 	<generic name="fp_format" value="single" />
 // Retrieval info: 	<generic name="frequency" value="50" />
 // Retrieval info: 	<generic name="gen_enable" value="true" />
-// Retrieval info: 	<generic name="MSBA" value="370" />
-// Retrieval info: 	<generic name="maxMSBX" value="15" />
-// Retrieval info: 	<generic name="LSBA" value="-30" />
+// Retrieval info: 	<generic name="MSBA" value="50" />
+// Retrieval info: 	<generic name="maxMSBX" value="50" />
+// Retrieval info: 	<generic name="LSBA" value="-127" />
 // Retrieval info: 	<generic name="selected_device_family" value="Cyclone V" />
 // Retrieval info: 	<generic name="selected_device_speedgrade" value="7" />
 // Retrieval info: </instance>

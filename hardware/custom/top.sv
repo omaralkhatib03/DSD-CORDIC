@@ -52,7 +52,7 @@ term trm (
   .result(result)
 );
 
-localparam acc_cycles = 3;
+localparam acc_cycles = 4;
 reg [acc_cycles:0] acc_clk_enables;
 int j;
 
@@ -97,7 +97,7 @@ end
 assign n = state == wait_for_set;
 
 wire [31:0] q;
-wire acc_en = |acc_clk_enables[acc_cycles:0]; 
+wire acc_en = |acc_clk_enables[acc_cycles-1:0]; 
 wire [31:0] acc_in;
 
 
