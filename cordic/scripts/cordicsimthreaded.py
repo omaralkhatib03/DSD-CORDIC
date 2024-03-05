@@ -34,7 +34,8 @@ def scale_factor(max_iterations):
     plot(num_iterations, scale_factors, "Number of Iterations", "Scale Factor", "Scale Factor vs Number of Iterations")
     return num_iterations, scale_factors
 
-def rotation_mode(curz,iterations,num_ints, num_frac): 
+def rotation_mode(params): 
+    curz,iterations,num_ints, num_frac = params
     test_angle = curz
     curx = FixedPoint(1/1.646760258120067,True)
     curx.resize(num_ints, num_frac,alert='ignore', overflow='wrap')
@@ -83,15 +84,18 @@ def rotation_mode(curz,iterations,num_ints, num_frac):
     errors=[]
     for j in range (0, len(cordres)):
         errors.append(abs_error(cordres[j], actual))
+    with open('Multithread.csv', 'a') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow([cordres, num_iterations, num_frac, test_angle, actual, errors])
     return {'x': cordres, 'num_iterations': num_iterations, 'fractional_bits': num_frac, 'angle': test_angle, 'actual_cos': actual , 'error_vs_iteration': errors}
 
 def abs_error(cordic_value, cosine_value):
-    return abs((cordic_value - cosine_value)/cosine_value)*100
+    return abs((cordic_value - cosine_value)/cosine_value)
 
 def generate_angles(num_angles):
     angles = []
     for i in range(0,num_angles):
-        angles.append(np.float64(random.uniform(-1,1)))
+        angles.append(np.float32(random.uniform(-1,1)))
     return angles
 
 def double_cosine_values(angles):
@@ -105,27 +109,23 @@ def mean_error(cosine_values, cordic_values):
 
 def main(): 
     max_iterations = 50
+    int_bits = 2
     fraction_bits = range(1, 31)
     angles=generate_angles(10000)
     cosine_values=double_cosine_values(angles)
     results=[]
-    for fraction_bit in fraction_bits:
-        for angle in angles:
-            #print("Fraction Bits: ", fraction_bit, "Angle: ", angle)
-            angle_results=rotation_mode(angle,max_iterations,2,fraction_bit)
-            results.append(angle_results)
-            #print("Iterations: ", angle_results['num_iterations'],"Fraction Bits: ", fraction_bit, "Angle: ", angle, "Error: ", "Result: ", angle_results['x'], "Cosine: ", cosine_values[k])
+    # for fraction_bit in fraction_bits:
+    #     for angle in angles:
+    #         #print("Fraction Bits: ", fraction_bit, "Angle: ", angle)
+    #         angle_results=rotation_mode(angle,max_iterations,2,fraction_bit)
+    #         results.append(angle_results)
+    #         #print("Iterations: ", angle_results['num_iterations'],"Fraction Bits: ", fraction_bit, "Angle: ", angle, "Error: ", "Result: ", angle_results['x'], "Cosine: ", cosine_values[k])
     #num_iterations, scale_factors = scale_factor(max_iterations)
     #plot(results['num_iterations'], results['x'], "Number of Iterations", "cos(0)", "cos(0) vs Number of Iterations")
-    combs = [(fraction_bit, angle) for fraction_bit in fraction_bits for angle in angles]
+    combs = [(angle,max_iterations,int_bits,fraction_bit) for fraction_bit in fraction_bits for angle in angles]
     with concurrent.futures.ThreadPoolExecutor() as executor:
         executor.map(rotation_mode, combs)
 
-    with open('Resultsrand.csv', 'w+') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=results[0].keys())
-        writer.writeheader()
-        writer.writerows(results)
-    return
 
 if __name__ == "__main__":
     main()

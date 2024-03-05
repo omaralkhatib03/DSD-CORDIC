@@ -37,39 +37,41 @@ def scale_factor(max_iterations):
 def rotation_mode(curz,iterations,num_ints, num_frac): 
     test_angle = curz
     curx = FixedPoint(1/1.646760258120067,True)
-    curx.resize(num_ints, num_frac,alert='ignore', overflow='wrap')
+    curx.resize(num_ints, num_frac, alert='ignore', overflow='clamp')
     #print(curx.qformat)
-    cury = FixedPoint(0,True)
-    cury.resize(num_ints, num_frac,alert='ignore', overflow='wrap')
-    curz = FixedPoint(curz,True)
-    curz.resize(num_ints, num_frac,alert='ignore', overflow='wrap')
-    x_vals=[]
-    y_vals=[]
-    z_vals=[]
+    cury = FixedPoint(0, True)
+    cury.resize(num_ints, num_frac, alert='ignore', overflow='clamp')
+    curz = FixedPoint(curz, True)
+    curz.resize(num_ints, num_frac, alert='ignore', overflow='clamp')
+    x_vals = []
+    y_vals = []
+    z_vals = []
     num_iterations = []
     iteration_count = 0
-    di = FixedPoint(0,True)
+    di = FixedPoint(0, True)
     di.resize(num_ints, num_frac)
     for i in range(0, iterations):
         if curz < 0:
-            di = FixedPoint(-1,True)
+            di = FixedPoint(-1, True)
             di.resize(num_ints, num_frac)
         else:
-            di = FixedPoint(1,True)
+            di = FixedPoint(1, True)
             di.resize(num_ints, num_frac)
-        tan_alpha = FixedPoint(2**(-i),True)
-        tan_alpha.resize(num_ints, num_frac,alert='warning', overflow='wrap')
-        curx.resize(num_ints, num_frac,alert='ignore', overflow='wrap')
-        cury.resize(num_ints, num_frac,alert='ignore', overflow='wrap')
-        x_next = curx - di*cury*tan_alpha
-        y_next = cury + di*curx*tan_alpha
-        x_next.resize(num_ints, num_frac,alert='ignore', overflow='wrap')
-        y_next.resize(num_ints, num_frac,alert='ignore', overflow='wrap')
-        tan_term = FixedPoint(math.atan(2**(-i)),True)
-        tan_term.resize(num_ints, num_frac,alert='ignore', overflow='wrap')
-        curz.resize(num_ints, num_frac,alert='ignore', overflow='wrap')
-        z_next = curz - di*tan_term
-        z_next.resize(num_ints, num_frac,alert='ignore', overflow='wrap')
+        tan_alpha = FixedPoint(2 ** (-i), True)
+        tan_alpha.resize(num_ints, num_frac, alert='warning', overflow='clamp')
+        curx.resize(num_ints, num_frac, alert='ignore', overflow='clamp')
+        cury.resize(num_ints, num_frac, alert='ignore', overflow='clamp')
+        x_next = curx - di * cury * tan_alpha
+        y_next = cury + di * curx * tan_alpha
+        x_next.resize(num_ints, num_frac, alert='ignore', overflow='clamp')
+        y_next.resize(num_ints, num_frac, alert='ignore', overflow='clamp')
+        tan_term = FixedPoint(math.atan(2 ** (-i)), True)
+        #print(float(tan_term))
+        tan_term.resize(num_ints, num_frac, alert='ignore', overflow='clamp')
+        #print(float(tan_term))
+        curz.resize(num_ints, num_frac, alert='ignore', overflow='clamp')
+        z_next = curz - di * tan_term
+        z_next.resize(num_ints, num_frac, alert='ignore', overflow='clamp')
         curx = x_next
         cury = y_next
         curz = z_next
@@ -78,7 +80,7 @@ def rotation_mode(curz,iterations,num_ints, num_frac):
         z_vals.append(curz)
         num_iterations.append(iteration_count)
         iteration_count += 1
-    cordres=np.array(x_vals).astype(np.float64)
+    cordres=np.array(x_vals).astype(np.float32)
     actual = math.cos(test_angle)
     errors=[]
     for j in range (0, len(cordres)):
@@ -86,12 +88,12 @@ def rotation_mode(curz,iterations,num_ints, num_frac):
     return {'x': cordres, 'num_iterations': num_iterations, 'fractional_bits': num_frac, 'angle': test_angle, 'actual_cos': actual , 'error_vs_iteration': errors}
 
 def abs_error(cordic_value, cosine_value):
-    return abs((cordic_value - cosine_value)/cosine_value)*100
+    return abs(cordic_value - cosine_value)
 
 def generate_angles(num_angles):
     angles = []
     for i in range(0,num_angles):
-        angles.append(np.float64(random.uniform(-1,1)))
+        angles.append(np.float32(random.uniform(-1,1)))
     return angles
 
 def double_cosine_values(angles):
@@ -104,9 +106,9 @@ def mean_error(cosine_values, cordic_values):
     return error/len(cosine_values)
 
 def main(): 
-    max_iterations = 50
+    max_iterations = 30
     fraction_bits = range(1, 31)
-    angles=generate_angles(10000)
+    angles=generate_angles(1000)
     cosine_values=double_cosine_values(angles)
     results=[]
     for fraction_bit in fraction_bits:
@@ -118,7 +120,7 @@ def main():
     #num_iterations, scale_factors = scale_factor(max_iterations)
     #plot(results['num_iterations'], results['x'], "Number of Iterations", "cos(0)", "cos(0) vs Number of Iterations")
 
-    with open('Resultsrand.csv', 'w+') as csvfile:
+    with open('Resultsrand4.csv', 'w+') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=results[0].keys())
         writer.writeheader()
         writer.writerows(results)
