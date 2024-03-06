@@ -50,7 +50,7 @@ def main():
         print(f'accuracy: {accuracy} %')
     
     tbTest = [255, 128, 34, 95, 122, 82, 64]
-    print("Val :", trigSum(tbTest))
+    print("Val :", hex(np.float32(trigSum(tbTest)).view('int32')), trigSum(tbTest))
 
     # for i in tbTest:
     #     print('writedata = 32\'h', hex(np.float32(i).view('int32'))[2:], ';')

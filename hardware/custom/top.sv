@@ -38,7 +38,13 @@ always @(posedge clk) begin
       clk_enables[i+1] <= clk_enables[i];
     end
   end
-  clk_enables[0] <= write && address == 0; // we only need to update sum if a new input is written
+
+  case (write && !address)
+    1'b1: clk_enables[0] <= 1'b1;
+    1'b0: clk_enables[0] <= 1'b0;
+    default: clk_enables[0] <= 1'b0;
+  endcase
+  // clk_enables[0] <= write && address == 0; // we only need to update sum if a new input is written
 end
 
 wire [31:0] result;
@@ -82,8 +88,15 @@ end
 
 always_comb begin
   case(state)
-    idle: next_state = (write && address) ? wait_for_set : idle;
+    idle: begin // next_state = (write && address) ? wait_for_set : idle;
+      case (write && address) 
+        1'b1: next_state = wait_for_set;
+        1'b0: next_state = idle;
+        default: next_state = idle;
+      endcase
+    end 
     wait_for_set: next_state = acc_clk_enables[0] ? idle : wait_for_set;
+    default: next_state = idle;
   endcase
 end
 
@@ -98,13 +111,13 @@ assign n = state == wait_for_set;
 
 wire [31:0] q;
 wire acc_en = |acc_clk_enables[acc_cycles-1:0]; 
-wire [31:0] acc_in;
+wire [31:0] acc_in = acc_clk_enables[0] && clk_en ? result : 0;
 
 
 fp_acc fp_accer (
   .clk    (clk),    //    clk.clk
   .areset (~reset_n), // areset.reset
-  .x      (acc_en && clk_en ? result : 0),      //      x.x
+  .x      (acc_in),      //      x.x
   .n      (n),      //      n.n
   .r      (q),      //      r.r
   .xo     (xo),     //     xo.xo

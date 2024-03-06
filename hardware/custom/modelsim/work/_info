@@ -10,7 +10,7 @@ cModel Technology
 d/home/omar/intelFPGA_lite/18.1/modelsim_ase/bin
 vcosine
 Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z1 !s110 1709648260
+Z1 !s110 1709748950
 !i10b 1
 !s100 k8MDoU_`5cFmmz<h>=?zF0
 I4;LSJ^lKMbI]C1[zd]2E22
@@ -18,7 +18,7 @@ Z2 VDg1SIo80bB@j0V0VzS_@n1
 !s105 cosine_sv_unit
 S1
 Z3 d/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/modelsim
-Z4 w1709321304
+Z4 w1709743424
 8/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/cordic/RTL/cosine.sv
 F/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/cordic/RTL/cosine.sv
 L0 1
@@ -26,7 +26,7 @@ Z5 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z6 !s108 1709648260.000000
+Z6 !s108 1709748950.000000
 !s107 /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/cordic/RTL/cosine.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/cordic/RTL/cosine.sv|
 !i113 1
@@ -46,9 +46,9 @@ VJZ>XXZi]3nAML><T1OJmD2
 !s100 >TY9@l4a>2O5Wd_6jF4:g0
 Z15 OV;C;10.5b;63
 32
-Z16 !s110 1709648261
+Z16 !s110 1709748951
 !i10b 1
-Z17 !s108 1709648261.000000
+Z17 !s108 1709748951.000000
 Z18 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_acc/dspba_library.vhd|
 Z19 !s107 /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_acc/dspba_library.vhd|
 !i113 1
@@ -188,7 +188,7 @@ R2
 !s105 engine_sv_unit
 S1
 R3
-Z23 w1709301844
+R4
 8/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/cordic/RTL/engine.sv
 F/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/cordic/RTL/engine.sv
 L0 1
@@ -221,21 +221,21 @@ R17
 !s107 /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_acc.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_acc.v|
 !i113 1
-Z24 o-work work
+Z23 o-work work
 R8
 Efp_acc_0002
 R9
-Z25 DPx3 lpm 14 lpm_components 0 22 BZZBj]8LhndN7CkCjD@L`2
-Z26 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 QZo1Vh6en2ZO3=hNmAfQ>0
-Z27 DPx9 altera_mf 20 altera_mf_components 0 22 gV:l9C^?PSb6]b5V?_jR@3
+Z24 DPx3 lpm 14 lpm_components 0 22 BZZBj]8LhndN7CkCjD@L`2
+Z25 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 QZo1Vh6en2ZO3=hNmAfQ>0
+Z26 DPx9 altera_mf 20 altera_mf_components 0 22 gV:l9C^?PSb6]b5V?_jR@3
 R10
-Z28 DPx4 ieee 9 math_real 0 22 Sk6CSihbPL<f[^Shm]=KX0
+Z27 DPx4 ieee 9 math_real 0 22 Sk6CSihbPL<f[^Shm]=KX0
 R22
 R11
 R12
 R3
-Z29 8/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_acc/fp_acc_0002.vhd
-Z30 F/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_acc/fp_acc_0002.vhd
+Z28 8/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_acc/fp_acc_0002.vhd
+Z29 F/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_acc/fp_acc_0002.vhd
 l0
 L36
 VAjN24F?gC?[j1zNh`cmgo1
@@ -245,21 +245,21 @@ R15
 R16
 !i10b 1
 R17
-Z31 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_acc/fp_acc_0002.vhd|
-Z32 !s107 /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_acc/fp_acc_0002.vhd|
+Z30 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_acc/fp_acc_0002.vhd|
+Z31 !s107 /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_acc/fp_acc_0002.vhd|
 !i113 1
 R20
 R21
 Anormal
+R24
 R25
 R26
-R27
 R10
-R28
+R27
 R22
 R11
 R12
-Z33 DEx4 work 11 fp_acc_0002 0 22 AjN24F?gC?[j1zNh`cmgo1
+DEx4 work 11 fp_acc_0002 0 22 AjN24F?gC?[j1zNh`cmgo1
 l290
 L50
 VHObJF]a372=3]N81N^oLJ0
@@ -269,8 +269,8 @@ R15
 R16
 !i10b 1
 R17
+R30
 R31
-R32
 !i113 1
 R20
 R21
@@ -281,7 +281,7 @@ R1
 IjnC6bbWe:VICY92RC^z[=3
 R2
 R3
-Z34 w1709302029
+Z32 w1709302029
 8/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add.v
 F/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add.v
 L0 8
@@ -293,21 +293,21 @@ R6
 !s107 /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add.v|
 !i113 1
-R24
+R23
 R8
 Efp_add_0002
-R34
+R32
+R24
 R25
 R26
-R27
 R10
-R28
+R27
 R22
 R11
 R12
 R3
-Z35 8/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add/fp_add_0002.vhd
-Z36 F/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add/fp_add_0002.vhd
+Z33 8/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add/fp_add_0002.vhd
+Z34 F/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add/fp_add_0002.vhd
 l0
 L36
 VW[NBzGhzhP8D;FCJDcj1d2
@@ -317,17 +317,17 @@ R15
 R1
 !i10b 1
 R6
-Z37 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add/fp_add_0002.vhd|
-Z38 !s107 /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add/fp_add_0002.vhd|
+Z35 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add/fp_add_0002.vhd|
+Z36 !s107 /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_add/fp_add_0002.vhd|
 !i113 1
 R20
 R21
 Anormal
+R24
 R25
 R26
-R27
 R10
-R28
+R27
 R22
 R11
 R12
@@ -341,8 +341,8 @@ R15
 R1
 !i10b 1
 R6
-R37
-R38
+R35
+R36
 !i113 1
 R20
 R21
@@ -353,7 +353,7 @@ R1
 Iib3zfKV:W7iZiE=c47U?51
 R2
 R3
-R34
+R32
 8/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult.v
 F/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult.v
 L0 8
@@ -365,41 +365,41 @@ R6
 !s107 /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult.v|
 !i113 1
-R24
+R23
 R8
 Efp_mult_0002
-R34
+R32
+R24
 R25
 R26
-R27
 R10
-R28
+R27
 R22
 R11
 R12
 R3
-Z39 8/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult/fp_mult_0002.vhd
-Z40 F/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult/fp_mult_0002.vhd
+Z37 8/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult/fp_mult_0002.vhd
+Z38 F/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult/fp_mult_0002.vhd
 l0
 L36
 VM5V?zZaW6X4fAnzY^WBzi1
 !s100 BoEEjh4WboX3DCzRWP>H83
 R15
 32
-R1
+R16
 !i10b 1
-R6
-Z41 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult/fp_mult_0002.vhd|
-Z42 !s107 /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult/fp_mult_0002.vhd|
+R17
+Z39 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult/fp_mult_0002.vhd|
+Z40 !s107 /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_mult/fp_mult_0002.vhd|
 !i113 1
 R20
 R21
 Anormal
+R24
 R25
 R26
-R27
 R10
-R28
+R27
 R22
 R11
 R12
@@ -410,11 +410,11 @@ VPGi4]@ocECnKgO@5<DXE00
 !s100 fO9U`EbYXBBmI2=lOTLkQ1
 R15
 32
-R1
+R16
 !i10b 1
-R6
-R41
-R42
+R17
+R39
+R40
 !i113 1
 R20
 R21
@@ -425,7 +425,7 @@ R1
 INC4cTiLMHWCz:oW01@7Ie0
 R2
 R3
-R34
+R32
 8/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub.v
 F/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub.v
 L0 8
@@ -437,21 +437,21 @@ R6
 !s107 /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub.v|
 !i113 1
-R24
+R23
 R8
 Efp_sub_0002
-R34
+R32
+R24
 R25
 R26
-R27
 R10
-R28
+R27
 R22
 R11
 R12
 R3
-Z43 8/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub/fp_sub_0002.vhd
-Z44 F/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub/fp_sub_0002.vhd
+Z41 8/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub/fp_sub_0002.vhd
+Z42 F/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub/fp_sub_0002.vhd
 l0
 L36
 V9aQ5z@LHDU7k93e[ZK<HM2
@@ -460,18 +460,18 @@ R15
 32
 R16
 !i10b 1
-R6
-Z45 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub/fp_sub_0002.vhd|
-Z46 !s107 /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub/fp_sub_0002.vhd|
+R17
+Z43 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub/fp_sub_0002.vhd|
+Z44 !s107 /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/fp_sub/fp_sub_0002.vhd|
 !i113 1
 R20
 R21
 Anormal
+R24
 R25
 R26
-R27
 R10
-R28
+R27
 R22
 R11
 R12
@@ -484,9 +484,9 @@ R15
 32
 R16
 !i10b 1
-R6
-R45
-R46
+R17
+R43
+R44
 !i113 1
 R20
 R21
@@ -500,7 +500,7 @@ R2
 !s105 packer_sv_unit
 S1
 R3
-R23
+w1709301844
 8/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/cordic/RTL/packer.sv
 F/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/cordic/RTL/packer.sv
 L0 1
@@ -545,10 +545,10 @@ R1
 I0`K_Z0T]kX<8J?hJVd01h1
 R2
 R3
-w1709647914
+w1709730643
 8/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/tb.v
 F/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/tb.v
-L0 10
+Z45 L0 10
 R5
 r1
 !s85 0
@@ -557,7 +557,28 @@ R6
 !s107 /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/tb.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/tb.v|
 !i113 1
-R24
+R23
+R8
+vtb2
+R16
+!i10b 1
+!s100 gShWIg:bY85PO7aJbifV?2
+IdEiBV62fO7^WJU3BMMFlo2
+R2
+R3
+w1709741355
+8/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/tb2.v
+F/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/tb2.v
+R45
+R5
+r1
+!s85 0
+31
+R17
+!s107 /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/tb2.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/tb2.v|
+!i113 1
+R23
 R8
 vterm
 R0
@@ -569,7 +590,7 @@ R2
 !s105 term_sv_unit
 S1
 R3
-w1709492276
+w1709743729
 8/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/term.sv
 F/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/term.sv
 L0 3
@@ -583,17 +604,38 @@ R17
 !i113 1
 R7
 R8
+vterm_tb
+R16
+!i10b 1
+!s100 dH0ICGKhIQK1;M838XYLU3
+Ihz7VjA7UMlHHnGBkJ`>EX2
+R2
+R3
+w1709744128
+8/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/term_tb.v
+F/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/term_tb.v
+L0 3
+R5
+r1
+!s85 0
+31
+R17
+!s107 /home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/term_tb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/term_tb.v|
+!i113 1
+R23
+R8
 vtop
 R0
 R16
 !i10b 1
-!s100 l<ZOKHnf;]TIY_g6U_[U02
-I]3ae=21aPRYRULMbEPQzb0
+!s100 fSW@R_C^MYDj2^F[5n88f1
+Ib_Q=DMX8Rj8MJ^M?g00T50
 R2
 !s105 top_sv_unit
 S1
 R3
-w1709647831
+w1709745047
 8/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/top.sv
 F/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/top.sv
 L0 4
@@ -617,7 +659,7 @@ R2
 !s105 unpacker_sv_unit
 S1
 R3
-R4
+w1709321304
 8/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/cordic/RTL/unpacker.sv
 F/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/custom/cordic/RTL/unpacker.sv
 L0 1

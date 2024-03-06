@@ -89,7 +89,7 @@ union MyFloat {
 } typedef MyFloat;
 
 
-float trigSum(float x[], int M)
+int trigSum(float x[], int M)
 {
   int i;
   // float sum = 0;
@@ -122,7 +122,6 @@ void runTest(int N, float step)
   for (; j < 10; j++)
   {
     y.i = trigSum(x, N);
-    // printf("Result: %f\n", y.f);
   }
 
   exec_t2 = times(NULL);
@@ -133,10 +132,25 @@ void runTest(int N, float step)
   printf("IEEE 754 Format: 0x%lx\n", (unsigned long)y.i);
 }
 
+MyFloat y;
+int status;
+clock_t diff;
+clock_t exec_t1, exec_t2;
+int j = 0;
+
+void dmaISR(void * handle) {
+  exec_t2 = times(NULL);  
+  y.i = IORD(F_OF_X_0_BASE, 1);
+  diff = exec_t2 - exec_t1;
+  printf("Result: %f\n", y.f);
+  printf("proc time avg: %f ms\n", (diff * 0.1f));
+  printf("IEEE 754 Format: 0x%lx\n", (unsigned long)y.i);
+}
+
 
 int main()
 {
- 
+
   printf("Task 8!\n");
   printf("Test Case %d\n", 1);
   runTest(N1, step1);
@@ -148,80 +162,31 @@ int main()
   runTest(N3, step3);
   printf("\n");
 
-  // MyFloat x;
-  // x.f = 255.f;
-  // MyFloat y;
-  // y.f = ALT_CI_COMPUTE_TERM_0(x.f);
-  // 
-  // printf("y: %f x:%f \n", y.f, x.f);
+  int read;
+  float x[N3];
 
-  // int read;
-  // IOWR(F_OF_X_0_BASE, 1, 0x0); 
-  // read = IORD(F_OF_X_0_BASE, 1); 
-  // printf("read: %x\n", read); // should read 0
-  // IOWR(F_OF_X_0_BASE, 0, 0x437f0000);
-  // read = IORD(F_OF_X_0_BASE, 1); 
-  // printf("read: %x\n", read); // should num
-  // IOWR(F_OF_X_0_BASE, 0, 0x43000000); 
-  // read = IORD(F_OF_X_0_BASE, 1); 
-  // printf("read: %x\n", read); // should num
-  // IOWR(F_OF_X_0_BASE, 1, 0x0);
-  // read = IORD(F_OF_X_0_BASE, 1); 
-  // printf("read: %x\n", read); // should read 0
+  generateVector(x, step3, N3);
 
+  alt_dma_txchan txchan = alt_dma_txchan_open("/dev/dma_0");
 
+  if (txchan == NULL)
+  {
+    printf("Failed to open dma channel\n");
+    return 1;
+  }
 
-
-
-  // float x[N3];
-  // MyFloat y;
-  // int status;
-  // clock_t diff;
-  // clock_t exec_t1, exec_t2;
-  // int j = 0;
-
-  // generateVector(x, step3, N3);
-
-  // int startAddress = (int)&x;
-  // int endAddress = (int)&x + sizeof(x);
-  // printf("Start Address of x: %p\n", &x);
-  // printf("End Address of x: %p\n", &x + sizeof(x));
-  // printf("Size of x: %dB, Assertion: %d\n", sizeof(x), sizeof(x) == (endAddress - startAddress));
-
-  // // open dma device
-
-  // alt_dma_txchan txchan = alt_dma_txchan_open("/dev/dma_0");
-
-  // if (txchan == NULL)
-  // {
-  //   printf("Failed to open dma channel\n");
-  //   return 1;
-  // }
-
-
-  // printf("DMA tx channel opened\n");
-
-  // // configure device
-  // alt_dma_txchan_ioctl(txchan, ALT_DMA_SET_MODE_32, NULL);
-  // alt_dma_txchan_ioctl(txchan, ALT_DMA_TX_ONLY_ON, F_OF_X_0_BASE + 0x0);
+  alt_dma_txchan_ioctl(txchan, ALT_DMA_SET_MODE_32, NULL);
+  alt_dma_txchan_ioctl(txchan, ALT_DMA_TX_ONLY_ON, 0x0);
   
-  // // reset peripheral to sum from 0
-  // IOWR(F_OF_X_0_BASE, 1, 0x0);  
-  // read = IORD(F_OF_X_0_BASE, 1);
-  // printf("read: %x\n", read); // should read 0
+  IOWR(F_OF_X_0_BASE, 1, 0x0);  
+  read = IORD(F_OF_X_0_BASE, 1);
+  printf("read: %x\n", read); // should read 0
 
-  // exec_t1 = times(NULL);
-  // status = alt_dma_txchan_send(txchan, startAddress, sizeof(x), NULL, NULL);
-  // exec_t2 = times(NULL);  
-  // printf("status: %d\n", status);
+  exec_t1 = times(NULL);
+  status = alt_dma_txchan_send(txchan, &x, N3 * 4, dmaISR, NULL);
+  printf("status: %d\n", status);
 
-  // usleep(1000);
-  // y.i = IORD(F_OF_X_0_BASE, 1);
-  // diff = exec_t2 - exec_t1;
-  // printf("Result: %f\n", y.f);
-  // printf("proc time avg: %f ms\n", (diff * 0.1f));
-  // printf("IEEE 754 Format: 0x%lx\n", (unsigned long)y.i);
-
-
+  while (1){}
+  
   return 0;
 }

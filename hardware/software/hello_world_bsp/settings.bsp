@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Mar 5, 2024 2:20:57 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1709648457648</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Mar 6, 2024 5:48:41 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1709747321884</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>/home/omar/Documents/year-3/term_2/DSD/DSD-Binary-Ballet/hardware/software/hello_world_bsp</BspGeneratedLocation>
         <BspSettingsFile>./settings.bsp</BspSettingsFile>
         <SopcDesignFile>../../first_nios2_system.sopcinfo</SopcDesignFile>
@@ -923,13 +923,13 @@
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>f_of_x_0</slaveDescriptor>
+                <slaveDescriptor>sysid</slaveDescriptor>
                 <addressRange>0x01001050 - 0x01001057</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>sysid</slaveDescriptor>
+                <slaveDescriptor>f_of_x_0</slaveDescriptor>
                 <addressRange>0x01001058 - 0x0100105F</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
