@@ -8,51 +8,48 @@ z2
 !i10f 100
 cModel Technology
 Z0 dC:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing
-vtb
-Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1709905343
+vfloat_to_fixed
+DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z1 !s110 1709921817
 !i10b 1
-!s100 ZaZg]KHY_7U4_5`<LLcVL1
-IiR61o4dRNkeT2[jeI>F1]1
-Z3 VDg1SIo80bB@j0V0VzS_@n1
-!s105 unpacker_tb_sv_unit
-S1
-R0
-w1709905342
-8C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/unpacker_tb.sv
-FC:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/unpacker_tb.sv
-L0 2
-Z4 OV;L;10.5b;63
-r1
-!s85 0
-31
-Z5 !s108 1709905343.000000
-!s107 C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/unpacker_tb.sv|
-!s90 -reportprogress|300|-work|work|C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/unpacker_tb.sv|
-!i113 1
-Z6 o-work work
-Z7 tCvgOpt 0
-vunpacker
-R1
-R2
-!i10b 1
-!s100 ReVSKGHX`@A9<;?3U1ZGO2
-I;bVWf[Nlk=e[ShGYo7PBl3
-R3
+!s100 c;R]Ho75d1[RNYSgNbd1_1
+IC81Ed:CiPZGWEZ`WAK_X20
+Z2 VDg1SIo80bB@j0V0VzS_@n1
 !s105 float_to_fixed_sv_unit
 S1
 R0
-w1709904550
+w1709921799
 8C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/float_to_fixed.sv
 FC:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/float_to_fixed.sv
 L0 18
-R4
+Z3 OV;L;10.5b;63
 r1
 !s85 0
 31
-R5
+!s108 1709921816.000000
 !s107 C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/float_to_fixed.sv|
 !s90 -reportprogress|300|-work|work|C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/float_to_fixed.sv|
 !i113 1
-R6
-R7
+Z4 o-work work
+Z5 tCvgOpt 0
+vtb
+R1
+!i10b 1
+!s100 IcH8PhcX2JdCWOg<lnM^m1
+IWBzk?>S1>M4JR^Mn=zm^92
+R2
+R0
+w1709918879
+8C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/unpacker_tb.v
+FC:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/unpacker_tb.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1709921817.000000
+!s107 C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/unpacker_tb.v|
+!s90 -reportprogress|300|-work|work|C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/unpacker_tb.v|
+!i113 1
+R4
+R5

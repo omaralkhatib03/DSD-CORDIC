@@ -2,7 +2,7 @@
 module tb();
 
     reg [31:0] floatingPoint;
-    wire [23:0] fixedPoint;
+    wire [21:0] fixedPoint;
 
     float_to_fixed unpacker(
         .floatingPoint(floatingPoint),
@@ -23,16 +23,17 @@ module tb();
 		#10
 		
         // Set the input try 0
-        floatingPoint = 32'd0;
+        floatingPoint <= 32'h0;
+
 		#10
         //try another 0.77
-        floatingPoint = 32'h3f451eb8;
+        floatingPoint <= 32'h3f451eb8;
 		//try another -0.07
 		#10
-        floatingPoint = 32'hbd8f5c29;
+        floatingPoint <= 32'hbd8f5c29;
         //try -1
         #10
-        floatingPoint =32'hbf800000;
+        floatingPoint <=32'hbf800000;
 		#10
 		$display($time, "<< Simulation Complete >>");
 		$stop;
