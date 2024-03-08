@@ -23,8 +23,7 @@ module tb();
 		#10
 		
         // Set the input try 0
-        floatingPoint <= 32'h0;
-
+        floatingPoint <= 32'd0;
 		#10
         //try another 0.77
         floatingPoint <= 32'h3f451eb8;
