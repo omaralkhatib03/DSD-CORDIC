@@ -88,7 +88,7 @@ def rotation_mode(curz,iterations,num_ints, num_frac):
     return {'x': cordres, 'num_iterations': num_iterations, 'fractional_bits': num_frac, 'angle': test_angle, 'actual_cos': actual , 'error_vs_iteration': errors}
 
 def abs_error(cordic_value, cosine_value):
-    return abs(cordic_value - cosine_value)
+    return (cordic_value - cosine_value)
 
 def generate_angles(num_angles):
     angles = []
@@ -108,7 +108,7 @@ def mean_error(cosine_values, cordic_values):
 def main(): 
     max_iterations = 30
     fraction_bits = range(1, 31)
-    angles=generate_angles(1000)
+    angles=generate_angles(100000)
     cosine_values=double_cosine_values(angles)
     results=[]
     for fraction_bit in fraction_bits:
@@ -120,7 +120,7 @@ def main():
     #num_iterations, scale_factors = scale_factor(max_iterations)
     #plot(results['num_iterations'], results['x'], "Number of Iterations", "cos(0)", "cos(0) vs Number of Iterations")
 
-    with open('Resultsrand4.csv', 'w+') as csvfile:
+    with open('Resultsrand7.csv', 'w+') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=results[0].keys())
         writer.writeheader()
         writer.writerows(results)
