@@ -106,6 +106,7 @@ def mean_error(cosine_values, cordic_values):
     return error/len(cosine_values)
 
 def main(): 
+    print(1/1.646760258120067)
     max_iterations = 30
     fraction_bits = range(1, 31)
     angles=generate_angles(100000)
