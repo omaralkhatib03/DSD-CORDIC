@@ -3,7 +3,7 @@ module cordic_tb();
 
     reg [22:0] fixedPoint;
     reg clk,clk_en,reset,start;
-    wire [21:0] fixedPoint_result;
+    wire [22:0] fixedPoint_result;
     wire done;
 
     cordic dut(
