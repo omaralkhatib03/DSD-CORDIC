@@ -108,7 +108,7 @@ def main():
                     print(f'line: {line}')
                     mean, std, marginOfError = string_line.split(',') 
                     error = float(mean)
-                    errors[cnt].append(error)
+                    errors[cnt].append(abs(error))
                     
                     stdDiv = float(std)
                     margin = float(marginOfError)
@@ -117,7 +117,7 @@ def main():
             iterations[cnt].append(i)
 
         cnt += 1        
-        # print(f'Error: {error}, Error + margin: {abs(error + margin)}, Error - margin: {abs(error - margin)}')
+        print(f'Error: {error}, Error + margin: {abs(error + margin)}, Error - margin: {abs(error - margin)}')
         # if error < target_error and abs(error - margin) < target_error and abs(error + margin) < target_error and not found_minimum:
             
         #     minimum_iterations = i
