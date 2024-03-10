@@ -12,3 +12,9 @@
 !/hardware/*.qip
 !/hardware/*.sip
 !/hardware/.gitignore
+# Ignore CSV files
+
+# Ignore CSV files
+*.csv
+# Ignore cordic directory
+/cordic/
