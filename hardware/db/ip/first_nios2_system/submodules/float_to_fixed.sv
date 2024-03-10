@@ -1,5 +1,5 @@
 module float_to_fixed #(
-    parameter FRACS = 21,
+    parameter FRACS = 22,
     parameter INTS = 1,
     parameter WIDTH = INTS + FRACS  //sign bit not needed cos is even function
 )

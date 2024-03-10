@@ -1,6 +1,6 @@
 # Ignore everything
-# *
 
+/hardware/db/*
 # But not these files
 !.gitignore
 !*.xlsx
@@ -17,4 +17,3 @@
 # Ignore CSV files
 *.csv
 # Ignore cordic directory
-/cordic/

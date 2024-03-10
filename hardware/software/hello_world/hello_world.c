@@ -23,10 +23,10 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <math.h>
-#include <unistd.h>
 
-#define ALT_CI_COSINE_CUSTOM_0(N) __builtin_custom_inii(ALT_CI_COSINE_CUSTOM_0_N,(A))
-#define ALT_CI_COSINE_CUSTOM_0_N 0x1
+
+// #define ALT_CI_COSINE_CUSTOM_0(N) __builtin_custom_fnf(ALT_CI_COSINE_CUSTOM_0_N,(A))
+// #define ALT_CI_COSINE_CUSTOM_0_N 0x1
 // test 1
 #define step1 5
 #define N1 52

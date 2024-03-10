@@ -1,5 +1,5 @@
 module iteration #(
-    parameter FRACS = 21,
+    parameter FRACS = 22,
     parameter INTS = 1,
     parameter WIDTH = INTS + FRACS + 1  //sign bit needed for algorithm
 )
