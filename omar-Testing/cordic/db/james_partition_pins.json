@@ -1,0 +1,213 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "done",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[0]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[1]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[2]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[3]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[4]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[5]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[6]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[7]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[8]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[9]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[10]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[11]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[12]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[13]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[14]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[15]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[16]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[17]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[18]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[19]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[20]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[21]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_result[22]",
+					"strict" : false
+				},
+				{
+					"name" : "reset",
+					"strict" : false
+				},
+				{
+					"name" : "clk_en",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "start",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[22]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[21]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[20]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[19]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[18]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[17]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[16]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[15]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[14]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[13]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[12]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[11]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[10]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[9]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[8]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[7]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[6]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[5]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[4]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[3]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[2]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[1]",
+					"strict" : false
+				},
+				{
+					"name" : "fixedPoint_theta[0]",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

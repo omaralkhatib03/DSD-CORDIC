@@ -1,0 +1,172 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing
+vcordic
+Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+!s110 1710027836
+!i10b 1
+!s100 K_Vh0RbEgWzcE`iWIW5J60
+IJAnSPf0:FLSg4LTRTNTOj1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+!s105 cordic_sv_unit
+S1
+R0
+w1710027830
+8C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/cordic.sv
+FC:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/cordic.sv
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1710027836.000000
+!s107 C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/cordic.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/cordic.sv|
+!i113 1
+Z4 o-work work
+Z5 tCvgOpt 0
+vcordic_tb
+R1
+!s110 1710031552
+!i10b 1
+!s100 02ZQ7LPMYFAZWb:m@SHfQ3
+ITko>^k2BiV=G[lgOP;@k^1
+R2
+!s105 cordic_tb_sv_unit
+S1
+R0
+w1709999827
+8C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/cordic_tb.sv
+FC:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/cordic_tb.sv
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1710031552.000000
+!s107 C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/cordic_tb.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/cordic_tb.sv|
+!i113 1
+R4
+R5
+vfixed_to_float
+R1
+Z6 !s110 1710021233
+!i10b 1
+!s100 _26iiOb3ZmoKQ2QFfbG>`2
+IKDEXdRIUQG0:hkhcc8;f32
+R2
+!s105 fixed_to_float_sv_unit
+S1
+R0
+w1709934438
+8C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/fixed_to_float.sv
+FC:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/fixed_to_float.sv
+L0 3
+R3
+r1
+!s85 0
+31
+Z7 !s108 1710021233.000000
+!s107 C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/fixed_to_float.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/fixed_to_float.sv|
+!i113 1
+R4
+R5
+vfloat_to_fixed
+R1
+R6
+!i10b 1
+!s100 @AJ0Ii[V3Gi9TZ;8e:KZ;1
+IhO36>^Z^jb^oXk7Nf5lY90
+R2
+!s105 float_to_fixed_sv_unit
+S1
+R0
+w1709922392
+8C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/float_to_fixed.sv
+FC:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/float_to_fixed.sv
+L0 1
+R3
+r1
+!s85 0
+31
+R7
+!s107 C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/float_to_fixed.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/float_to_fixed.sv|
+!i113 1
+R4
+R5
+viteration
+R1
+R6
+!i10b 1
+!s100 U<nn:@VhQj1NZAS92jb3V2
+Iz<WO9b]h][1^69[OelhX:1
+R2
+!s105 iteration_sv_unit
+S1
+R0
+w1710021172
+8C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/iteration.sv
+FC:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/iteration.sv
+L0 1
+R3
+r1
+!s85 0
+31
+R7
+!s107 C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/iteration.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/iteration.sv|
+!i113 1
+R4
+R5
+vpacker_tb
+R6
+!i10b 1
+!s100 ^[STZI6JXojM15[=RR8aN2
+IeUjViB]=a[PY0IlSXPco31
+R2
+R0
+w1709933252
+8C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/packer_tb.v
+FC:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/packer_tb.v
+L0 2
+R3
+r1
+!s85 0
+31
+R7
+!s107 C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/packer_tb.v|
+!s90 -reportprogress|300|-work|work|C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/packer_tb.v|
+!i113 1
+R4
+R5
+vtb
+R6
+!i10b 1
+!s100 goUGT9XP3faVH4TKG_D^:0
+I[[9i_M1STK9;ilGGJ@OJ61
+R2
+R0
+w1709933859
+8C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/unpacker_tb.v
+FC:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/unpacker_tb.v
+L0 2
+R3
+r1
+!s85 0
+31
+R7
+!s107 C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/unpacker_tb.v|
+!s90 -reportprogress|300|-work|work|C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/unpacker_tb.v|
+!i113 1
+R4
+R5
