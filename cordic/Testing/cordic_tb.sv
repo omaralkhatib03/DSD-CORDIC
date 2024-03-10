@@ -1,19 +1,31 @@
 `timescale 100 ps / 100 ps
 module cordic_tb();
 
-    reg [22:0] fixedPoint;
+    //reg [22:0] fixedPoint;
+    reg [31:0] floatingPoint;
     reg clk,clk_en,reset,start;
     wire [22:0] fixedPoint_result;
+    wire [31:0] floatingPoint_result;
     wire done;
 
-    cordic dut(
+    // cordic dut(
+    //     .clk(clk),
+    //     .reset(reset),
+    //     .clk_en(clk_en),
+    //     .start(start),
+    //     .done(done),
+    //     .fixedPoint_theta(fixedPoint),
+    //     .fixedPoint_result(fixedPoint_result)     
+    // );
+
+    cosine cosine(
         .clk(clk),
         .reset(reset),
         .clk_en(clk_en),
         .start(start),
         .done(done),
-        .fixedPoint_theta(fixedPoint),
-        .fixedPoint_result(fixedPoint_result)     
+        .floatingPoint_theta(floatingPoint),
+        .floatingPoint_result(floatingPoint_result)
     );
 
     initial
@@ -34,9 +46,9 @@ module cordic_tb();
 		// Wait 10 cycles (corresponds to timescale at the top) 
 		#4
 		
-        // Set the input try 0
+        // Set the input try -1
         start = 1'b1;
-        fixedPoint = 23'b01000000000000000000000;
+        floatingPoint = 32'hbf451eb8;
         #2
         start = 1'b0;
 		#4

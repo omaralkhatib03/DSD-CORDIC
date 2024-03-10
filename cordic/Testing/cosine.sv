@@ -7,9 +7,15 @@ module cosine #(
     input clk,
     input reset,
     input clk_en,
+    input start,
+    output done,
     input [31:0] floatingPoint_theta,
     output [31:0] floatingPoint_result
 );
+
+wire [WIDTH-1:0] fixedPoint_result;
+wire [WIDTH-2:0] fixedPoint_theta;
+
 
 float_to_fixed float_to_fixed(
     .floatingPoint(floatingPoint_theta), 
@@ -17,18 +23,19 @@ float_to_fixed float_to_fixed(
 );
 
 fixed_to_float fixed_to_float(
-    .ufixedPoint(ufixedPoint_result), 
+    .ufixedPoint(fixedPoint_result[WIDTH-2:0]), 
     .floatingPoint(floatingPoint_result)
 );
 
 cordic cordic(
-    .fixedPoint_theta(signed_theta), 
-    .fixedPoint_result(fixedPoint_result)
     .clk(clk),
     .reset(reset),
-    .clk_en(clk_en)
+    .clk_en(clk_en),
+    .start(start),
+    .done(done),
+    .fixedPoint_theta({1'b0, fixedPoint_theta}),
+    .fixedPoint_result(fixedPoint_result)     
 );
 
-wire [WIDTH-1:0] signed_theta {1'b0, fixedPoint_theta}; //concatenate sign bit needed for algorithm
-    
+
 endmodule
