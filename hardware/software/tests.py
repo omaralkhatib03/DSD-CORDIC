@@ -31,6 +31,7 @@ def trigSumDouble (list):
         y+= 0.5*x_i + (x_i * x_i)*np.cos((x_i-128)/128)
     return y
 def main():
+    print(abs(np.cos(0.5405)-0.85764598846435546875))
     for i in range(0, len(steps)):
         print(f"Test {i + 1}")
         test_vector = generateVector(Ns[i], steps[i])

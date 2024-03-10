@@ -25,6 +25,8 @@
 #include <math.h>
 #include <unistd.h>
 
+#define ALT_CI_COSINE_CUSTOM_0(N) __builtin_custom_inii(ALT_CI_COSINE_CUSTOM_0_N,(A))
+#define ALT_CI_COSINE_CUSTOM_0_N 0x1
 // test 1
 #define step1 5
 #define N1 52
@@ -71,13 +73,13 @@ float sumVector(float x[], int M)
 }
 
 
-float cosMcluren(float x) {
-  const float x2 = (x * x);
-  const float x4 = x2 * x2;
-  const float x6 = (x4 * x2);
-  const float x8 = (x4 * x4);
-  return one - x2 * half + (x4) * C1 + (x6) * C2;
-}
+// float cosMcluren(float x) {
+//   const float x2 = (x * x);
+//   const float x4 = x2 * x2;
+//   const float x6 = (x4 * x2);
+//   const float x8 = (x4 * x4);
+//   return one - x2 * half + (x4) * C1 + (x6) * C2;
+// }
 
 
 float trigSum(float x[], int M)
@@ -89,7 +91,7 @@ float trigSum(float x[], int M)
   for (i = 0; i < M; i++)
   {
     el = x[i];
-    sum += half * el + (el * el) * cosMcluren((el - OneTwoEight) * reciprocalOneTwoEight);
+    sum += half * el + (el * el) * (ALT_CI_COSINE_CUSTOM_0(((el - OneTwoEight) * reciprocalOneTwoEight)));
   }
   return sum;
 }
