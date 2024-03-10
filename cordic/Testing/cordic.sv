@@ -18,26 +18,29 @@ module cordic #(
 
 localparam  [WIDTH-1:0] x_start = 23'b00100110110111010011101;//0.607252935008881256169446752827757841587066381156807;
 localparam  [WIDTH-1:0] y_start = 23'b0;//0.0;
-localparam [WIDTH-2:0] tan_terms [0:Iterations-1] = {22'b0000000000000000111111, 22'b0000000000000001111111, 22'b0000000000000011111111, 22'b0000000000000111111111,
-22'b0000000000011111111111, 22'b0000000000111111111111, 22'b0000000001111111111111, 22'b0000000011111111111101, 22'b0000000111111111111101, 
-22'b0000001111111111101010, 22'b0000011111111111101010, 22'b0000111111101010110111, 22'b0001111101011011011101, 22'b0011101101011000110011, 22'b0110010010000111111011};
+wire [WIDTH-2:0] tan_terms [0:Iterations-1]; //= {22'b0000000000000000111111, 22'b0000000000000001111111, 22'b0000000000000011111111, 22'b0000000000000111111111,
+//22'b0000000000011111111111, 22'b0000000000111111111111, 22'b0000000001111111111111, 22'b0000000011111111111101, 22'b0000000111111111111101, 
+//22'b0000001111111111101010, 22'b0000011111111111101010, 22'b0000111111101010110111, 22'b0001111101011011011101, 22'b0011101101011000110011, 22'b0110010010000111111011};
 //unsigned tan constants
 
-wire [WIDTH-1:0] x_s [ItersPerStage:0]; 
-wire [WIDTH-1:0] y_s [ItersPerStage:0];
-wire [WIDTH-1:0] z_s [ItersPerStage:0];
+assign tan_terms[14] = 22'b0000000000000000111111;
+assign tan_terms[13] = 22'b0000000000000001111111;
+assign tan_terms[12] = 22'b0000000000000011111111;
+assign tan_terms[11] = 22'b0000000000000111111111;
+assign tan_terms[10] = 22'b0000000000011111111111;
+assign tan_terms[9] = 22'b0000000000111111111111;
+assign tan_terms[8] = 22'b0000000001111111111111;
+assign tan_terms[7] = 22'b0000000011111111111101;
+assign tan_terms[6] = 22'b0000000111111111111101;
+assign tan_terms[5] = 22'b0000001111111111101010;
+assign tan_terms[4] = 22'b0000011111111111101010;
+assign tan_terms[3] = 22'b0000111111101010110111;
+assign tan_terms[2] = 22'b0001111101011011011101;
+assign tan_terms[1] = 22'b0011101101011000110011;
+assign tan_terms[0] = 22'b0110010010000111111011;
 
-reg [WIDTH-1:0] x_reg;
-reg [WIDTH-1:0] y_reg;
-reg [WIDTH-1:0] z_reg;
 
 reg [4:0] loops = 5'b0;
-
-// assign x_s[0] = x_start;
-// assign y_s[0] = y_start;
-// assign z_s[0] = fixedPoint_theta;
-
-
 
 typedef enum {IDLE, S1} stage_control;
 stage_control current_stage, next_stage;
@@ -53,10 +56,10 @@ stage_control current_stage, next_stage;
 end
 
 always_ff@(posedge clk) begin
-    if (reset || ~clk_en || current_stage == IDLE) begin
+    if ((reset || ~clk_en || current_stage) == IDLE) begin
         loops <= 5'b0;
     end
-    else if (clk_en && current_stage == S1) begin
+    else if ((clk_en && current_stage) == S1) begin
         loops <= loops+1;
     end
 end
@@ -64,7 +67,7 @@ end
 always_comb begin
     casez (current_stage)
         IDLE: begin
-            casez(start)
+            casez(start) 
                 1'b1: next_stage = S1;
                 default: next_stage = IDLE;
             endcase
@@ -77,6 +80,14 @@ always_comb begin
         end
     endcase
 end
+
+reg [WIDTH-1:0] x_reg;
+reg [WIDTH-1:0] y_reg;
+reg [WIDTH-1:0] z_reg;
+
+wire [WIDTH-1:0] x_s [ItersPerStage:0]; 
+wire [WIDTH-1:0] y_s [ItersPerStage:0];
+wire [WIDTH-1:0] z_s [ItersPerStage:0];
 
 assign x_s[0] = start ? x_start : x_reg;
 assign y_s[0] = start ? y_start : y_reg;
@@ -98,8 +109,8 @@ end
 genvar i;
 
 generate
-    for (i = 0; i < ItersPerStage; i++) begin: stage_gen //instantiate 5 iterations
-    wire [4:0] index = loops*ItersPerStage + i;
+    for (i = 0; i < ItersPerStage; i++) begin: stage_gen //instantiate 5 iterations in a single stage
+    wire [4:0] index = loops*ItersPerStage + i;   
     iteration iter(
         .i(index),
         .atan_i(tan_terms[index]),

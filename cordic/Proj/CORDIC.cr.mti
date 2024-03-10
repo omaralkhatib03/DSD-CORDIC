@@ -1,16 +1,9 @@
-C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/packer_tb.v {1 {vlog -work work -stats=none C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/packer_tb.v
+C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/cordic.sv {1 {vlog -work work -sv -stats=none C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/cordic.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module packer_tb
+-- Compiling module cordic
 
 Top level modules:
-	packer_tb
-
-} {} {}} C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/cordic_tb.sv {1 {vlog -work work -sv -stats=none C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/cordic_tb.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module cordic_tb
-
-Top level modules:
-	cordic_tb
+	cordic
 
 } {} {}} C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/cosine.sv {0 vlog\ -work\ work\ -sv\ -stats=none\ C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/cosine.sv\nModel\ Technology\ ModelSim\ -\ Intel\ FPGA\ Edition\ vlog\ 10.5b\ Compiler\ 2016.10\ Oct\ \ 5\ 2016\n--\ Compiling\ module\ cosine\n**\ Error:\ (vlog-13069)\ C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/cosine.sv(27):\ near\ \".\":\ syntax\ error,\ unexpected\ '.',\ expecting\ ')'.\n**\ Error\ (suppressible):\ C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/cosine.sv(32):\ (vlog-2388)\ 'signed_theta'\ already\ declared\ in\ this\ scope\ (cosine).\n**\ Error:\ (vlog-13069)\ C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/cosine.sv(32):\ near\ \"\{\":\ syntax\ error,\ unexpected\ '\{',\ expecting\ '\;'.\n\n {4.0 5.0 6.0 7.0} {}} C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/iteration.sv {1 {vlog -work work -sv -stats=none C:/Users/james/Desktop/Imperial/year3/DSD/DSD-Binary-Ballet/cordic/Testing/iteration.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016

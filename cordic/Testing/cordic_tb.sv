@@ -5,6 +5,7 @@ module cordic_tb();
     reg clk,clk_en,reset,start;
     wire [21:0] fixedPoint_result;
     wire done;
+
     cordic dut(
         .clk(clk),
         .reset(reset),
@@ -35,7 +36,7 @@ module cordic_tb();
 		
         // Set the input try 0
         start = 1'b1;
-        fixedPoint <= 23'b01000000000000000000000;
+        fixedPoint = 23'b01000000000000000000000;
         #2
         start = 1'b0;
 		#4

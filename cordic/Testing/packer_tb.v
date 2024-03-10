@@ -23,7 +23,7 @@ module packer_tb();
 		#10
 		
         // Set the input try 0
-        fixedPoint <= 22'h0;
+        fixedPoint = 22'h0;
 
 		#10
         //try another 0.5405
