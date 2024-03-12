@@ -110,6 +110,7 @@ set_global_assignment -name SEARCH_PATH "c:\\users\\james\\desktop\\imperial\\ye
 set_global_assignment -name SEARCH_PATH "c:\\users\\james\\desktop\\imperial\\year3\\dsd\\task1\\system_template_de1_soc"
 set_global_assignment -name EDA_SIMULATION_TOOL "<None>"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT NONE -section_id eda_simulation
+set_global_assignment -name SDC_FILE hw_dev_tutorial.sdc
 set_global_assignment -name SOURCE_FILE hello_world.qsf
 set_global_assignment -name QSYS_FILE first_nios2_system.qsys
 set_global_assignment -name BDF_FILE hello_world.bdf

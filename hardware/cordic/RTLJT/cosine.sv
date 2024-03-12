@@ -31,8 +31,8 @@ cordic cordic(
     .clk(clk),
     .reset(reset),
     .clk_en(clk_en),
-    .start(start),
     .done(done),
+    .start(start),
     .fixedPoint_theta({1'b0, fixedPoint_theta}),
     .fixedPoint_result(fixedPoint_result)     
 );

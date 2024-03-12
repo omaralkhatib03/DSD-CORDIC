@@ -2,32 +2,32 @@ module cordic #(
     parameter FRACS = 22,
     parameter INTS = 1,
     parameter WIDTH = INTS + FRACS + 1,  //sign bit needed for algorithm
-    parameter Iterations = 20,
+    parameter Iterations = 16,
     parameter Stages = 4,
-    parameter ItersPerStage = 5 //Iterations / Stages
+    parameter ItersPerStage = 4 //Iterations / Stages
 )
 (
     input clk,
     input reset,
     input clk_en,
-    input start,
+    input start, 
     input [WIDTH-1:0] fixedPoint_theta,
-    output done,
-    output logic [WIDTH-1:0] fixedPoint_result //remember to drop sign bit always positive in range 0.5403 to 1 before returning
+    output done, 
+    output [WIDTH-1:0] fixedPoint_result //remember to drop sign bit always positive in range 0.5403 to 1 before returning
 );
 
-localparam  [WIDTH-1:0] x_start = 24'b001001101101110100111011;//0.607252935008881256169446752827757841587066381156807;
+localparam  [WIDTH-1:0] x_start = 24'b001001101101110100111011;//0.607252935008881256169446752827757841587066381156807; //flipped with msb int for test
 localparam  [WIDTH-1:0] y_start = 24'b0;//0.0;
 wire [WIDTH-1:0] tan_terms [0:Iterations-1]; //= {22'b0000000000000000111111, 22'b0000000000000001111111, 22'b0000000000000011111111, 22'b0000000000000111111111,
 //22'b0000000000011111111111, 22'b0000000000111111111111, 22'b0000000001111111111111, 22'b0000000011111111111101, 22'b0000000111111111111101, 
 //22'b0000001111111111101010, 22'b0000011111111111101010, 22'b0000111111101010110111, 22'b0001111101011011011101, 22'b0011101101011000110011, 22'b0110010010000111111011};
 //unsigned tan constants
 
-//assign tan_terms[20] = 24'h4;
-assign tan_terms[19] = 24'h7;
-assign tan_terms[18] = 24'h10;
-assign tan_terms[17] = 24'h1f;
-assign tan_terms[16] = 24'h40;
+// assign tan_terms[20] = 24'h4;
+// assign tan_terms[19] = 24'h7;
+// assign tan_terms[18] = 24'h10;
+// assign tan_terms[17] = 24'h1f;
+// assign tan_terms[16] = 24'h40;
 assign tan_terms[15] = 24'h80; 
 assign tan_terms[14] = 24'hff;
 assign tan_terms[13] = 24'h1ff;
@@ -53,44 +53,27 @@ stage_control current_stage, next_stage;
 
 
  always_ff@(posedge clk) begin
-    if (reset || ~clk_en) begin
+    if (reset || ~clk_en)
         current_stage <= IDLE;
-        loops <= 5'b0;
-    end
-    else if (clk_en) begin
+    else 
         current_stage <= next_stage;
-        if (next_stage == S1) begin
-            loops <= loops + 1'b1;
-             end
-        else begin
-            loops <= 5'b0;      
-        end
-    end
  end
 
-// always_ff@(posedge clk) begin
-//     if (reset || ~clk_en) begin
-//         loops <= 5'b0;
-//     end
-//     else if ((current_stage == S1)) begin
-//         loops <= loops+1'b1;
-//     end
-// end
+
+always_ff@(posedge clk) begin
+    if (reset || ~clk_en) 
+        loops <= 5'b0;
+    else if ((current_stage == S1)) 
+        loops <= loops+1'b1;
+    else 
+        loops <= 5'b0;
+end
 
 always_comb begin
-    casez (current_stage)
-        IDLE: begin
-            casez(start) 
-                1'b1: next_stage = S1;
-                default: next_stage = IDLE;
-            endcase
-        end
-        S1: begin
-            next_stage = (loops >= Stages) ? IDLE : S1;
-        end
-        default: begin
-            next_stage = IDLE;
-        end
+    case (current_stage)
+        IDLE: next_stage = (start) ? S1 : IDLE;
+        S1: next_stage = (loops >= Stages) ? IDLE : S1;
+        default: next_stage = IDLE;
     endcase
 end
 
@@ -107,8 +90,7 @@ always_ff@(posedge clk) begin
         x_reg <= {WIDTH{1'b0}};
         y_reg <= {WIDTH{1'b0}};
         z_reg <= {WIDTH{1'b0}};
-    end
-    else if (clk_en) begin
+    end else begin
         x_reg <= start ? x_start: x_s[ItersPerStage];
         y_reg <= start ? y_start: y_s[ItersPerStage];
         z_reg <= start ? fixedPoint_theta: z_s[ItersPerStage];
@@ -119,24 +101,23 @@ assign x_s[0] = x_reg;
 assign y_s[0] = y_reg;
 assign z_s[0] = z_reg;
 
+
 genvar i;
 
-
 generate 
-    
-    for (i = 0; i < ItersPerStage; i++) begin: stage_gen //instantiate 5 iterations in a single stage
-    wire [4:0] index;
-    assign index = loops*ItersPerStage + i;   
-    iteration iter(
-        .i(index),
-        .atan_i(tan_terms[index]),
-        .x_i(x_s[i]),
-        .y_i(y_s[i]),
-        .z_i(z_s[i]),
-        .x_n(x_s[i+1]),
-        .y_n(y_s[i+1]),
-        .z_n(z_s[i+1])
-    );
+    for (i = 0; i < ItersPerStage; i++) begin : stage_gen //instantiate 5 iterations in a single stage        
+        wire [4:0] index;
+        assign index = (loops*ItersPerStage) + i;   
+        iteration iter(
+            .i(index),
+            .atan_i(tan_terms[index]),
+            .x_i(x_s[i]),
+            .y_i(y_s[i]),
+            .z_i(z_s[i]),
+            .x_n(x_s[i+1]),
+            .y_n(y_s[i+1]),
+            .z_n(z_s[i+1])
+        );
     end
 endgenerate
 

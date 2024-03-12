@@ -40,27 +40,48 @@ module cordic_tb();
 		
 		// intialise/set input
         reset = 1'b0;
-		clk_en = 1'b1;
+		clk_en = 1'b0;  
 		
-		
-		// Wait 10 cycles (corresponds to timescale at the top) 
-		#4
-		
-        // Set the input try -1
+		#2
+        clk_en = 1'b1;
+		// Wait 2 cycles (corresponds to timescale at the top) 
+		// #4
+        // // Set the input try -1
+        // start = 1'b1;
+        // floatingPoint = 32'hbf451eb8;
+        // #2
+        // start = 1'b0;
+        
+		// #8 //wait 4 cycles
+        // clk_en = 1'b0;
         start = 1'b1;
-        floatingPoint = 32'hbf451eb8;
+        clk_en = 1'b1;
+        floatingPoint = 32'hbf800000;//-1
         #2
         start = 1'b0;
-		#4
+        #8
+        clk_en = 1'b0;
+        
+        #2 //wait 4 cycles
+        // clk_en = 1'b0;
+        start = 1'b1;
+        clk_en = 1'b1;
+        floatingPoint = 32'h3f800000;//1
+        #2
+        start = 1'b0;
+        #8 //wait 4 cycles
+
+
         //try another 0.5405
+
         // fixedPoint <= 23'b00100010100101111000110;
 		// //try another 0.99
 		// #4
         // fixedPoint <= 23'b00111111010111000010100;
         // //try 1
-        // #4
+        #4
         // fixedPoint <=23'b01000000000000000000000; //dont need to worry about signed as even function
-		// #4
+		#4
 		$display($time, "<< Simulation Complete >>");
 		$stop;
 	end

@@ -70,13 +70,13 @@ module first_nios2_system (
 	wire  [31:0] cpu_custom_instruction_master_multi_xconnect_ci_master0_dataa;          // cpu_custom_instruction_master_multi_xconnect:ci_master0_dataa -> cpu_custom_instruction_master_multi_slave_translator0:ci_slave_dataa
 	wire         cpu_custom_instruction_master_multi_xconnect_ci_master0_reset;          // cpu_custom_instruction_master_multi_xconnect:ci_master0_reset -> cpu_custom_instruction_master_multi_slave_translator0:ci_slave_reset
 	wire         cpu_custom_instruction_master_multi_xconnect_ci_master0_writerc;        // cpu_custom_instruction_master_multi_xconnect:ci_master0_writerc -> cpu_custom_instruction_master_multi_slave_translator0:ci_slave_writerc
-	wire  [31:0] cpu_custom_instruction_master_multi_slave_translator0_ci_master_result; // cosine_custom_0:floatingPoint_result -> cpu_custom_instruction_master_multi_slave_translator0:ci_master_result
-	wire         cpu_custom_instruction_master_multi_slave_translator0_ci_master_clk;    // cpu_custom_instruction_master_multi_slave_translator0:ci_master_clk -> cosine_custom_0:clk
-	wire         cpu_custom_instruction_master_multi_slave_translator0_ci_master_clk_en; // cpu_custom_instruction_master_multi_slave_translator0:ci_master_clken -> cosine_custom_0:clk_en
-	wire  [31:0] cpu_custom_instruction_master_multi_slave_translator0_ci_master_dataa;  // cpu_custom_instruction_master_multi_slave_translator0:ci_master_dataa -> cosine_custom_0:floatingPoint_theta
-	wire         cpu_custom_instruction_master_multi_slave_translator0_ci_master_start;  // cpu_custom_instruction_master_multi_slave_translator0:ci_master_start -> cosine_custom_0:start
-	wire         cpu_custom_instruction_master_multi_slave_translator0_ci_master_reset;  // cpu_custom_instruction_master_multi_slave_translator0:ci_master_reset -> cosine_custom_0:reset
-	wire         cpu_custom_instruction_master_multi_slave_translator0_ci_master_done;   // cosine_custom_0:done -> cpu_custom_instruction_master_multi_slave_translator0:ci_master_done
+	wire  [31:0] cpu_custom_instruction_master_multi_slave_translator0_ci_master_result; // cos_0:floatingPoint_result -> cpu_custom_instruction_master_multi_slave_translator0:ci_master_result
+	wire         cpu_custom_instruction_master_multi_slave_translator0_ci_master_clk;    // cpu_custom_instruction_master_multi_slave_translator0:ci_master_clk -> cos_0:clk
+	wire         cpu_custom_instruction_master_multi_slave_translator0_ci_master_clk_en; // cpu_custom_instruction_master_multi_slave_translator0:ci_master_clken -> cos_0:en
+	wire  [31:0] cpu_custom_instruction_master_multi_slave_translator0_ci_master_dataa;  // cpu_custom_instruction_master_multi_slave_translator0:ci_master_dataa -> cos_0:floatingPoint_theta
+	wire         cpu_custom_instruction_master_multi_slave_translator0_ci_master_start;  // cpu_custom_instruction_master_multi_slave_translator0:ci_master_start -> cos_0:start
+	wire         cpu_custom_instruction_master_multi_slave_translator0_ci_master_reset;  // cpu_custom_instruction_master_multi_slave_translator0:ci_master_reset -> cos_0:reset
+	wire         cpu_custom_instruction_master_multi_slave_translator0_ci_master_done;   // cos_0:done -> cpu_custom_instruction_master_multi_slave_translator0:ci_master_done
 	wire         cpu_custom_instruction_master_multi_xconnect_ci_master1_readra;         // cpu_custom_instruction_master_multi_xconnect:ci_master1_readra -> cpu_custom_instruction_master_multi_slave_translator1:ci_slave_readra
 	wire   [4:0] cpu_custom_instruction_master_multi_xconnect_ci_master1_a;              // cpu_custom_instruction_master_multi_xconnect:ci_master1_a -> cpu_custom_instruction_master_multi_slave_translator1:ci_slave_a
 	wire   [4:0] cpu_custom_instruction_master_multi_xconnect_ci_master1_b;              // cpu_custom_instruction_master_multi_xconnect:ci_master1_b -> cpu_custom_instruction_master_multi_slave_translator1:ci_slave_b
@@ -206,16 +206,16 @@ module first_nios2_system (
 	wire         rst_controller_reset_out_reset_req;                                     // rst_controller:reset_req -> [cpu:reset_req, rst_translator:reset_req_in]
 
 	cosine #(
-		.FRACS (21),
+		.FRACS (22),
 		.INTS  (1)
-	) cosine_custom_0 (
-		.clk_en               (cpu_custom_instruction_master_multi_slave_translator0_ci_master_clk_en), // cosine_custom.clk_en
-		.start                (cpu_custom_instruction_master_multi_slave_translator0_ci_master_start),  //              .start
-		.done                 (cpu_custom_instruction_master_multi_slave_translator0_ci_master_done),   //              .done
-		.floatingPoint_theta  (cpu_custom_instruction_master_multi_slave_translator0_ci_master_dataa),  //              .dataa
-		.floatingPoint_result (cpu_custom_instruction_master_multi_slave_translator0_ci_master_result), //              .result
-		.clk                  (cpu_custom_instruction_master_multi_slave_translator0_ci_master_clk),    //              .clk
-		.reset                (cpu_custom_instruction_master_multi_slave_translator0_ci_master_reset)   //              .reset
+	) cos_0 (
+		.floatingPoint_theta  (cpu_custom_instruction_master_multi_slave_translator0_ci_master_dataa),  // nios_custom_instruction_slave.dataa
+		.floatingPoint_result (cpu_custom_instruction_master_multi_slave_translator0_ci_master_result), //                              .result
+		.clk                  (cpu_custom_instruction_master_multi_slave_translator0_ci_master_clk),    //                              .clk
+		.reset                (cpu_custom_instruction_master_multi_slave_translator0_ci_master_reset),  //                              .reset
+		.start                (cpu_custom_instruction_master_multi_slave_translator0_ci_master_start),  //                              .start
+		.done                 (cpu_custom_instruction_master_multi_slave_translator0_ci_master_done),   //                              .done
+		.en                   (cpu_custom_instruction_master_multi_slave_translator0_ci_master_clk_en)  //                              .clk_en
 	);
 
 	first_nios2_system_cpu cpu (

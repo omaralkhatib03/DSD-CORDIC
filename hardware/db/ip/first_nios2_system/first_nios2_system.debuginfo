@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="first_nios2_system" kind="system" version="18.1" fabric="QSYS">
  <!-- Format version 18.1 625 (Future versions may contain additional information.) -->
- <!-- 2024.03.10.20:54:29 -->
+ <!-- 2024.03.11.23:59:42 -->
  <!-- A collection of modules and connections -->
  <parameter name="clockCrossingAdapter">
   <type>com.altera.sopcmodel.ensemble.EClockAdapter</type>
@@ -53,7 +53,7 @@
  </parameter>
  <parameter name="generationId">
   <type>int</type>
-  <value>1710104020</value>
+  <value>1710201533</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>true</visible>
@@ -451,16 +451,12 @@ parameters are a RESULT of the module parameters. -->
    </port>
   </interface>
  </module>
- <module
-   name="cosine_custom_0"
-   kind="cosine_custom"
-   version="1.0"
-   path="cosine_custom_0">
+ <module name="cos_0" kind="cos" version="1.7" path="cos_0">
   <!-- Describes a single module. Module parameters are
 the requested settings for a module instance. -->
   <parameter name="FRACS">
    <type>int</type>
-   <value>21</value>
+   <value>22</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -491,7 +487,7 @@ the requested settings for a module instance. -->
    <valid>true</valid>
   </parameter>
   <interface
-     name="cosine_custom"
+     name="nios_custom_instruction_slave"
      kind="nios_custom_instruction_slave"
      version="18.1">
    <!-- The connection points exposed by a module instance for the
@@ -580,24 +576,6 @@ parameters are a RESULT of the module parameters. -->
    <type>nios_custom_instruction</type>
    <isStart>false</isStart>
    <port>
-    <name>clk_en</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>clk_en</role>
-   </port>
-   <port>
-    <name>start</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>start</role>
-   </port>
-   <port>
-    <name>done</name>
-    <direction>Output</direction>
-    <width>1</width>
-    <role>done</role>
-   </port>
-   <port>
     <name>floatingPoint_theta</name>
     <direction>Input</direction>
     <width>32</width>
@@ -620,6 +598,24 @@ parameters are a RESULT of the module parameters. -->
     <direction>Input</direction>
     <width>1</width>
     <role>reset</role>
+   </port>
+   <port>
+    <name>start</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>start</role>
+   </port>
+   <port>
+    <name>done</name>
+    <direction>Output</direction>
+    <width>1</width>
+    <role>done</role>
+   </port>
+   <port>
+    <name>clk_en</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>clk_en</role>
    </port>
   </interface>
  </module>
@@ -2393,7 +2389,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="customInstSlavesSystemInfo">
    <type>java.lang.String</type>
-   <value><![CDATA[<info><slave name="cosine_custom_0" baseAddress="1" addressSpan="1" clockCycleType="VARIABLE" /><slave name="fp_mult_0" baseAddress="0" addressSpan="1" clockCycleType="MULTICYCLE" /><slave name="fp_sub_0" baseAddress="2" addressSpan="1" clockCycleType="MULTICYCLE" /><slave name="fp_add_0" baseAddress="3" addressSpan="1" clockCycleType="MULTICYCLE" /></info>]]></value>
+   <value><![CDATA[<info><slave name="fp_mult_0" baseAddress="0" addressSpan="1" clockCycleType="MULTICYCLE" /><slave name="fp_sub_0" baseAddress="2" addressSpan="1" clockCycleType="MULTICYCLE" /><slave name="fp_add_0" baseAddress="3" addressSpan="1" clockCycleType="MULTICYCLE" /><slave name="cos_0" baseAddress="1" addressSpan="1" clockCycleType="VARIABLE" /></info>]]></value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -11710,7 +11706,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1710104020</value>
+   <value>1710201533</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -11730,7 +11726,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
-   <value>1710104020</value>
+   <value>1710201533</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -11746,7 +11742,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
-   <value>1710104020</value>
+   <value>1710201533</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -14337,9 +14333,9 @@ parameters are a RESULT of the module parameters. -->
    </port>
    <customInstruction>
     <isBridge>false</isBridge>
-    <moduleName>cosine_custom_0</moduleName>
-    <slaveName>cosine_custom</slaveName>
-    <name>cosine_custom_0.cosine_custom</name>
+    <moduleName>cos_0</moduleName>
+    <slaveName>nios_custom_instruction_slave</slaveName>
+    <name>cos_0.nios_custom_instruction_slave</name>
     <opcodeNumber>0</opcodeNumber>
     <opcodeMnemonic></opcodeMnemonic>
    </customInstruction>
@@ -19942,11 +19938,11 @@ parameters are a RESULT of the module parameters. -->
   <endConnectionPoint>ci_slave</endConnectionPoint>
  </connection>
  <connection
-   name="cpu_custom_instruction_master_multi_slave_translator0.ci_master/cosine_custom_0.cosine_custom"
+   name="cpu_custom_instruction_master_multi_slave_translator0.ci_master/cos_0.nios_custom_instruction_slave"
    kind="nios_custom_instruction"
    version="18.1"
    start="cpu_custom_instruction_master_multi_slave_translator0.ci_master"
-   end="cosine_custom_0.cosine_custom">
+   end="cos_0.nios_custom_instruction_slave">
   <parameter name="CIName">
    <type>java.lang.String</type>
    <value></value>
@@ -20005,8 +20001,8 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <startModule>cpu_custom_instruction_master_multi_slave_translator0</startModule>
   <startConnectionPoint>ci_master</startConnectionPoint>
-  <endModule>cosine_custom_0</endModule>
-  <endConnectionPoint>cosine_custom</endConnectionPoint>
+  <endModule>cos_0</endModule>
+  <endConnectionPoint>nios_custom_instruction_slave</endConnectionPoint>
  </connection>
  <connection
    name="cpu_custom_instruction_master_multi_xconnect.ci_master1/cpu_custom_instruction_master_multi_slave_translator1.ci_slave"
@@ -21505,11 +21501,11 @@ parameters are a RESULT of the module parameters. -->
  </plugin>
  <plugin>
   <instanceCount>1</instanceCount>
-  <name>cosine_custom</name>
+  <name>cos</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>cosine_custom</displayName>
-  <version>1.0</version>
+  <displayName>cos</displayName>
+  <version>1.7</version>
  </plugin>
  <plugin>
   <instanceCount>10</instanceCount>
@@ -21792,5 +21788,5 @@ parameters are a RESULT of the module parameters. -->
   <version>18.1</version>
  </plugin>
  <reportVersion>18.1 625</reportVersion>
- <uniqueIdentifier>94E6F7345B4E0000018E2A24A3EC</uniqueIdentifier>
+ <uniqueIdentifier>94E6F7345B4E0000018E2FF4934C</uniqueIdentifier>
 </EnsembleReport>

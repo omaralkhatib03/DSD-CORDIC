@@ -1,6 +1,6 @@
 # Ignore everything
-
-/hardware/db/*
+*
+# /hardware/db/*
 # But not these files
 !.gitignore
 !*.xlsx

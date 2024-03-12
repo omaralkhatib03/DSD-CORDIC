@@ -23,7 +23,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <math.h>
-
+#define ALT_CI_COS_0(A) __builtin_custom_fnf(ALT_CI_COS_0_N,(A))
 
 // #define ALT_CI_COSINE_CUSTOM_0(N) __builtin_custom_fnf(ALT_CI_COSINE_CUSTOM_0_N,(A))
 // #define ALT_CI_COSINE_CUSTOM_0_N 0x1
@@ -91,7 +91,7 @@ float trigSum(float x[], int M)
   for (i = 0; i < M; i++)
   {
     el = x[i];
-    sum += half * el + (el * el) * (ALT_CI_COSINE_CUSTOM_0(((el - OneTwoEight) * reciprocalOneTwoEight)));
+    // sum += half * el + (el * el) * (ALT_CI_COS_0(((el - OneTwoEight) * reciprocalOneTwoEight)));
   }
   return sum;
 }
@@ -126,19 +126,36 @@ void runTest(int N, float step)
   printf("IEEE 754 Format: 0x%lx\n", (unsigned long)y.i);
 }
 
+
+void test_cosine()
+{
+  float x = 0.5;
+  float y = ALT_CI_COS_0(x);
+  printf("cosine(0.5) = %f\n", y);
+  x = 0.0;
+  y = ALT_CI_COS_0(x);
+  printf("cosine(0.0) = %f\n", y);
+  x = 1.0;
+  y = ALT_CI_COS_0(x);
+  printf("cosine(1.0) = %f\n", y);
+  x = -1.0;
+  y = ALT_CI_COS_0(x);
+  printf("cosine(-1.0) = %f\n", y);
+}
+
 int main()
 {
-  printf("Task 6!\n");
-  printf("Test Case %d\n", 1);
-  runTest(N1, step1);
-  printf("\n");
-  printf("Test Case %d\n", 2);
-  runTest(N2, step2);
-  printf("\n");
-  printf("Test Case %d\n", 3);
-  runTest(N3, step3);
-  printf("\n");
+  // printf("Task 6!\n");
+  // printf("Test Case %d\n", 1);
+  // runTest(N1, step1);
+  // printf("\n");
+  // printf("Test Case %d\n", 2);
+  // runTest(N2, step2);
+  // printf("\n");
+  // printf("Test Case %d\n", 3);
+  // runTest(N3, step3);
+  // printf("\n");
 
-
+  test_cosine();
   return 0;
 }
