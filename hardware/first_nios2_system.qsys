@@ -221,7 +221,7 @@
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
  </module>
- <module name="cos_0" kind="cos" version="1.6" enabled="1">
+ <module name="cos_0" kind="cos" version="1.7" enabled="1">
   <parameter name="FRACS" value="22" />
   <parameter name="INTS" value="1" />
  </module>
@@ -238,7 +238,7 @@
   <parameter name="cpuArchRev" value="1" />
   <parameter name="cpuID" value="0" />
   <parameter name="cpuReset" value="false" />
-  <parameter name="customInstSlavesSystemInfo"><![CDATA[<info><slave name="fp_mult_0" baseAddress="0" addressSpan="1" clockCycleType="MULTICYCLE" /><slave name="fp_sub_0" baseAddress="2" addressSpan="1" clockCycleType="MULTICYCLE" /><slave name="fp_add_0" baseAddress="3" addressSpan="1" clockCycleType="MULTICYCLE" /><slave name="cos_0" baseAddress="1" addressSpan="1" clockCycleType="VARIABLE" /></info>]]></parameter>
+  <parameter name="customInstSlavesSystemInfo"><![CDATA[<info><slave name="fp_sub_0" baseAddress="2" addressSpan="1" clockCycleType="MULTICYCLE" /><slave name="fp_add_0" baseAddress="3" addressSpan="1" clockCycleType="MULTICYCLE" /><slave name="cos_0" baseAddress="1" addressSpan="1" clockCycleType="VARIABLE" /></info>]]></parameter>
   <parameter name="customInstSlavesSystemInfo_nios_a" value="&lt;info/&gt;" />
   <parameter name="customInstSlavesSystemInfo_nios_b" value="&lt;info/&gt;" />
   <parameter name="customInstSlavesSystemInfo_nios_c" value="&lt;info/&gt;" />
