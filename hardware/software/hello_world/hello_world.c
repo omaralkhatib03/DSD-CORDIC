@@ -138,12 +138,13 @@ clock_t diff;
 clock_t exec_t1, exec_t2;
 int j = 0;
 
+
 void dmaISR(void * handle) {
   exec_t2 = times(NULL);  
-  y.i = IORD(F_OF_X_0_BASE, 1);
+  y.i = IORD(F_OF_X_0_BASE, 1); 
   diff = exec_t2 - exec_t1;
   printf("Result: %f\n", y.f);
-  printf("proc time avg: %f ms\n", (diff * 0.1f));
+  printf("proc time avg: %f ms\n", ((float) diff));
   printf("IEEE 754 Format: 0x%lx\n", (unsigned long)y.i);
 }
 
@@ -184,9 +185,7 @@ int main()
 
   exec_t1 = times(NULL);
   status = alt_dma_txchan_send(txchan, &x, N3 * 4, dmaISR, NULL);
-  printf("status: %d\n", status);
 
   while (1){}
   
-  return 0;
 }
