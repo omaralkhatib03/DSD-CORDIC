@@ -23,9 +23,9 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <math.h>
-#define ALT_CI_COS_0(A) __builtin_custom_fnf(ALT_CI_COS_0_N,(A))
+#define ALT_CI_FX_OPTIMISED_0(A) __builtin_custom_fnf(ALT_CI_FX_OPTIMISED_0_N,(A))
 
-// #define ALT_CI_COSINE_CUSTOM_0(N) __builtin_custom_fnf(ALT_CI_COSINE_CUSTOM_0_N,(A))
+#define ALT_CI_COS_0(A) __builtin_custom_fnf(ALT_CI_COS_0_N,(A))
 // #define ALT_CI_COSINE_CUSTOM_0_N 0x1
 // test 1
 #define step1 5
@@ -73,15 +73,6 @@ float sumVector(float x[], int M)
 }
 
 
-// float cosMcluren(float x) {
-//   const float x2 = (x * x);
-//   const float x4 = x2 * x2;
-//   const float x6 = (x4 * x2);
-//   const float x8 = (x4 * x4);
-//   return one - x2 * half + (x4) * C1 + (x6) * C2;
-// }
-
-
 float trigSum(float x[], int M)
 {
   int i;
@@ -91,7 +82,23 @@ float trigSum(float x[], int M)
   for (i = 0; i < M; i++)
   {
     el = x[i];
-    // sum += half * el + (el * el) * (ALT_CI_COS_0(((el - OneTwoEight) * reciprocalOneTwoEight)));
+    sum += ALT_CI_FX_OPTIMISED_0(el);
+    //sum += half * el + (el * el) * (ALT_CI_COS_0(((el - OneTwoEight) * reciprocalOneTwoEight)));
+  }
+  return sum;
+}
+
+float trigSumCord(float x[], int M)
+{
+  int i;
+  float sum = 0;
+  float el = 0;
+
+  for (i = 0; i < M; i++)
+  {
+    el = x[i];
+    //sum += ALT_CI_FX_OPTIMISED_0(el);
+    sum += half * el + (el * el) * (ALT_CI_COS_0(((el - OneTwoEight) * reciprocalOneTwoEight)));
   }
   return sum;
 }
@@ -114,8 +121,11 @@ void runTest(int N, float step)
   exec_t1 = times(NULL);
 
   for (; j < 10; j++)
+  
   {
-    y.f = trigSum(x, N);
+    printf("Hello: %f\n",1.0);
+    y.f = trigSumCord(x, N);
+    printf("Fuk u: %f\n",1.0);
   }
 
   exec_t2 = times(NULL);
@@ -131,31 +141,44 @@ void test_cosine()
 {
   float x = 0.5;
   float y = ALT_CI_COS_0(x);
-  printf("cosine(0.5) = %f\n", y);
+  //printf("cosine(0.5) = %f\n", y);
   x = 0.0;
-  y = ALT_CI_COS_0(x);
-  printf("cosine(0.0) = %f\n", y);
+  float y1 = ALT_CI_COS_0(x);
+  //printf("cosine(0.0) = %f\n", y);
   x = 1.0;
-  y = ALT_CI_COS_0(x);
-  printf("cosine(1.0) = %f\n", y);
+  float y2 = ALT_CI_COS_0(x);
+  //printf("cosine(1.0) = %f\n", y);
   x = -1.0;
-  y = ALT_CI_COS_0(x);
-  printf("cosine(-1.0) = %f\n", y);
+  float y3 = ALT_CI_COS_0(x);
+  printf("cosine(-1.0) = %f\n", y3);
+  printf("cosine(1.0) = %f\n", y2);
+  printf("cosine(0) = %f\n", y1);
+  printf("cosine(0.5) = %f\n", y);
+}
+
+void test_fx(){
+  float x = 256;
+  float y1 = ALT_CI_FX_OPTIMISED_0(x);
+  
+  x = 0;
+  float y2 = ALT_CI_FX_OPTIMISED_0(x);
+  printf("f(256) = %f\n", y1);
+  printf("f(0) = %f\n", y2);
 }
 
 int main()
 {
-  // printf("Task 6!\n");
-  // printf("Test Case %d\n", 1);
-  // runTest(N1, step1);
-  // printf("\n");
-  // printf("Test Case %d\n", 2);
-  // runTest(N2, step2);
-  // printf("\n");
-  // printf("Test Case %d\n", 3);
-  // runTest(N3, step3);
-  // printf("\n");
-
-  test_cosine();
+  printf("Task 6!\n");
+  printf("Test Case %d\n", 1);
+  runTest(N1, step1);
+  printf("\n");
+  printf("Test Case %d\n", 2);
+  runTest(N2, step2);
+  printf("\n");
+  printf("Test Case %d\n", 3);
+  runTest(N3, step3);
+  printf("\n");
+  // test_fx();
+  // test_cosine();
   return 0;
 }

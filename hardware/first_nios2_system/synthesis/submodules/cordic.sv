@@ -13,7 +13,7 @@ module cordic #(
     input start, 
     input [WIDTH-1:0] fixedPoint_theta,
     output done, 
-    output logic [WIDTH-1:0] fixedPoint_result //remember to drop sign bit always positive in range 0.5403 to 1 before returning
+    output [WIDTH-1:0] fixedPoint_result //remember to drop sign bit always positive in range 0.5403 to 1 before returning
 );
 
 localparam  [WIDTH-1:0] x_start = 24'b001001101101110100111011;//0.607252935008881256169446752827757841587066381156807; //flipped with msb int for test
@@ -23,7 +23,7 @@ wire [WIDTH-1:0] tan_terms [0:Iterations-1]; //= {22'b0000000000000000111111, 22
 //22'b0000001111111111101010, 22'b0000011111111111101010, 22'b0000111111101010110111, 22'b0001111101011011011101, 22'b0011101101011000110011, 22'b0110010010000111111011};
 //unsigned tan constants
 
-//assign tan_terms[20] = 24'h4;
+// assign tan_terms[20] = 24'h4;
 // assign tan_terms[19] = 24'h7;
 // assign tan_terms[18] = 24'h10;
 // assign tan_terms[17] = 24'h1f;
@@ -63,7 +63,7 @@ stage_control current_stage, next_stage;
 always_ff@(posedge clk) begin
     if (reset || ~clk_en) 
         loops <= 5'b0;
-    else if ((current_stage == S1) || (next_stage == S1)) 
+    else if ((current_stage == S1)) 
         loops <= loops+1'b1;
     else 
         loops <= 5'b0;
