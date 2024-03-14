@@ -224,6 +224,9 @@ wire             W_op_flushd;
 wire             W_op_flushda;
 wire             W_op_flushi;
 wire             W_op_flushp;
+wire             W_op_fp_add_0;
+wire             W_op_fp_mult_0;
+wire             W_op_fp_sub_0;
 wire             W_op_fx_optimised_0;
 wire             W_op_hbreak;
 wire             W_op_initd;
@@ -449,8 +452,11 @@ wire             test_has_ended;
   assign W_op_intr = (W_iw_opx == 61) & W_is_opx_inst;
   assign W_op_crst = (W_iw_opx == 62) & W_is_opx_inst;
   assign W_op_opx_rsv63 = (W_iw_opx == 63) & W_is_opx_inst;
-  assign W_op_cos_0 = W_op_custom & ({W_iw_custom_n[0]} == 1'h1);
-  assign W_op_fx_optimised_0 = W_op_custom & ({W_iw_custom_n[0]} == 1'h0);
+  assign W_op_cos_0 = W_op_custom & ({W_iw_custom_n[2 : 0]} == 3'h1);
+  assign W_op_fp_add_0 = W_op_custom & ({W_iw_custom_n[2 : 0]} == 3'h2);
+  assign W_op_fp_mult_0 = W_op_custom & ({W_iw_custom_n[2 : 0]} == 3'h3);
+  assign W_op_fp_sub_0 = W_op_custom & ({W_iw_custom_n[2 : 0]} == 3'h4);
+  assign W_op_fx_optimised_0 = W_op_custom & ({W_iw_custom_n[2 : 0]} == 3'h0);
   assign W_is_opx_inst = W_iw_op == 58;
   always @(posedge clk or negedge reset_n)
     begin

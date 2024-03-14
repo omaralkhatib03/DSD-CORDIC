@@ -67,7 +67,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   </table>
   <table class="blueBar">
    <tr>
-    <td class="l">2024.03.13.23:26:05</td>
+    <td class="l">2024.03.14.00:12:18</td>
     <td class="r">Datasheet</td>
    </tr>
   </table>
@@ -315,7 +315,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        <a href="#module_pll_0">pll_0</a>
       </td>
       <td class="from">outclk0&#160;&#160;</td>
-      <td class="main" rowspan="31">cpu</td>
+      <td class="main" rowspan="40">cpu</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;clk</td>
@@ -464,6 +464,54 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td class="from">custom_instruction_master&#160;&#160;</td>
       <td class="neighbor" rowspan="2">
        <a href="#module_cos_0">cos_0</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;nios_custom_instruction_slave</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">custom_instruction_master&#160;&#160;</td>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_fp_add_0">fp_add_0</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;nios_custom_instruction_slave</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">custom_instruction_master&#160;&#160;</td>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_fp_mult_0">fp_mult_0</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;nios_custom_instruction_slave</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">custom_instruction_master&#160;&#160;</td>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_fp_sub_0">fp_sub_0</a>
       </td>
      </tr>
      <tr>
@@ -1226,7 +1274,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">customInstSlavesSystemInfo</td>
-        <td class="parametervalue">&lt;info&gt;&lt;slave name="fx_optimised_0" baseAddress="0" addressSpan="1" clockCycleType="VARIABLE" /&gt;&lt;slave name="cos_0" baseAddress="1" addressSpan="1" clockCycleType="VARIABLE" /&gt;&lt;/info&gt;</td>
+        <td class="parametervalue">&lt;info&gt;&lt;slave name="fx_optimised_0" baseAddress="0" addressSpan="1" clockCycleType="VARIABLE" /&gt;&lt;slave name="cos_0" baseAddress="1" addressSpan="1" clockCycleType="VARIABLE" /&gt;&lt;slave name="fp_add_0" baseAddress="2" addressSpan="1" clockCycleType="MULTICYCLE" /&gt;&lt;slave name="fp_mult_0" baseAddress="3" addressSpan="1" clockCycleType="MULTICYCLE" /&gt;&lt;slave name="fp_sub_0" baseAddress="4" addressSpan="1" clockCycleType="MULTICYCLE" /&gt;&lt;/info&gt;</td>
        </tr>
        <tr>
         <td class="parametername">customInstSlavesSystemInfo_nios_a</td>
@@ -1407,6 +1455,141 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
       </table>
      </td>
+    </tr>
+   </table>
+  </div>
+  <a name="module_fp_add_0"> </a>
+  <div>
+   <hr/>
+   <h2>fp_add_0</h2>fp_add v1.0
+   <br/>
+   <div class="greydiv">
+    <table class="connectionboxes">
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_cpu">cpu</a>
+      </td>
+      <td class="from">custom_instruction_master&#160;&#160;</td>
+      <td class="main" rowspan="2">fp_add_0</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;nios_custom_instruction_slave</td>
+     </tr>
+    </table>
+   </div>
+   <br/>
+   <br/>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">deviceFamily</td>
+        <td class="parametervalue">UNKNOWN</td>
+       </tr>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>(none)</td>
+    </tr>
+   </table>
+  </div>
+  <a name="module_fp_mult_0"> </a>
+  <div>
+   <hr/>
+   <h2>fp_mult_0</h2>fp_mult v2.0
+   <br/>
+   <div class="greydiv">
+    <table class="connectionboxes">
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_cpu">cpu</a>
+      </td>
+      <td class="from">custom_instruction_master&#160;&#160;</td>
+      <td class="main" rowspan="2">fp_mult_0</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;nios_custom_instruction_slave</td>
+     </tr>
+    </table>
+   </div>
+   <br/>
+   <br/>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">deviceFamily</td>
+        <td class="parametervalue">UNKNOWN</td>
+       </tr>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>(none)</td>
+    </tr>
+   </table>
+  </div>
+  <a name="module_fp_sub_0"> </a>
+  <div>
+   <hr/>
+   <h2>fp_sub_0</h2>fp_sub v1.0
+   <br/>
+   <div class="greydiv">
+    <table class="connectionboxes">
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_cpu">cpu</a>
+      </td>
+      <td class="from">custom_instruction_master&#160;&#160;</td>
+      <td class="main" rowspan="2">fp_sub_0</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;nios_custom_instruction_slave</td>
+     </tr>
+    </table>
+   </div>
+   <br/>
+   <br/>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">deviceFamily</td>
+        <td class="parametervalue">UNKNOWN</td>
+       </tr>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>(none)</td>
     </tr>
    </table>
   </div>
@@ -4381,7 +4564,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">timestamp</td>
-        <td class="parametervalue">1710372365</td>
+        <td class="parametervalue">1710375138</td>
        </tr>
        <tr>
         <td class="parametername">deviceFamily</td>
@@ -4406,7 +4589,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">TIMESTAMP</td>
-        <td class="parametervalue">1710372365</td>
+        <td class="parametervalue">1710375138</td>
        </tr>
       </table>
      </td>
@@ -4416,7 +4599,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   <table class="blueBar">
    <tr>
     <td class="l">generation took 0.01 seconds</td>
-    <td class="r">rendering took 0.12 seconds</td>
+    <td class="r">rendering took 0.08 seconds</td>
    </tr>
   </table>
  </body>

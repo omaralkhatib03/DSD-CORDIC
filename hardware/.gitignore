@@ -3,4 +3,5 @@
 !/pll/*
 !/pll
 *.flock
-*/db/*
+./db/*
+# /hardware/db/*

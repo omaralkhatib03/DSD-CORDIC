@@ -23,8 +23,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <math.h>
-#define ALT_CI_FX_OPTIMISED_0(A) __builtin_custom_fnf(ALT_CI_FX_OPTIMISED_0_N,(A))
 
+#define ALT_CI_FX_OPTIMISED_0(A) __builtin_custom_fnf(ALT_CI_FX_OPTIMISED_0_N,(A))
 #define ALT_CI_COS_0(A) __builtin_custom_fnf(ALT_CI_COS_0_N,(A))
 // #define ALT_CI_COSINE_CUSTOM_0_N 0x1
 // test 1
@@ -82,23 +82,9 @@ float trigSum(float x[], int M)
   for (i = 0; i < M; i++)
   {
     el = x[i];
-    sum += ALT_CI_FX_OPTIMISED_0(el);
-    //sum += half * el + (el * el) * (ALT_CI_COS_0(((el - OneTwoEight) * reciprocalOneTwoEight)));
-  }
-  return sum;
-}
-
-float trigSumCord(float x[], int M)
-{
-  int i;
-  float sum = 0;
-  float el = 0;
-
-  for (i = 0; i < M; i++)
-  {
-    el = x[i];
-    //sum += ALT_CI_FX_OPTIMISED_0(el);
+    //sum += ALT_CI_FX_OPTIMISED_0(x[i]);
     sum += half * el + (el * el) * (ALT_CI_COS_0(((el - OneTwoEight) * reciprocalOneTwoEight)));
+        printf("Result: %f\n", x[i]);
   }
   return sum;
 }
@@ -123,9 +109,7 @@ void runTest(int N, float step)
   for (; j < 10; j++)
   
   {
-    printf("Hello: %f\n",1.0);
-    y.f = trigSumCord(x, N);
-    printf("Fuk u: %f\n",1.0);
+    y.f = trigSum(x, N);
   }
 
   exec_t2 = times(NULL);
@@ -133,7 +117,7 @@ void runTest(int N, float step)
 
   printf("Result: %f\n", y.f);
   printf("proc time avg: %f ms\n", (diff * 0.1f));
-  printf("IEEE 754 Format: 0x%lx\n", (unsigned long)y.i);
+  printf("IEE: 0x%lx\n", (unsigned long)y.i);
 }
 
 
@@ -160,7 +144,7 @@ void test_fx(){
   float x = 256;
   float y1 = ALT_CI_FX_OPTIMISED_0(x);
   
-  x = 0;
+  x = 128;
   float y2 = ALT_CI_FX_OPTIMISED_0(x);
   printf("f(256) = %f\n", y1);
   printf("f(0) = %f\n", y2);
@@ -178,7 +162,7 @@ int main()
   printf("Test Case %d\n", 3);
   runTest(N3, step3);
   printf("\n");
-  // test_fx();
-  // test_cosine();
+  test_fx();
+  test_cosine();
   return 0;
 }
