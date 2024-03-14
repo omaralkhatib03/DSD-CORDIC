@@ -17,14 +17,6 @@
          type = "int";
       }
    }
-   element compute_term_0
-   {
-      datum _sortIndex
-      {
-         value = "4";
-         type = "int";
-      }
-   }
    element cpu
    {
       datum _sortIndex
@@ -97,11 +89,27 @@
          type = "String";
       }
    }
+   element fp_add_0
+   {
+      datum _sortIndex
+      {
+         value = "9";
+         type = "int";
+      }
+   }
+   element fx_optimised_0
+   {
+      datum _sortIndex
+      {
+         value = "8";
+         type = "int";
+      }
+   }
    element jtag_uart
    {
       datum _sortIndex
       {
-         value = "5";
+         value = "4";
          type = "int";
       }
    }
@@ -117,7 +125,7 @@
    {
       datum _sortIndex
       {
-         value = "8";
+         value = "7";
          type = "int";
       }
    }
@@ -157,7 +165,7 @@
    {
       datum _sortIndex
       {
-         value = "6";
+         value = "5";
          type = "int";
       }
    }
@@ -173,7 +181,7 @@
    {
       datum _sortIndex
       {
-         value = "7";
+         value = "6";
          type = "int";
       }
    }
@@ -221,7 +229,6 @@
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
  </module>
- <module name="compute_term_0" kind="compute_term" version="1.0" enabled="1" />
  <module name="cpu" kind="altera_nios2_gen2" version="18.1" enabled="1">
   <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="4" />
   <parameter name="AUTO_CLK_RESET_DOMAIN" value="4" />
@@ -235,7 +242,7 @@
   <parameter name="cpuArchRev" value="1" />
   <parameter name="cpuID" value="0" />
   <parameter name="cpuReset" value="false" />
-  <parameter name="customInstSlavesSystemInfo"><![CDATA[<info><slave name="compute_term_0" baseAddress="1" addressSpan="1" clockCycleType="MULTICYCLE" /></info>]]></parameter>
+  <parameter name="customInstSlavesSystemInfo"><![CDATA[<info><slave name="fx_optimised_0" baseAddress="0" addressSpan="1" clockCycleType="VARIABLE" /><slave name="fp_add_0" baseAddress="1" addressSpan="1" clockCycleType="MULTICYCLE" /></info>]]></parameter>
   <parameter name="customInstSlavesSystemInfo_nios_a" value="&lt;info/&gt;" />
   <parameter name="customInstSlavesSystemInfo_nios_b" value="&lt;info/&gt;" />
   <parameter name="customInstSlavesSystemInfo_nios_c" value="&lt;info/&gt;" />
@@ -400,6 +407,8 @@
   <parameter name="tracefilename" value="" />
   <parameter name="userDefinedSettings" value="" />
  </module>
+ <module name="fp_add_0" kind="fp_add" version="1.0" enabled="1" />
+ <module name="fx_optimised_0" kind="fx_optimised" version="1.1" enabled="1" />
  <module
    name="jtag_uart"
    kind="altera_avalon_jtag_uart"
@@ -777,8 +786,17 @@
    kind="nios_custom_instruction"
    version="18.1"
    start="cpu.custom_instruction_master"
-   end="compute_term_0.nios_custom_instruction_slave">
-  <parameter name="CIName" value="compute_term_0" />
+   end="fx_optimised_0.nios_custom_instruction_slave">
+  <parameter name="CIName" value="fx_optimised_0" />
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0" />
+ </connection>
+ <connection
+   kind="nios_custom_instruction"
+   version="18.1"
+   start="cpu.custom_instruction_master"
+   end="fp_add_0.nios_custom_instruction_slave">
+  <parameter name="CIName" value="fp_add_0" />
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="1" />
  </connection>
