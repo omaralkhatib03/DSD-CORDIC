@@ -51,6 +51,11 @@
 #define ALT_CI_FP_ADD_0_N 0x1
 #define ALT_CI_FX_OPTIMISED_0(A) __builtin_custom_fnf(ALT_CI_FX_OPTIMISED_0_N,(A))
 #define ALT_CI_FX_OPTIMISED_0_N 0x0
+#define ALT_CI_PURE_COS_0(A) __builtin_custom_fnf(ALT_CI_PURE_COS_0_N,(A))
+#define ALT_CI_PURE_COS_0_N 0x2
+#define ALT_CI_TASK8_0(A,B) __builtin_custom_fnff(ALT_CI_TASK8_0_N,(A),(B))
+#define ALT_CI_TASK8_0_N 0x3
+
 
 void generateVector(float x[], float step, int N)
 {
@@ -98,6 +103,20 @@ float trigSum(float x[], int M)
   return sum;
 }
 
+
+float customSum(float x[], int M)
+{
+  int i;
+  float sum = 0;
+
+  for (i = 0; i < M; i++)
+  {
+    sum = ALT_CI_TASK8_0(x[i],sum);
+  }
+
+  return sum;
+}
+
 union MyFloat {
   float f;
   unsigned i;
@@ -117,7 +136,7 @@ void runTest(int N, float step)
 
   for (; j < 10; j++)
   {
-    y.f = trigSum(x, N);
+    y.f = customSum(x, N);
   }
 
   exec_t2 = times(NULL);
@@ -125,6 +144,15 @@ void runTest(int N, float step)
 
   printf("Result: %f\n", y.f);
   printf("proc time avg: %f ms\n", (diff * 0.1f));
+  printf("IEEE 754 Format: 0x%lx\n", (unsigned long)y.i);
+}
+
+void testCos(float input)
+{
+  float x=input;
+  MyFloat y;
+  y.f = ALT_CI_PURE_COS_0(x);
+  printf("y: %f x:%f \n", y.f, x);
   printf("IEEE 754 Format: 0x%lx\n", (unsigned long)y.i);
 }
 
@@ -140,7 +168,9 @@ int main()
   printf("Test Case %d\n", 3);
   runTest(N3, step3);
   printf("\n");
-
+  testCos(-1.0);
+  testCos(0.0);
+  testCos(1.0);
   // MyFloat x;
   // x.f = 255.f;
   // MyFloat y;

@@ -44,7 +44,7 @@ initial begin
     start = 1'b1;
     clk_en = 1'b1;
     //x = 32'h00000000;//0
-    x = 32'h43800000;
+    x = 32'h43480000;
     #2
     start = 1'b0;
     #26 //wait 10 cycles

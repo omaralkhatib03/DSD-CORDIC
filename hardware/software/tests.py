@@ -32,22 +32,31 @@ def trigSumDouble (list):
         y+= 0.5*x_i + (x_i * x_i)*np.cos((x_i-128)/128)
     return y
 
-
+def testfx(x_i):
+    print('half x ',np.float32(0.5)*x_i)
+    print('x^2 ',x_i * x_i)
+    print('cos ',np.cos((x_i-np.float32(128))/np.float32(128)))
+    print('x - 128 ',x_i-np.float32(128))
+    print ('x-128/128 ', (x_i-np.float32(128))/np.float32(128))
+    print('x^2 * cos ',(x_i * x_i)*np.cos((x_i-np.float32(128))/np.float32(128)))
+    return np.float32(0.5)*x_i + (x_i * x_i)*np.cos((x_i-np.float32(128))/np.float32(128))
 def main():
 
-    results = [ 920413.562500, 36123108.000000, 4621531648.000000]
+    print(testfx(200))
 
-    for i in range(0, len(steps)):
-        print(f"Test {i + 1}")
-        test_vector = generateVector(Ns[i], steps[i])
-        y = trigSum(test_vector)
-        double = trigSumDouble(test_vector)
-        print(f"Step: {steps[i]}, N: {Ns[i]}, Result: {results[i]}")
-        i = y.view("int32")
-        print(f'IEEE 754 Format: {hex(i)}')
-        print(f'Double result: {double}') 
-        accuracy=(abs(y-double)/double) * 100 
-        print(f'accuracy: {accuracy} %')
+    # results = [ 920413.562500, 36123108.000000, 4621531648.000000]
+
+    # for i in range(0, len(steps)):
+    #     print(f"Test {i + 1}")
+    #     test_vector = generateVector(Ns[i], steps[i])
+    #     y = trigSum(test_vector)
+    #     double = trigSumDouble(test_vector)
+    #     print(f"Step: {steps[i]}, N: {Ns[i]}, Result: {results[i]}")
+    #     i = y.view("int32")
+    #     print(f'IEEE 754 Format: {hex(i)}')
+    #     print(f'Double result: {double}') 
+    #     accuracy=(abs(y-double)/double) * 100 
+    #     print(f'accuracy: {accuracy} %')
     
 
 if __name__ == "__main__":

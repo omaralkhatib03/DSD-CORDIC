@@ -64,7 +64,7 @@ wire [31:0] cordic_input;
 wire [31:0] cordic_result;
 
 assign mul_op_a = current_proc == DIV2_SUB128 ? x : 
-                 current_proc == DIV128 ? mul_result : //wire directly to save a cycle
+                 current_proc == DIV128 ? add_result : //wire directly to save a cycle
                  current_proc == CORDIC_X2 && ~cordic_done? x : 
                  current_proc == CORDIC_X2 && cordic_done ? x_squared:
                  current_proc == X2_COS ? x_squared : 32'h0;

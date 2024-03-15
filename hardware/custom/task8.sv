@@ -1,16 +1,18 @@
-module fx_opt(
+module task_8(
     input [31:0] x,
+    input [31:0] sum,
     input clk,
     input reset,
     input clk_en,
     input start,
     output done,
-    output [31:0] f_x
+    output [31:0] new_sum
 );
 
 typedef enum {DIV2_SUB128, DIV128, CORDIC_X2, X2_COS, ADD} proc_state; //test without idle
 proc_state current_proc, next_proc;
-
+reg done_ff;
+reg done_ff_ff;
 reg [2:0] count;
 reg [31:0] x_squared;
 reg [31:0] half_x;
@@ -50,9 +52,18 @@ always_comb begin
     endcase
 end
 
+wire inner_done;
 assign cordic_start = (current_proc == CORDIC_X2 && count == 0) ? 1'b1 : 1'b0;
-assign done = ((current_proc == ADD) && (count >=2 ))? 1'b1 : 1'b0;
-
+assign inner_done = ((current_proc == ADD) && (count >=2 ))? 1'b1 : 1'b0;
+assign done = done_ff_ff;
+//wait for latency of final adder
+always_ff @(posedge clk)begin
+    if (reset || ~clk_en) 
+        done_ff <= 1'b0;
+    else
+        done_ff <= inner_done;
+        done_ff_ff <= done_ff;
+end
 //input logic
 wire [31:0] mul_op_a;
 wire [31:0] mul_op_b;
@@ -62,9 +73,12 @@ wire [31:0] add_op_b;
 wire [31:0] add_result;
 wire [31:0] cordic_input;
 wire [31:0] cordic_result;
+wire [31:0] f_x;
+wire [31:0] final_add_a;
+wire [31:0] final_add_b;
 
 assign mul_op_a = current_proc == DIV2_SUB128 ? x : 
-                 current_proc == DIV128 ? mul_result : //wire directly to save a cycle
+                 current_proc == DIV128 ? add_result : //wire directly to save a cycle
                  current_proc == CORDIC_X2 && ~cordic_done? x : 
                  current_proc == CORDIC_X2 && cordic_done ? x_squared:
                  current_proc == X2_COS ? x_squared : 32'h0;
@@ -83,6 +97,9 @@ assign add_op_b = current_proc == DIV2_SUB128 ? 32'hc3000000 : //-128
 assign cordic_input = current_proc == CORDIC_X2 ? mul_result : 32'h0;
 
 assign f_x = current_proc == ADD ? add_result : 32'h0;
+
+assign final_add_a = sum;   
+assign final_add_b = f_x;
 
 //result logic
 always_ff @(posedge clk)begin
@@ -109,13 +126,22 @@ fp_mult fp_mul(//used for squared half x_squared*cos and divide by 128
     .q(mul_result)
 );
 
-fp_add add(//used for final adding 
+fp_add add(//used for inner add
     .clk (clk),
     .areset (reset),
     .en (clk_en),
     .a(add_op_a),
     .b(add_op_b),
     .q(add_result)
+);
+
+fp_add add_final(//used for final adding with sum
+    .clk (clk),
+    .areset (reset),
+    .en (clk_en),
+    .a(final_add_a),
+    .b(final_add_b),
+    .q(new_sum)
 );
 
 cosine cordic(
