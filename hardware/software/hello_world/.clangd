@@ -1,0 +1,7 @@
+CompileFlags:
+  Add: 
+    - -I../hello_world_bsp/
+    - -I../hello_world_bsp/HAL/inc/
+    - -I../hello_world_bsp/HAL/src/
+    - -I../hello_world_bsp/drivers/inc/
+    - -I../hello_world_bsp/drivers/src/
