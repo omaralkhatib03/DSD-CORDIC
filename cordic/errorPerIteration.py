@@ -65,10 +65,10 @@ def main():
     # target_confidence = 0.95
     found_minimum = 0
     
-    WIDTH_START = 18
+    WIDTH_START = 2
     WIDTH_END = 23
-    ITERATIONS_START = 10
-    ITERATIONS_END = 19
+    ITERATIONS_START = 1  
+    ITERATIONS_END = 24
 
     cnt = 0
     for width in range(WIDTH_START, WIDTH_END):
@@ -116,18 +116,13 @@ def main():
                     
             iterations[cnt].append(i)
 
+
+
+
+
         cnt += 1        
         print(f'Error: {error}, Error + margin: {abs(error + margin)}, Error - margin: {abs(error - margin)}')
-        # if error < target_error and abs(error - margin) < target_error and abs(error + margin) < target_error and not found_minimum:
-            
-        #     minimum_iterations = i
-        #     error_at_minimum = error
-        #     confidence_at_minimum = confidence
-        #     stdDiv_at_minimum = stdDiv
-        #     minimum_width = width
-        #     found_minimum = 1
-
-    
+   
     for i in range(0, len(widths)):
         plt.errorbar(x=np.array(iterations[i]), y=np.array(errors[i]), yerr=confidences[i], fmt='o', capsize=5, elinewidth=1, capthick=1, markersize=5, label=f'Fractional Bits: {widths[i]}')
        
@@ -147,25 +142,46 @@ def main():
     widths_3d = []
     iterations_3d = []
     errors_3d = []
-    # confidences_3d = []
+    confidences_3d = []
+    
     for i in range(0, len(widths)):
+        widths_3d.append([])
         for j in range(0, len(iterations[i])):
-            widths_3d.append(widths[i])
+            widths_3d[i].append(widths[i])
             iterations_3d.append(iterations[i][j])
             errors_3d.append(errors[i][j])
-            # confidences_3d.append(confidences[i][j])
+            confidences_3d.append(confidences[i][j])
             
-    cmap = ListedColormap(sns.color_palette("magma", 256).as_hex())
+     
+    w_np = np.array(widths_3d) # y
+    i_np = np.array(iterations) # x
+    er_np = np.array(errors) # z
+    con_np = np.array(confidences)
+    upper =  er_np + con_np    
+    lower = er_np - con_np 
+
+
+
+    print(f'w: {w_np.shape}, i: {i_np.shape}, er: {er_np.shape}, con: {con_np.shape}')
+    print(f'wel0: w{w_np[0]}, iel: {i_np[0]}')
+    # con_np = np.array(confidences_3d)    
+    
+    # cmap = ListedColormap(sns.color_palette("magma", 256).as_hex())
  
     fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    ax.scatter(widths_3d, iterations_3d, errors_3d, c=widths_3d, marker='o', cmap=cmap)
+    ax = fig.add_subplot(111)
+    scatter = ax.scatter(w_np, i_np, c=er_np, marker='o', cmap='viridis')
+    crosses = ax.scatter(w_np[(er_np < 0.5e-6) & (er_np > -0.5e-6)], i_np[(er_np < 0.5e-6) & (er_np > -0.5e-6)], marker='o', facecolors='none', edgecolors='black')
+    cons = ax.scatter(w_np[(upper < 0.5e-6) & (lower > -0.5e-6)], i_np[(upper < 0.5e-6) & (lower > -0.5e-6)], marker='x', facecolors='none')
+    ax.legend([crosses, cons], ['-0.5e-6 < Sample mean error < 0.5e-6', '-0.5e-6 < Sample mean error < 0.5e-6 with 95% confidence'])
+
     ax.set_xlabel('Fractional Bits')
     ax.set_ylabel('Number of Iterations')
-    ax.set_zlabel('Mean Error (Monte Carlo)')
     ax.set_title('Mean Error Vs Number Of Iterations Vs Fractional Bits')
     ax.legend() 
 
+    cbar = plt.colorbar(scatter)
+    cbar.set_label("Mean Error")
 
     plt.show()
     
