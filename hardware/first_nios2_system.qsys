@@ -89,22 +89,6 @@
          type = "String";
       }
    }
-   element fp_add_0
-   {
-      datum _sortIndex
-      {
-         value = "9";
-         type = "int";
-      }
-   }
-   element fx_optimised_0
-   {
-      datum _sortIndex
-      {
-         value = "8";
-         type = "int";
-      }
-   }
    element jtag_uart
    {
       datum _sortIndex
@@ -142,14 +126,6 @@
       datum _sortIndex
       {
          value = "2";
-         type = "int";
-      }
-   }
-   element pure_cos_0
-   {
-      datum _sortIndex
-      {
-         value = "10";
          type = "int";
       }
    }
@@ -205,7 +181,7 @@
    {
       datum _sortIndex
       {
-         value = "11";
+         value = "8";
          type = "int";
       }
    }
@@ -258,7 +234,7 @@
   <parameter name="cpuArchRev" value="1" />
   <parameter name="cpuID" value="0" />
   <parameter name="cpuReset" value="false" />
-  <parameter name="customInstSlavesSystemInfo"><![CDATA[<info><slave name="fx_optimised_0" baseAddress="0" addressSpan="1" clockCycleType="VARIABLE" /><slave name="fp_add_0" baseAddress="1" addressSpan="1" clockCycleType="MULTICYCLE" /><slave name="pure_cos_0" baseAddress="2" addressSpan="1" clockCycleType="VARIABLE" /><slave name="task8_0" baseAddress="3" addressSpan="1" clockCycleType="VARIABLE" /></info>]]></parameter>
+  <parameter name="customInstSlavesSystemInfo"><![CDATA[<info><slave name="task8_0" baseAddress="0" addressSpan="1" clockCycleType="VARIABLE" /></info>]]></parameter>
   <parameter name="customInstSlavesSystemInfo_nios_a" value="&lt;info/&gt;" />
   <parameter name="customInstSlavesSystemInfo_nios_b" value="&lt;info/&gt;" />
   <parameter name="customInstSlavesSystemInfo_nios_c" value="&lt;info/&gt;" />
@@ -423,8 +399,6 @@
   <parameter name="tracefilename" value="" />
   <parameter name="userDefinedSettings" value="" />
  </module>
- <module name="fp_add_0" kind="fp_add" version="1.0" enabled="1" />
- <module name="fx_optimised_0" kind="fx_optimised" version="1.2" enabled="1" />
  <module
    name="jtag_uart"
    kind="altera_avalon_jtag_uart"
@@ -661,10 +635,6 @@
   <parameter name="gui_switchover_mode">Automatic Switchover</parameter>
   <parameter name="gui_use_locked" value="false" />
  </module>
- <module name="pure_cos_0" kind="pure_cos" version="1.0" enabled="1">
-  <parameter name="FRACS" value="22" />
-  <parameter name="INTS" value="1" />
- </module>
  <module
    name="sdram"
    kind="altera_avalon_new_sdram_controller"
@@ -807,37 +777,10 @@
    kind="nios_custom_instruction"
    version="18.1"
    start="cpu.custom_instruction_master"
-   end="fx_optimised_0.nios_custom_instruction_slave">
-  <parameter name="CIName" value="fx_optimised_0" />
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0" />
- </connection>
- <connection
-   kind="nios_custom_instruction"
-   version="18.1"
-   start="cpu.custom_instruction_master"
-   end="fp_add_0.nios_custom_instruction_slave">
-  <parameter name="CIName" value="fp_add_0" />
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="1" />
- </connection>
- <connection
-   kind="nios_custom_instruction"
-   version="18.1"
-   start="cpu.custom_instruction_master"
    end="task8_0.nios_custom_instruction_slave">
   <parameter name="CIName" value="task8_0" />
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="3" />
- </connection>
- <connection
-   kind="nios_custom_instruction"
-   version="18.1"
-   start="cpu.custom_instruction_master"
-   end="pure_cos_0.pure_cos">
-  <parameter name="CIName" value="pure_cos_0" />
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="2" />
+  <parameter name="baseAddress" value="0" />
  </connection>
  <connection kind="reset" version="18.1" start="clk_0.clk_reset" end="cpu.reset" />
  <connection

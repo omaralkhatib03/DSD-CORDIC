@@ -1,5 +1,5 @@
 module cordic #(
-    parameter FRACS = 22,
+    parameter FRACS = 20,
     parameter INTS = 1,
     parameter WIDTH = INTS + FRACS + 1,  //sign bit needed for algorithm
     parameter Iterations = 16,
@@ -16,8 +16,8 @@ module cordic #(
     output [WIDTH-1:0] fixedPoint_result //remember to drop sign bit always positive in range 0.5403 to 1 before returning
 );
 
-localparam  [WIDTH-1:0] x_start = 24'b001001101101110100111011;//0.607252935008881256169446752827757841587066381156807; //flipped with msb int for test
-localparam  [WIDTH-1:0] y_start = 24'b0;//0.0;
+localparam  [WIDTH-1:0] x_start = 22'b0010011011011101001110;//110;//0.607252935008881256169446752827757841587066381156807; //flipped with msb int for test
+localparam  [WIDTH-1:0] y_start = 22'b0;//0.0;
 wire [WIDTH-1:0] tan_terms [0:Iterations-1]; //= {22'b0000000000000000111111, 22'b0000000000000001111111, 22'b0000000000000011111111, 22'b0000000000000111111111,
 //22'b0000000000011111111111, 22'b0000000000111111111111, 22'b0000000001111111111111, 22'b0000000011111111111101, 22'b0000000111111111111101, 
 //22'b0000001111111111101010, 22'b0000011111111111101010, 22'b0000111111101010110111, 22'b0001111101011011011101, 22'b0011101101011000110011, 22'b0110010010000111111011};
@@ -28,22 +28,22 @@ wire [WIDTH-1:0] tan_terms [0:Iterations-1]; //= {22'b0000000000000000111111, 22
 // assign tan_terms[18] = 24'h10;
 // assign tan_terms[17] = 24'h1f;
 // assign tan_terms[16] = 24'h40;
-assign tan_terms[15] = 24'h80; 
-assign tan_terms[14] = 24'hff;
-assign tan_terms[13] = 24'h1ff;
-assign tan_terms[12] = 24'h400;
-assign tan_terms[11] = 24'h7ff;
-assign tan_terms[10] = 24'hfff;
-assign tan_terms[9]  = 24'h1fff;
-assign tan_terms[8]  = 24'h3fff;
-assign tan_terms[7]  = 24'h7fff;
-assign tan_terms[6]  = 24'hfffa;
-assign tan_terms[5]  = 24'h1ffd5;
-assign tan_terms[4]  = 24'h3feab;
-assign tan_terms[3]  = 24'h7f56e;
-assign tan_terms[2]  = 24'hfadbb;
-assign tan_terms[1]  = 24'h1dac67;
-assign tan_terms[0]  = 24'h3243f6;
+assign tan_terms[15] = 22'b0000000000000000011111;//111; 
+assign tan_terms[14] = 22'b0000000000000000111111;//111;
+assign tan_terms[13] = 22'b0000000000000001111111;//111;
+assign tan_terms[12] = 22'b0000000000000011111111;//111;
+assign tan_terms[11] = 22'b0000000000000111111111;//111;
+assign tan_terms[10] = 22'b0000000000001111111111;//111;
+assign tan_terms[9]  = 22'b0000000000011111111111;//111;
+assign tan_terms[8]  = 22'b0000000000111111111111;//111;
+assign tan_terms[7]  = 22'b0000000001111111111111;//110;
+assign tan_terms[6]  = 22'b0000000011111111111110;//101;
+assign tan_terms[5]  = 22'b0000000111111111110101;//010;
+assign tan_terms[4]  = 22'b0000001111111110101010;//110;
+assign tan_terms[3]  = 22'b0000011111110101011011;//101;
+assign tan_terms[2]  = 22'b0000111110101101101110;//101;
+assign tan_terms[1]  = 22'b0001110110101100011001;//110;
+assign tan_terms[0]  = 22'b0011001001000011111101;//101;
 
 
 reg [4:0] loops = 5'b0;

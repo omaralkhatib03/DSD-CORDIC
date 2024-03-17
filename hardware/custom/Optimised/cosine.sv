@@ -1,5 +1,5 @@
 module cosine #(
-    parameter FRACS = 22,
+    parameter FRACS = 20,
     parameter INTS = 1,
     parameter WIDTH = INTS + FRACS + 1  //sign bit needed for algorithm
 )

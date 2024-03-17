@@ -47,14 +47,8 @@
 #define OneTwoEight 128
 #define reciprocalOneTwoEight 0.0078125f
 
-#define ALT_CI_FP_ADD_0(A,B) __builtin_custom_fnff(ALT_CI_FP_ADD_0_N,(A),(B))
-#define ALT_CI_FP_ADD_0_N 0x1
-#define ALT_CI_FX_OPTIMISED_0(A) __builtin_custom_fnf(ALT_CI_FX_OPTIMISED_0_N,(A))
-#define ALT_CI_FX_OPTIMISED_0_N 0x0
-#define ALT_CI_PURE_COS_0(A) __builtin_custom_fnf(ALT_CI_PURE_COS_0_N,(A))
-#define ALT_CI_PURE_COS_0_N 0x2
 #define ALT_CI_TASK8_0(A,B) __builtin_custom_fnff(ALT_CI_TASK8_0_N,(A),(B))
-#define ALT_CI_TASK8_0_N 0x3
+#define ALT_CI_TASK8_0_N 0x0
 
 
 void generateVector(float x[], float step, int N)
@@ -89,19 +83,19 @@ float cosMcluren(float x) {
 }
 
 
-float trigSum(float x[], int M)
-{
-  int i;
-  float sum = 0;
-  float el = 0;
+// float trigSum(float x[], int M)
+// {
+//   int i;
+//   float sum = 0;
+//   float el = 0;
 
-  for (i = 0; i < M; i++)
-  {
-    sum = ALT_CI_FP_ADD_0(ALT_CI_FX_OPTIMISED_0(x[i]),sum);
-  }
+//   for (i = 0; i < M; i++)
+//   {
+//     sum = ALT_CI_FP_ADD_0(ALT_CI_FX_OPTIMISED_0(x[i]),sum);
+//   }
 
-  return sum;
-}
+//   return sum;
+// }
 
 
 float customSum(float x[], int M)
@@ -147,14 +141,14 @@ void runTest(int N, float step)
   printf("IEEE 754 Format: 0x%lx\n", (unsigned long)y.i);
 }
 
-void testCos(float input)
-{
-  float x=input;
-  MyFloat y;
-  y.f = ALT_CI_PURE_COS_0(x);
-  printf("y: %f x:%f \n", y.f, x);
-  printf("IEEE 754 Format: 0x%lx\n", (unsigned long)y.i);
-}
+// void testCos(float input)
+// {
+//   float x=input;
+//   MyFloat y;
+//   y.f = ALT_CI_PURE_COS_0(x);
+//   printf("y: %f x:%f \n", y.f, x);
+//   printf("IEEE 754 Format: 0x%lx\n", (unsigned long)y.i);
+// }
 
 int main()
 {
@@ -168,9 +162,9 @@ int main()
   printf("Test Case %d\n", 3);
   runTest(N3, step3);
   printf("\n");
-  testCos(-1.0);
-  testCos(0.0);
-  testCos(1.0);
+  // testCos(-1.0);
+  // testCos(0.0);
+  // testCos(1.0);
   // MyFloat x;
   // x.f = 255.f;
   // MyFloat y;

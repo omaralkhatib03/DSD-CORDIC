@@ -1,7 +1,7 @@
 
 //input drops sign bit (unsigned fixed)
 module fixed_to_float #(
-    parameter FRACS = 22,
+    parameter FRACS = 20,
     parameter INTS = 1,
     parameter WIDTH = INTS + FRACS //sign not needed output range between 0.5403 to 1
 )(
