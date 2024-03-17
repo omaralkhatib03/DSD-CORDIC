@@ -1,29 +1,29 @@
 # # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
 # 
-preplace inst first_nios2_system.clk_0 -pg 1 -lvl 1 -y 40
-preplace inst first_nios2_system.pll_0 -pg 1 -lvl 3 -y 40
+preplace inst first_nios2_system.clk_0 -pg 1 -lvl 1 -y 30
+preplace inst first_nios2_system.task8_0 -pg 1 -lvl 3 -y 160
+preplace inst first_nios2_system.pll_0 -pg 1 -lvl 3 -y 30
 preplace inst first_nios2_system.cpu.cpu -pg 1
-preplace inst first_nios2_system.led_pio -pg 1 -lvl 3 -y 640
+preplace inst first_nios2_system.led_pio -pg 1 -lvl 3 -y 630
 preplace inst first_nios2_system.cpu.reset_bridge -pg 1
-preplace inst first_nios2_system.fx_optimised_0 -pg 1 -lvl 3 -y 180
 preplace inst first_nios2_system -pg 1 -lvl 1 -y 40 -regy -20
-preplace inst first_nios2_system.sysid -pg 1 -lvl 3 -y 560
-preplace inst first_nios2_system.sys_clk_timer -pg 1 -lvl 3 -y 360
-preplace inst first_nios2_system.cpu -pg 1 -lvl 2 -y 150
-preplace inst first_nios2_system.sdram -pg 1 -lvl 3 -y 460
-preplace inst first_nios2_system.jtag_uart -pg 1 -lvl 3 -y 260
-preplace inst first_nios2_system.fp_add_0 -pg 1 -lvl 3 -y 140
+preplace inst first_nios2_system.sysid -pg 1 -lvl 3 -y 550
+preplace inst first_nios2_system.sys_clk_timer -pg 1 -lvl 3 -y 350
+preplace inst first_nios2_system.cpu -pg 1 -lvl 2 -y 140
+preplace inst first_nios2_system.sdram -pg 1 -lvl 3 -y 450
+preplace inst first_nios2_system.jtag_uart -pg 1 -lvl 3 -y 250
 preplace inst first_nios2_system.cpu.clock_bridge -pg 1
-preplace netloc FAN_OUT<net_container>first_nios2_system</net_container>(SLAVE)jtag_uart.irq,(SLAVE)sys_clk_timer.irq,(MASTER)cpu.irq) 1 2 1 810
+preplace inst first_nios2_system.pure_cos_0 -pg 1 -lvl 3 -y 120
+preplace netloc INTERCONNECT<net_container>first_nios2_system</net_container>(MASTER)cpu.data_master,(SLAVE)jtag_uart.avalon_jtag_slave,(SLAVE)cpu.debug_mem_slave,(SLAVE)sys_clk_timer.s1,(MASTER)cpu.instruction_master,(SLAVE)sysid.control_slave,(SLAVE)led_pio.s1,(SLAVE)sdram.s1) 1 1 2 430 300 790
 preplace netloc EXPORT<net_container>first_nios2_system</net_container>(MASTER)pll_0.outclk1,(MASTER)first_nios2_system.dram_clk) 1 3 1 N
+preplace netloc EXPORT<net_container>first_nios2_system</net_container>(SLAVE)first_nios2_system.reset,(SLAVE)clk_0.clk_in_reset) 1 0 1 NJ
 preplace netloc EXPORT<net_container>first_nios2_system</net_container>(SLAVE)first_nios2_system.clk,(SLAVE)clk_0.clk_in) 1 0 1 NJ
-preplace netloc FAN_OUT<net_container>first_nios2_system</net_container>(MASTER)clk_0.clk_reset,(SLAVE)pll_0.reset,(SLAVE)sysid.reset,(SLAVE)sdram.reset,(SLAVE)sys_clk_timer.reset,(SLAVE)cpu.reset,(SLAVE)jtag_uart.reset,(SLAVE)led_pio.reset) 1 1 2 390 70 830
-preplace netloc FAN_OUT<net_container>first_nios2_system</net_container>(MASTER)cpu.custom_instruction_master,(SLAVE)fx_optimised_0.nios_custom_instruction_slave,(SLAVE)fp_add_0.nios_custom_instruction_slave) 1 2 1 870
-preplace netloc INTERCONNECT<net_container>first_nios2_system</net_container>(SLAVE)sysid.control_slave,(MASTER)cpu.data_master,(SLAVE)jtag_uart.avalon_jtag_slave,(SLAVE)sdram.s1,(SLAVE)led_pio.s1,(MASTER)cpu.instruction_master,(SLAVE)cpu.debug_mem_slave,(SLAVE)sys_clk_timer.s1) 1 1 2 430 310 790
-preplace netloc FAN_OUT<net_container>first_nios2_system</net_container>(SLAVE)jtag_uart.clk,(SLAVE)sysid.clk,(SLAVE)led_pio.clk,(MASTER)pll_0.outclk0,(SLAVE)cpu.clk,(SLAVE)sys_clk_timer.clk,(SLAVE)sdram.clk) 1 1 3 410 290 850 30 1120
-preplace netloc POINT_TO_POINT<net_container>first_nios2_system</net_container>(SLAVE)pll_0.refclk,(MASTER)clk_0.clk) 1 1 2 NJ 50 N
-preplace netloc EXPORT<net_container>first_nios2_system</net_container>(SLAVE)first_nios2_system.led_pio_external_connection,(SLAVE)led_pio.external_connection) 1 0 3 NJ 670 NJ 670 NJ
-preplace netloc EXPORT<net_container>first_nios2_system</net_container>(SLAVE)first_nios2_system.sdram_wire,(SLAVE)sdram.wire) 1 0 3 NJ 530 NJ 530 NJ
-preplace netloc EXPORT<net_container>first_nios2_system</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)first_nios2_system.reset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>first_nios2_system</net_container>(SLAVE)led_pio.external_connection,(SLAVE)first_nios2_system.led_pio_external_connection) 1 0 3 NJ 660 NJ 660 NJ
+preplace netloc POINT_TO_POINT<net_container>first_nios2_system</net_container>(SLAVE)pll_0.refclk,(MASTER)clk_0.clk) 1 1 2 NJ 40 NJ
+preplace netloc FAN_OUT<net_container>first_nios2_system</net_container>(MASTER)cpu.irq,(SLAVE)sys_clk_timer.irq,(SLAVE)jtag_uart.irq) 1 2 1 810
+preplace netloc FAN_OUT<net_container>first_nios2_system</net_container>(SLAVE)jtag_uart.reset,(MASTER)clk_0.clk_reset,(SLAVE)sysid.reset,(SLAVE)sys_clk_timer.reset,(SLAVE)pll_0.reset,(SLAVE)sdram.reset,(SLAVE)led_pio.reset,(SLAVE)cpu.reset) 1 1 2 390 60 830
+preplace netloc FAN_OUT<net_container>first_nios2_system</net_container>(SLAVE)pure_cos_0.pure_cos,(SLAVE)task8_0.nios_custom_instruction_slave,(MASTER)cpu.custom_instruction_master) 1 2 1 850
+preplace netloc EXPORT<net_container>first_nios2_system</net_container>(SLAVE)first_nios2_system.sdram_wire,(SLAVE)sdram.wire) 1 0 3 NJ 520 NJ 520 NJ
+preplace netloc FAN_OUT<net_container>first_nios2_system</net_container>(SLAVE)sdram.clk,(SLAVE)led_pio.clk,(SLAVE)cpu.clk,(SLAVE)sys_clk_timer.clk,(SLAVE)sysid.clk,(MASTER)pll_0.outclk0,(SLAVE)jtag_uart.clk) 1 1 3 410 280 850 240 1120
 levelinfo -pg 1 0 180 1220
 levelinfo -hier first_nios2_system 190 220 550 910 1140

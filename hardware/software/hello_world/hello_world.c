@@ -47,6 +47,8 @@
 #define OneTwoEight 128
 #define reciprocalOneTwoEight 0.0078125f
 
+#define ALT_CI_PURE_COS_0(A) __builtin_custom_fnf(ALT_CI_PURE_COS_0_N,(A))
+#define ALT_CI_PURE_COS_0_N 0x1
 #define ALT_CI_TASK8_0(A,B) __builtin_custom_fnff(ALT_CI_TASK8_0_N,(A),(B))
 #define ALT_CI_TASK8_0_N 0x0
 
@@ -141,14 +143,28 @@ void runTest(int N, float step)
   printf("IEEE 754 Format: 0x%lx\n", (unsigned long)y.i);
 }
 
-// void testCos(float input)
-// {
-//   float x=input;
-//   MyFloat y;
-//   y.f = ALT_CI_PURE_COS_0(x);
-//   printf("y: %f x:%f \n", y.f, x);
-//   printf("IEEE 754 Format: 0x%lx\n", (unsigned long)y.i);
-// }
+void testCos(float input)
+{
+  float x=input;
+  MyFloat y;
+  y.f = ALT_CI_PURE_COS_0(x);
+  printf("y: %f x:%f \n", y.f, x);
+  printf("IEEE 754 Format: 0x%lx\n", (unsigned long)y.i);
+}
+
+void verifyCos()
+{
+  printf("n, input, val\n");
+  int i = 0; 
+  float random;
+  float val;
+
+  for (; i < 10000; i++) { 
+     random = ((float) rand() /RAND_MAX);
+     val = ALT_CI_PURE_COS_0(random);
+     printf("%d, %f, %f\n", i, random,val);
+}
+}
 
 int main()
 {
@@ -162,6 +178,7 @@ int main()
   printf("Test Case %d\n", 3);
   runTest(N3, step3);
   printf("\n");
+  //verifyCos();
   // testCos(-1.0);
   // testCos(0.0);
   // testCos(1.0);

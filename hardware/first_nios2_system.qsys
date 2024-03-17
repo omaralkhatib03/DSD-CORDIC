@@ -89,6 +89,14 @@
          type = "String";
       }
    }
+   element first_nios2_system
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
    element jtag_uart
    {
       datum _sortIndex

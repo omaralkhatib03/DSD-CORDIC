@@ -27,7 +27,7 @@ always_ff @(posedge clk)begin
 end
 //counter
 always_ff @(posedge clk)begin
-    if (reset || ~clk_en  || start || (count >=2 && current_proc != CORDIC_X2) || cordic_done)
+    if (reset || ~clk_en  || start || cordic_done)//|| (count >=2 && current_proc != ADD)) //(count >=2 && current_proc != CORDIC_X2) || 
         count <= 0;
     else if (current_proc != next_proc) 
         count <= 0;
@@ -46,7 +46,7 @@ always_comb begin
         X2_COS : 
             next_proc = (count >= 0) ? ADD : X2_COS;
         ADD : 
-            next_proc = (count >=2) ? DIV2_SUB128: ADD;
+            next_proc = (count >=4) ? DIV2_SUB128: ADD;
         default : 
             next_proc = DIV2_SUB128;
     endcase
@@ -54,7 +54,7 @@ end
 
 wire inner_done;
 assign cordic_start = (current_proc == CORDIC_X2 && count == 0) ? 1'b1 : 1'b0;
-assign inner_done = ((current_proc == ADD) && (count >=2 ))? 1'b1 : 1'b0;
+assign inner_done = ((current_proc == ADD) && (count ==2 ))? 1'b1 : 1'b0;
 assign done = done_ff_ff;
 //wait for latency of final adder
 always_ff @(posedge clk)begin
@@ -74,8 +74,7 @@ wire [31:0] add_result;
 wire [31:0] cordic_input;
 wire [31:0] cordic_result;
 wire [31:0] f_x;
-wire [31:0] final_add_a;
-wire [31:0] final_add_b;
+
 
 assign mul_op_a = current_proc == DIV2_SUB128 ? x : 
                  current_proc == DIV128 ? add_result : //wire directly to save a cycle
@@ -89,17 +88,16 @@ assign mul_op_b = current_proc == DIV2_SUB128 ? 32'h3f000000 : //*0.5
                     current_proc == CORDIC_X2 && cordic_done ? cordic_result : 32'h0;//wire directly to save a cycle
 
 assign add_op_a = current_proc == DIV2_SUB128 ? x :
-                    current_proc == ADD ? mul_result: 32'h0; //wire directly to save a cycle
+                    current_proc == ADD && count < 2? mul_result: ADD && count == 2 ? sum : 32'h0; //wire directly to save a cycle
 
 assign add_op_b = current_proc == DIV2_SUB128 ? 32'hc3000000 : //-128
-                    current_proc == ADD ? half_x : 32'h0; //x/2 * cos
+                    current_proc == ADD && count < 2? half_x : ADD && count == 2 ? f_x : 32'h0; //x/2 * cos
 
 assign cordic_input = current_proc == CORDIC_X2 ? mul_result : 32'h0;
 
 assign f_x = current_proc == ADD ? add_result : 32'h0;
+assign new_sum = add_result;
 
-assign final_add_a = sum;   
-assign final_add_b = f_x;
 
 //result logic
 always_ff @(posedge clk)begin
@@ -135,14 +133,6 @@ fp_add add(//used for inner add
     .q(add_result)
 );
 
-fp_add add_final(//used for final adding with sum
-    .clk (clk),
-    .areset (reset),
-    .en (clk_en),
-    .a(final_add_a),
-    .b(final_add_b),
-    .q(new_sum)
-);
 
 cosine cordic(
     .clk(clk),
