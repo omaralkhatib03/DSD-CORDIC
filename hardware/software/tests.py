@@ -73,27 +73,39 @@ def main():
     error = doubleTerms - np.array(df['val'])
     df.insert(3, "error", error)
 
-    print(df)
+    # print(df)
     inputs = np.array(inputs)
 
-    plt.subplot(2, 1, 1)
-    sns.kdeplot(inputs, color='red', fill=True)
-    plt.title('PDF of Floating-Point Values')
-    plt.xlabel('Value')
-    plt.ylabel('Probability Density')
+    # plt.subplot(2, 1, 1)
+    # sns.kdeplot(inputs, color='red', fill=True)
+    # plt.title('PDF of Floating-Point Values')
+    # plt.xlabel('Value')
+    # plt.ylabel('Probability Density')
     
+    # Mean Error
     mean_error = error.mean()
-    print(mean_error)
-    plt.subplot(2, 1, 2)
-    sns.kdeplot(error, color='blue', fill=True)
-    plt.axvline(x=mean_error, color='green', linestyle='--', label=f'Mean Error: {mean_error:.4f}')
-    plt.title('PDF of Error against Double Precision')
-    plt.xlabel('Error')
-    plt.ylabel('Probability Density')
-    plt.legend()
-
-    plt.tight_layout()
-    plt.show() 
+    
+    # Standard deviation
+    std_dev = error.std()
+    
+    # 95 % Confidence interval
+    ci = 1.96 * std_dev / np.sqrt(len(error))
+    
+    print(f'Mean Error: {mean_error:.2e}, Standard Deviation: {std_dev:.2e}, 95% CI: {ci:.2e}') 
+    
+    
+    
+    # print(mean_error)
+    # plt.subplot(2, 1, 2)
+    # sns.kdeplot(error, color='blue', fill=True)
+    # plt.axvline(x=mean_error, color='green', linestyle='--', label=f'Mean Error: {mean_error:.4f}')
+    # plt.title('PDF of Error against Double Precision')
+    # plt.xlabel('Error')
+    # plt.ylabel('Probability Density')
+    # plt.legend()
+    #
+    # plt.tight_layout()
+    # plt.show() 
 
 
 if __name__ == "__main__":
