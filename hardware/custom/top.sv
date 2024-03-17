@@ -13,7 +13,7 @@ module top (
 
 // fsm to control system
 localparam IDLE = 1'b0, BUSY = 1'b1;
-localparam cycles = 14;
+localparam cycles = 10;
 
 reg s, ns; 
 reg [4:0] count;
@@ -49,15 +49,15 @@ end
 // data path 
 reg [31:0] a_a; 
 reg [31:0] b_a; 
-wire [31:0] q_a; 
+reg [31:0] q_a; 
 wire en = s == BUSY || (s == IDLE && ns == BUSY);
 
 reg [31:0] a_m; 
 reg [31:0] b_m; 
-wire [31:0] q_m; 
+reg [31:0] q_m; 
 
 reg [31:0] angle; 
-wire [31:0] cos_angle; 
+reg [31:0] cos_angle; 
 
 
 fp_add addr(
@@ -74,8 +74,8 @@ fp_mult mult (
 		.clk    (clk),    //    clk.clk
 		.areset (reset), // areset.reset
 		.en     (en),     //     en.en
-		.a      (s == IDLE && ns == BUSY ? x : a_m),      //      a.a
-		.b      (s == IDLE && ns == BUSY ? x : b_m),      //      b.b
+		.a      (a_m),      //      a.a
+		.b      (b_m),      //      b.b
 		.q      (q_m)       //      q.q
 	);
 
@@ -95,55 +95,63 @@ reg [31:0] x_2_latch;
 reg [31:0] half_x_latch;
 
 // adder logic 
-always_ff@(posedge clk) begin 
-  if (reset || ~clk_en || (s == IDLE && ns == IDLE)) begin 
-    a_a <= 0;
-    b_a <= 0;
+always_comb begin 
+  if (s == IDLE && ns == IDLE) begin 
+    a_a = 0;
+    b_a = 0;
   end else begin 
     casez(count)
-    11: begin
-      a_a <= half_x_latch;
-      b_a <= q_m;
+    0: begin 
+      a_a = x;
+      b_a = 32'hc3000000;
+    end 
+    8: begin
+      a_a = half_x_latch;
+      b_a = q_m;
    end
    default: begin 
-      a_a <= 0;
-      b_a <= 0;
+      a_a = 0;
+      b_a = 0;
     end
     endcase
   end
 end
 
 // mult logic 
-always_ff@(posedge clk) begin 
-  if (reset || ~clk_en || (s == IDLE && ns == IDLE)) begin
-    a_m <= 0;
-    b_m <= 0;
+always_comb begin 
+  if (s == IDLE && ns == IDLE) begin
+    a_m = 0;
+    b_m =  0;
   end else begin
     casez(count)
       0: begin 
-        a_m <= x;
-        b_m <= 32'h3f000000; 
+        a_m = x;
+        b_m = x; 
+      end
+      1: begin 
+        a_m = x;
+        b_m = 32'h3f000000; 
       end
       2: begin 
-        a_m <= q_a;
-        b_m <= 32'h3c000000;
+        a_m = q_a;
+        b_m = 32'h3c000000;
       end
-      8: begin 
-        a_m <= x_2_latch;
-        b_m <= cos_angle;
+      6: begin 
+        a_m = x_2_latch;
+        b_m = cos_angle;
       end
       default: begin 
-        a_m <= 0;
-        b_m <= 0;
+        a_m = 0;
+        b_m = 0;
       end
       endcase
   end
 end
 
 // cordic logic 
-always_ff @(posedge clk) begin 
-  if (reset || ~clk_en || s == IDLE)
-    angle <= 0;
+always_comb begin 
+  if (s == IDLE)
+    angle = 0;
   else 
     angle = q_m;
 end
