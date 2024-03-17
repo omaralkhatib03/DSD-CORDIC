@@ -1,12 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D 
-import sys
 import subprocess as sp
 import math
-import itertools
 import seaborn as sns
-from matplotlib.colors import ListedColormap
+
 
 
 def floatToFixed(num, fracBits, signed):
@@ -55,25 +52,17 @@ def main():
     confidences = []
     iterations = []
     widths = []
-    minimum_iterations = 32 
-    minimum_width = 32
-    error_at_minimum = 0.0
-    confidence_at_minimum = 0.0
-    stdDiv_at_minimum = 0.0
-    
+   
     target_error = 0.5 * (10 ** -6)
-    # target_confidence = 0.95
-    found_minimum = 0
-    
-    WIDTH_START = 2
+   
+    WIDTH_START = 22
     WIDTH_END = 23
-    ITERATIONS_START = 1  
-    ITERATIONS_END = 24
+    ITERATIONS_START = 10  
+    ITERATIONS_END = 18
 
     cnt = 0
     for width in range(WIDTH_START, WIDTH_END):
 
-        # print(limit_factor)
         
         sp.run([f'./scripts/setWidth.sh {width}'], shell=True)
 
@@ -94,8 +83,6 @@ def main():
 
             error = 1000
             margin = 0
-            confidence = 0
-            stdDiv = 0
             line_number = np.longlong(0) 
 
             for line in cmdResult.stdout: 
@@ -108,9 +95,8 @@ def main():
                     print(f'line: {line}')
                     mean, std, marginOfError = string_line.split(',') 
                     error = float(mean)
-                    errors[cnt].append(abs(error))
+                    errors[cnt].append(error)
                     
-                    stdDiv = float(std)
                     margin = float(marginOfError)
                     confidences[cnt].append(margin)
                     
@@ -159,26 +145,27 @@ def main():
     con_np = np.array(confidences)
     upper =  er_np + con_np    
     lower = er_np - con_np 
-
-
+    
 
     print(f'w: {w_np.shape}, i: {i_np.shape}, er: {er_np.shape}, con: {con_np.shape}')
     print(f'wel0: w{w_np[0]}, iel: {i_np[0]}')
-    # con_np = np.array(confidences_3d)    
-    
-    # cmap = ListedColormap(sns.color_palette("magma", 256).as_hex())
+    print((upper < 0.5e-6) & (lower > -0.5e-6))
+
+
+    meetSpec =  w_np[(upper < 0.5e-6) & (lower > -0.5e-6)], i_np[(upper < 0.5e-6) & (lower > -0.5e-6)]
+    nonSpec = w_np[(upper > 0.5e-6) | (lower < -0.5e-6)], i_np[(upper > 0.5e-6) | (lower < -0.5e-6)]
+
+
  
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    scatter = ax.scatter(w_np, i_np, c=er_np, marker='o', cmap='viridis')
-    crosses = ax.scatter(w_np[(er_np < 0.5e-6) & (er_np > -0.5e-6)], i_np[(er_np < 0.5e-6) & (er_np > -0.5e-6)], marker='o', facecolors='none', edgecolors='black')
-    cons = ax.scatter(w_np[(upper < 0.5e-6) & (lower > -0.5e-6)], i_np[(upper < 0.5e-6) & (lower > -0.5e-6)], marker='x', facecolors='none')
-    ax.legend([crosses, cons], ['-0.5e-6 < Sample mean error < 0.5e-6', '-0.5e-6 < Sample mean error < 0.5e-6 with 95% confidence'])
+    scatter = ax.scatter(w_np, i_np, c=er_np, marker='o', cmap='winter', zorder=1)
+    cons = ax.scatter(meetSpec[0], meetSpec[1],  marker='x', zorder=2)
 
+    ax.legend([cons], ['-0.5e-6 < Sample mean error < 0.5e-6 with 95% confidence'])
     ax.set_xlabel('Fractional Bits')
     ax.set_ylabel('Number of Iterations')
     ax.set_title('Mean Error Vs Number Of Iterations Vs Fractional Bits')
-    ax.legend() 
 
     cbar = plt.colorbar(scatter)
     cbar.set_label("Mean Error")
