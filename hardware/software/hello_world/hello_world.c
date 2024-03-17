@@ -51,7 +51,19 @@
 #define ALT_CI_PURE_COS_0_N 0x1
 #define ALT_CI_TASK8_0(A,B) __builtin_custom_fnff(ALT_CI_TASK8_0_N,(A),(B))
 #define ALT_CI_TASK8_0_N 0x0
+// Test Case 4
+#define N 2323
+#define RANDSEED 334
 
+void generateRandomVector(float x[N])
+{
+int i;
+srand(RANDSEED);
+for (i=0; i<N; i++)
+{
+x[i] = ((float) rand()/ (float) RAND_MAX) * MAXVAL;
+}
+}
 
 void generateVector(float x[], float step, int N)
 {
