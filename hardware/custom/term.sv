@@ -14,7 +14,7 @@ module term (
 /// --------------------------------------------------------------------- ///
 
   
-  reg [31:0] x_2_delay_line [0:0];
+  reg [31:0] x_2_delay_line [2:0];
   wire [31:0] x_2_s;
     
   fp_mult fp_mul_sqr (
@@ -26,6 +26,17 @@ module term (
     .q      (x_2_delay_line[0])       //      q.q
   );
   
+
+  genvar j;
+
+  generate
+    for (j = 0; j < ($bits(x_2_delay_line) / 32) - 1 ; j = j + 1) begin : x_2_delay_line_gen
+      always_ff @(posedge clk)
+        x_2_delay_line[j+1] <= x_2_delay_line[j];
+    end
+  endgenerate
+ 
+
 
 /// --------------------------------------------------------------------- ///
 /// -------------------------    TOP LANE    ---------------------------- ///
@@ -45,7 +56,7 @@ module term (
 /// --------------------------------------------------------------------- ///
 
 
-  reg [31:0] half_x_delay_line [2:0];
+  reg [31:0] half_x_delay_line [6:0];
   wire [31:0] half_x_s;
 
   fp_mult half_x (
@@ -58,7 +69,6 @@ module term (
   );
 
 
-  genvar j;
 
   generate
     for (j = 0; j < ($bits(half_x_delay_line) / 32) - 1 ; j = j + 1) begin : x_half_delay_line_gen

@@ -12,7 +12,7 @@ module top (
 );
 
 
-localparam cycles = 6;
+localparam cycles = 15;
 
 reg [31:0] writereg; // address 0 
 reg [31:0] readreg; // address 1
@@ -58,7 +58,7 @@ term trm (
   .result(result)
 );
 
-localparam acc_cycles = 4;
+localparam acc_cycles = 7;
 reg [acc_cycles:0] acc_clk_enables;
 int j;
 
