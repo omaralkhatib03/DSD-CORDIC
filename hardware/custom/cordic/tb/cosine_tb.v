@@ -25,7 +25,7 @@ module tb();
         $dumpvars();
         
         angle = 32'h3f800000; // 1
-        #10
+        #16
         $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
 
         // angle = 32'hbf800000; // -1 Illegal test case, input range [0, 255]
@@ -33,39 +33,39 @@ module tb();
         // $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
 
         angle = 32'h33800000; // 2^-30, smallest value we can represent
-        #10
+        #16
         $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
 
         angle = 32'h0;  
-        #10
+        #16
         $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
        
         angle = 32'h3f000000; // 0.5
-        #10
+        #16
         $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
         
         angle = 32'h3f1b74ee;
-        #10
+        #16
         $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
         
         angle  = 32'h3f0a9594;
-        #10
+        #16
         $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
 
         angle = 32'h437f0000;
-        #10
+        #16
         $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
  
         angle = 32'h43000000;
-        #10
+        #16
         $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
  
         angle = 32'h42c80000;
-        #10
+        #16
         $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
         
         angle = 32'h43400000;
-        #10
+        #16
         $display("x:fl:%h,", angle, "angle:x:%h,", angle, "result:fl:%h", result);
 
         $finish;
