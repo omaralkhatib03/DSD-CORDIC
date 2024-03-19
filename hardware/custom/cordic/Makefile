@@ -29,17 +29,17 @@ bin/unpacker: $(RTL)/unpacker.sv $(TB)/unpacker_tb.v bin sim
 
 	iverilog $(INCLUDE) -o $@ $^
 
-bin/cos: $(RTL)/cosine.sv $(RTL)/engine.sv $(RTL)/unpacker.sv $(TB)/cosine_tb.v $(RTL)/packer.sv $(RTL)/packer.sv
+bin/cos: $(RTL)/cosine.sv $(RTL)/iter.sv $(RTL)/unpacker.sv $(TB)/cosine_tb.v $(RTL)/fixed2float.sv 
 	iverilog $(INCLUDE) -o $@ $^
 
-bin/monte_carlo: $(RTL)/cosine.sv $(RTL)/engine.sv $(RTL)/unpacker.sv $(TB)/monte_carlo_tb.sv $(RTL)/packer.sv
+bin/monte_carlo: $(RTL)/cosine.sv $(RTL)/iter.sv $(RTL)/unpacker.sv $(TB)/monte_carlo_tb.sv $(RTL)fixed2float.sv
 	iverilog $(INCLUDE) -o $@ $^
 
 
-bin/packer: $(RTL)/packer.sv $(RTL)/unpacker.sv $(TB)/packer_tb.sv bin sim
+bin/packer: $(RTL)/fixed2float.sv $(RTL)/unpacker.sv $(TB)/packer_tb.sv bin sim
 	iverilog $(INCLUDE) -o $@ $^
 
-bin/plot: $(RTL)/cosine.sv $(RTL)/engine.sv $(RTL)/unpacker.sv $(TB)/iterations_tb.v $(RTL)/packer.sv
+bin/plot: $(RTL)/cosine.sv $(RTL)/iter.sv $(RTL)/unpacker.sv $(TB)/iterations_tb.v $(RTL)/fixed2float.sv
 	iverilog $(INCLUDE) -o $@ $^ 
 
 

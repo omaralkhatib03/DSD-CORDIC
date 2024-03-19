@@ -15,7 +15,7 @@ module tb();
     always 
       #1 clk = ~clk;
 
-    cosine dut(clk, reset, clk_en, angle, result);
+    cos dut(clk, reset, clk_en, angle, result);
      
     initial begin
         reset = 1'b0;

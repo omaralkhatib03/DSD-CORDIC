@@ -9,8 +9,8 @@ module tb() ;
     wire [WIDTH+1:0] fixed;
     wire [31:0] result;
 
-    unpacker #(.FRACTIONAL_BITS(WIDTH)) upckr(data, fixed);
-    packer #(.WIDTH(WIDTH)) dut(fixed, result);
+    unpacker upckr(data, fixed);
+    fixed2float dut(fixed, result);
 
     initial begin
         $dumpfile("sim/unpacker.vcd");
