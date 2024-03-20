@@ -1,7 +1,7 @@
 `timescale 100ps / 100ps
 
 
-module tb();
+module cosine_tb();
     
 
     reg [31:0] angle;
@@ -19,6 +19,10 @@ module tb();
     cos dut(clk, clk_en, reset, start, angle, done, result);
      
     initial begin
+        start = 1'b0;
+        reset = 1'b1;
+        clk_en = 1'b0;
+        #2 
         reset = 1'b0;
         clk_en = 1'b1;
 
@@ -29,14 +33,14 @@ module tb();
         angle = 32'h3f800000; // 1
         #2 
         start = 1'b0;
-        #16
+        #12
         $display("input:fl:%h,", angle, "cos-cordic:fl:%h", result);
 
         start = 1'b1; 
         angle = 32'hbf800000; // -1
         #2 
         start = 1'b0;
-        #16
+        #12
         $display("input:fl:%h,", angle, "cos-cordic:fl:%h", result);
 
         start = 1'b1; 
@@ -44,21 +48,21 @@ module tb();
         #2 
         start = 1'b0;
         $display("input:fl:%h,", angle, "cos-cordic:fl:%h", result);
-        #16
+        #12
 
         start = 1'b1; 
         angle = 32'h0;  
         #2 
         start = 1'b0;
         $display("input:fl:%h,", angle, "cos-cordic:fl:%h", result);
-        #16
+        #12
        
         start = 1'b1; 
         angle = 32'h3f000000; // 0.5
         #2 
         start = 1'b0;
         $display("input:fl:%h,", angle, "cos-cordic:fl:%h", result);
-        #16
+        #12
 
         $finish;
 

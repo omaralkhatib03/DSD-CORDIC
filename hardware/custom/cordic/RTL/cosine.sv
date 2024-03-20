@@ -31,7 +31,7 @@ always_ff @(posedge clk) begin
 end
 
 always_ff @(posedge clk) begin 
-    if (reset || ~clk_en || (state == IDLE && nextState == IDLE)) 
+    if (reset || ~clk_en || nextState == IDLE) 
         cycle <= 0;
     else
         cycle <= cycle + 1;
