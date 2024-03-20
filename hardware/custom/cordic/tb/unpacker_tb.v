@@ -3,14 +3,12 @@
 
 module tb() ;
   
-    parameter WIDTH = 22;
-  
     reg [31:0] data;
 
-    wire sign, isSpecial; // special values are -1, 1
-    wire [WIDTH+1:0] result;
+    // wire sign, isSpecial; // special values are -1, 1
+    wire [22+1:0] result;
 
-    unpacker dut(data, result);
+    float_to_fixed dut(data, result);
 
     initial begin
         $dumpfile("sim/unpacker.vcd");

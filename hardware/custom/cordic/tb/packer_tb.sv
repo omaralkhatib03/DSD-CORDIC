@@ -3,14 +3,14 @@
 
 module tb() ;
     
-    parameter WIDTH = 22;
+    // parameter WIDTH = 22;
 
     reg [31:0] data; 
-    wire [WIDTH+1:0] fixed;
+    wire [22+1:0] fixed;
     wire [31:0] result;
 
-    unpacker upckr(data, fixed);
-    fixed2float dut(fixed, result);
+    float_to_fixed upckr(data, fixed);
+    fixed_to_float dut(fixed, result);
 
     initial begin
         $dumpfile("sim/unpacker.vcd");

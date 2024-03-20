@@ -24,22 +24,22 @@ unpacker: bin/unpacker $(INTERPERTER)
 packer: bin/packer $(INTERPERTER)
 	./bin/packer | python $(INTERPERTER)
 
-bin/unpacker: $(RTL)/unpacker.sv $(TB)/unpacker_tb.v bin sim
+bin/unpacker: $(RTL)/float_to_fixed.v $(TB)/unpacker_tb.v bin sim
 	iverilog $(INCLUDE) -o $@ $^
 
 	iverilog $(INCLUDE) -o $@ $^
 
-bin/cos: $(RTL)/cosine.sv $(RTL)/iter.sv $(RTL)/unpacker.sv $(TB)/cosine_tb.v $(RTL)/fixed2float.sv 
+bin/cos: $(RTL)/cosine.sv $(RTL)/cordic.v $(RTL)/float_to_fixed.v $(TB)/cosine_tb.v $(RTL)/fixed_to_float.v 
 	iverilog $(INCLUDE) -o $@ $^
 
-bin/monte_carlo: $(RTL)/cosine.sv $(RTL)/iter.sv $(RTL)/unpacker.sv $(TB)/monte_carlo_tb.sv $(RTL)fixed2float.sv
+bin/monte_carlo: $(RTL)/cosine.sv $(RTL)/iter.sv $(RTL)/float_to_fixed.v $(TB)/monte_carlo_tb.sv $(RTL)fixed_to_float.sv
 	iverilog $(INCLUDE) -o $@ $^
 
 
-bin/packer: $(RTL)/fixed2float.sv $(RTL)/unpacker.sv $(TB)/packer_tb.sv bin sim
+bin/packer: $(RTL)/fixed_to_float.v $(RTL)/float_to_fixed.v $(TB)/packer_tb.sv bin sim
 	iverilog $(INCLUDE) -o $@ $^
 
-bin/plot: $(RTL)/cosine.sv $(RTL)/iter.sv $(RTL)/unpacker.sv $(TB)/iterations_tb.v $(RTL)/fixed2float.sv
+bin/plot: $(RTL)/cosine.sv $(RTL)/iter.sv $(RTL)/float_to_fixed.v $(TB)/iterations_tb.v $(RTL)/fixed_to_float.v
 	iverilog $(INCLUDE) -o $@ $^ 
 
 

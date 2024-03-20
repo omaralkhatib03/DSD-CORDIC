@@ -6,8 +6,9 @@ module tb();
 
     reg [31:0] angle;
     wire [31:0] result;
+    wire done;
   
-    reg clk, clk_en, reset;
+    reg clk, clk_en, reset, start;
 
     initial
       clk = 1'b1;
@@ -15,7 +16,7 @@ module tb();
     always 
       #1 clk = ~clk;
 
-    cos dut(clk, reset, clk_en, angle, result);
+    cos dut(clk, clk_en, reset, start, angle, done, result);
      
     initial begin
         reset = 1'b0;
@@ -24,28 +25,40 @@ module tb();
         $dumpfile("sim/cosine.vcd");
         $dumpvars();
         
-        
+        start = 1'b1; 
         angle = 32'h3f800000; // 1
-        #10
+        #2 
+        start = 1'b0;
+        #16
         $display("input:fl:%h,", angle, "cos-cordic:fl:%h", result);
 
+        start = 1'b1; 
         angle = 32'hbf800000; // -1
-        
-        #10
+        #2 
+        start = 1'b0;
+        #16
         $display("input:fl:%h,", angle, "cos-cordic:fl:%h", result);
 
+        start = 1'b1; 
         angle = 32'h33800000; // 2^-30, smallest value we can represent
-        #10
+        #2 
+        start = 1'b0;
         $display("input:fl:%h,", angle, "cos-cordic:fl:%h", result);
+        #16
 
+        start = 1'b1; 
         angle = 32'h0;  
-        #10
+        #2 
+        start = 1'b0;
         $display("input:fl:%h,", angle, "cos-cordic:fl:%h", result);
+        #16
        
+        start = 1'b1; 
         angle = 32'h3f000000; // 0.5
-        #10
+        #2 
+        start = 1'b0;
         $display("input:fl:%h,", angle, "cos-cordic:fl:%h", result);
-        
+        #16
 
         $finish;
 
